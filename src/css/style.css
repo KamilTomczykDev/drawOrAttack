@@ -1,0 +1,106 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+}
+
+.game {
+  width: 1920px;
+  height: 1080px;
+  max-width: 1920px;
+  max-height: 1080px;
+  background-color: rgba(182, 100, 0, 0.705);
+}
+.enemy-side,
+.player-side {
+  display: flex;
+  justify-content: space-between;
+}
+.enemy-side {
+  background-color: brown;
+  height: 40%;
+}
+
+.player-side {
+  height: 60%;
+  background-color: blue;
+}
+
+.enemy-board,
+.player-board {
+  width: 50%;
+  background-color: aqua;
+  border: solid;
+}
+
+.timer-container {
+  font-size: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+section div {
+  font-size: 50px;
+}
+
+.timer-container,
+.stats-container,
+.cementary-container,
+.buttons-container {
+  width: 25%;
+}
+
+.player-board {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.player-board-container {
+  height: 40%;
+  background-color: green;
+}
+.player-hero-container {
+  height: 30%;
+  background-color: bisque;
+}
+.player-hand-container {
+  height: 30%;
+  background-color: blueviolet;
+}
+.player-buttons {
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.mana-container {
+  height: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.mana {
+  padding: 1rem;
+  font-size: 1rem;
+  color: aqua;
+}
+
+.player-buttons button {
+  width: 50%;
+  height: 30%;
+  font-size: 3rem;
+  margin: 2rem;
+}
