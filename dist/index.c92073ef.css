@@ -1,3 +1,11 @@
+:root {
+  --turn-color: #fe7f00;
+  --cost-color: #001aff;
+  --atk-color: #cf0000;
+  --heal-color: #00ba00;
+  --player-color: #388eff;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -7,9 +15,9 @@
 body {
   justify-content: center;
   place-items: center;
-  width: 100vw;
-  height: 100vh;
+  font-family: VT323, monospace;
   display: flex;
+  position: fixed;
 }
 
 .game {
@@ -30,6 +38,31 @@ body {
   height: 40%;
 }
 
+.enemy-board {
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  display: flex;
+}
+
+.enemy-hero-container {
+  background-color: bisque;
+  border: 20px ridge #ab0000;
+  height: 60%;
+  margin: 50px;
+}
+
+.enemy-img {
+  height: 100%;
+}
+
+.turns-container {
+  justify-content: center;
+  align-items: center;
+  font-size: 8rem;
+  display: flex;
+}
+
 .player-side {
   background-color: #00f;
   height: 60%;
@@ -37,7 +70,6 @@ body {
 
 .enemy-board, .player-board {
   background-color: #0ff;
-  border: solid;
   width: 50%;
 }
 
@@ -52,11 +84,12 @@ section div {
   font-size: 50px;
 }
 
-.timer-container, .stats-container, .cementary-container, .buttons-container {
+.timer-container, .turns-container, .cementary-container, .buttons-container {
   width: 25%;
 }
 
 .player-board {
+  border-top: solid;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -64,18 +97,166 @@ section div {
 }
 
 .player-board-container {
-  background-color: green;
-  height: 40%;
+  justify-content: center;
+  align-items: center;
+  height: 20%;
+  margin-top: 5%;
+  display: flex;
+}
+
+.board-card {
+  border: ridge 10px var(--player-color);
+  height: 100%;
+  margin: 0 10px;
+  transition: all 1s;
+  position: relative;
+}
+
+.board-card-img {
+  height: 100%;
+}
+
+.atk-heal-stat {
+  color: #fff;
+  background-color: var(--atk-color);
+  left: -15%;
+}
+
+.healer {
+  color: #fff;
+  background-color: var(--heal-color);
+}
+
+.board-card-fullview {
+  width: 1000px;
+  height: 250px;
+  position: absolute;
+  top: -100%;
+  left: -200%;
+}
+
+.full-card .board {
+  opacity: 0;
+  transition: all 1s;
+}
+
+.board-card:hover > .full-card .board {
+  opacity: 1;
+}
+
+.turn-stat, .atk-heal-stat {
+  text-align: center;
+  border: ridge 8px var(--player-color);
+  border-radius: 50%;
+  width: 50%;
+  height: 50%;
+  font-size: 80%;
+  position: absolute;
+  top: 70%;
+}
+
+.turn-stat {
+  color: #fff;
+  background-color: var(--turn-color);
+  right: -15%;
 }
 
 .player-hero-container {
-  background-color: bisque;
-  height: 30%;
+  border: ridge 15px var(--player-color);
+  height: 25%;
+  margin: 3% 0 2%;
+}
+
+.hero-img {
+  height: 100%;
 }
 
 .player-hand-container {
-  background-color: #8a2be2;
-  height: 30%;
+  background-color: #00f;
+  justify-content: center;
+  width: 100%;
+  height: 40%;
+  display: flex;
+  position: relative;
+}
+
+.full-card {
+  border: ridge 15px var(--player-color);
+  background-color: #ffe6a5;
+  width: 20%;
+  height: 130%;
+  margin-top: 2%;
+  padding: 1%;
+  transition: all .5s;
+  position: absolute;
+  top: 0;
+}
+
+.hand:hover {
+  top: -100%;
+}
+
+.card-cost {
+  color: #fff;
+  border: ridge 10px var(--player-color);
+  text-align: center;
+  background-color: #001aff;
+  border-radius: 50%;
+  width: 40%;
+  font-size: 100%;
+  position: absolute;
+  top: -10%;
+  left: -20%;
+}
+
+.full-img-container {
+  border: ridge 4px var(--player-color);
+  width: 100%;
+  height: 40%;
+  margin-bottom: 5px;
+}
+
+.full-card-img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.card-name {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.card-ability {
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.full-atk-heal-stat {
+  color: #fff;
+  border: ridge 10px var(--player-color);
+  background-color: var(--atk-color);
+  text-align: center;
+  border-radius: 50%;
+  width: 40%;
+  font-size: 100%;
+  position: absolute;
+  bottom: -10%;
+  left: -20%;
+}
+
+.full-turn-stat {
+  color: #fff;
+  border: ridge 10px var(--player-color);
+  background-color: var(--turn-color);
+  text-align: center;
+  border-radius: 50%;
+  width: 40%;
+  font-size: 100%;
+  position: absolute;
+  bottom: -10%;
+  right: -20%;
 }
 
 .player-buttons {
