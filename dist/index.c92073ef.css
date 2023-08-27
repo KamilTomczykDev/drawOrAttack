@@ -14,17 +14,18 @@
 
 body {
   justify-content: center;
-  place-items: center;
+  align-items: center;
+  height: 100%;
   font-family: VT323, monospace;
   display: flex;
-  position: fixed;
+  overflow: hidden;
 }
 
 .game {
   background-color: #b66400b4;
   width: 1920px;
   max-width: 1920px;
-  height: 1080px;
+  height: 100vh;
   max-height: 1080px;
 }
 
@@ -108,7 +109,6 @@ section div {
   border: ridge 10px var(--player-color);
   height: 100%;
   margin: 0 10px;
-  transition: all 1s;
   position: relative;
 }
 
@@ -127,30 +127,13 @@ section div {
   background-color: var(--heal-color);
 }
 
-.board-card-fullview {
-  width: 1000px;
-  height: 250px;
-  position: absolute;
-  top: -100%;
-  left: -200%;
-}
-
-.full-card .board {
-  opacity: 0;
-  transition: all 1s;
-}
-
-.board-card:hover > .full-card .board {
-  opacity: 1;
-}
-
 .turn-stat, .atk-heal-stat {
   text-align: center;
   border: ridge 8px var(--player-color);
   border-radius: 50%;
   width: 50%;
   height: 50%;
-  font-size: 80%;
+  font-size: 70%;
   position: absolute;
   top: 70%;
 }
@@ -171,6 +154,83 @@ section div {
   height: 100%;
 }
 
+.board-card-fullview {
+  border: ridge 15px var(--player-color);
+  opacity: 0;
+  background-color: #ffe6a5;
+  width: 200%;
+  height: 350%;
+  margin-top: 2%;
+  padding: 10%;
+  transition: all .5s;
+  position: absolute;
+  top: -400%;
+  right: -50%;
+}
+
+.board-card-cost-fullview {
+  color: #fff;
+  border: ridge 10px var(--player-color);
+  text-align: center;
+  background-color: #001aff;
+  border-radius: 50%;
+  width: 40%;
+  font-size: 100%;
+  position: absolute;
+  top: -10%;
+  left: -20%;
+}
+
+.board-card-img-container-fullview {
+  border: ridge 4px var(--player-color);
+  width: 100%;
+  height: 35%;
+  margin-bottom: 5px;
+}
+
+.board-card-img-fullview {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.board-card-name-fullview {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.board-card-ability-fullview {
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.board-atk-heal-stat-fullview {
+  color: #fff;
+  border: ridge 10px var(--player-color);
+  background-color: var(--atk-color);
+  text-align: center;
+  border-radius: 50%;
+  width: 40%;
+  font-size: 100%;
+  position: absolute;
+  bottom: -10%;
+  left: -20%;
+}
+
+.board-turn-stat-fullview {
+  color: #fff;
+  border: ridge 10px var(--player-color);
+  background-color: var(--turn-color);
+  text-align: center;
+  border-radius: 50%;
+  width: 40%;
+  font-size: 100%;
+  position: absolute;
+  bottom: -10%;
+  right: -20%;
+}
+
 .player-hand-container {
   background-color: #00f;
   justify-content: center;
@@ -180,7 +240,7 @@ section div {
   position: relative;
 }
 
-.full-card {
+.hand-card {
   border: ridge 15px var(--player-color);
   background-color: #ffe6a5;
   width: 20%;
@@ -192,7 +252,7 @@ section div {
   top: 0;
 }
 
-.hand:hover {
+.hand-card:hover {
   top: -100%;
 }
 
@@ -209,14 +269,14 @@ section div {
   left: -20%;
 }
 
-.full-img-container {
+.hand-img-container {
   border: ridge 4px var(--player-color);
   width: 100%;
   height: 40%;
   margin-bottom: 5px;
 }
 
-.full-card-img {
+.hand-card-img {
   object-fit: cover;
   width: 100%;
   height: 100%;
@@ -233,7 +293,7 @@ section div {
   font-size: 1.8rem;
 }
 
-.full-atk-heal-stat {
+.hand-atk-heal-stat {
   color: #fff;
   border: ridge 10px var(--player-color);
   background-color: var(--atk-color);
@@ -246,7 +306,7 @@ section div {
   left: -20%;
 }
 
-.full-turn-stat {
+.hand-turn-stat {
   color: #fff;
   border: ridge 10px var(--player-color);
   background-color: var(--turn-color);
