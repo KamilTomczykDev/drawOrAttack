@@ -37,23 +37,23 @@ body {
   background-color: brown;
   height: 40%;
 }
-.enemy-board {
+.enemy-section {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.enemy-hero-container {
+.enemy-section--hero {
   height: 60%;
   border: ridge 20px rgb(171, 0, 0);
   margin: 50px;
   background-color: bisque;
 }
-.enemy-img {
+.enemy-section--hero--img {
   height: 100%;
 }
 
-.turns-container {
+.turn-counter {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -65,13 +65,13 @@ body {
   background-color: blue;
 }
 
-.enemy-board,
-.player-board {
+.enemy-section,
+.player-section {
   width: 50%;
   background-color: aqua;
 }
 
-.timer-container {
+.timer {
   font-size: 20rem;
   display: flex;
   justify-content: center;
@@ -81,14 +81,14 @@ section div {
   font-size: 50px;
 }
 
-.timer-container,
-.turns-container,
-.cementary-container,
-.buttons-container {
+.timer,
+.turn-counter,
+.cementary,
+.buttons-and-mana {
   width: 25%;
 }
 
-.player-board {
+.player-section {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -98,23 +98,23 @@ section div {
 
 /* ///////player board styling//////// */
 
-.player-board-container {
+.board {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 20%;
   margin-top: 5%;
 }
-.board-card {
+.board--card {
   margin: 0 10px 0 10px;
   border: ridge 10px var(--player-color);
   height: 100%;
   position: relative;
 }
-.board-card-img {
+.board--card--img {
   height: 100%;
 }
-.atk-heal-stat {
+.board--card--left-stat {
   color: white;
   left: -15%;
   background-color: var(--atk-color);
@@ -124,8 +124,8 @@ section div {
   background-color: var(--heal-color);
 }
 
-.turn-stat,
-.atk-heal-stat {
+.board--card--turn-stat,
+.board--card--left-stat {
   height: 50%;
   width: 50%;
   text-align: center;
@@ -135,7 +135,7 @@ section div {
   border-radius: 50%;
   top: 70%;
 }
-.turn-stat {
+.board--card--turn-stat {
   color: white;
   right: -15%;
   background-color: var(--turn-color);
@@ -143,17 +143,17 @@ section div {
 
 /* ///////player hero styling//////// */
 
-.player-hero-container {
+.hero {
   height: 25%;
   border: ridge 15px var(--player-color);
   margin: 3% 0 2% 0;
 }
-.hero-img {
+.hero--img {
   height: 100%;
 }
 /*/ board-card-fullview */
 
-.board-card-fullview {
+.hover-view {
   border: ridge 15px var(--player-color);
   position: absolute;
   height: 350%;
@@ -166,7 +166,7 @@ section div {
   transition: all 0.5s;
   opacity: 0;
 }
-.board-card-cost-fullview {
+.hover-view--cost {
   position: absolute;
   color: rgb(255, 255, 255);
   border: ridge 10px var(--player-color);
@@ -178,27 +178,27 @@ section div {
   width: 40%;
   text-align: center;
 }
-.board-card-img-container-fullview {
+.hover-view--img-container {
   border: ridge 4px var(--player-color);
   width: 100%;
   height: 35%;
   margin-bottom: 5px;
 }
-.board-card-img-fullview {
+.hover-view--img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.board-card-name-fullview {
+.hover-view--name {
   font-size: 1.5rem;
   text-align: center;
   font-weight: bold;
 }
-.board-card-ability-fullview {
+.hover-view--ability {
   font-size: 1.8rem;
   text-align: center;
 }
-.board-atk-heal-stat-fullview {
+.hover-view--left-stat {
   position: absolute;
   color: rgb(255, 255, 255);
   border: ridge 10px var(--player-color);
@@ -210,7 +210,7 @@ section div {
   width: 40%;
   text-align: center;
 }
-.board-turn-stat-fullview {
+.hover-view--turn-stat {
   position: absolute;
   color: rgb(255, 255, 255);
   border: ridge 10px var(--player-color);
@@ -225,7 +225,7 @@ section div {
 
 /* ///////player hand styling//////// */
 
-.player-hand-container {
+.hand {
   display: flex;
   justify-content: center;
   height: 40%;
@@ -233,7 +233,7 @@ section div {
   background-color: blue;
   position: relative;
 }
-.hand-card {
+.hand--card {
   border: ridge 15px var(--player-color);
   position: absolute;
   height: 130%;
@@ -244,10 +244,10 @@ section div {
   background-color: rgb(255, 230, 165);
   transition: all 0.5s;
 }
-.hand-card:hover {
+.hand--card:hover {
   top: -100%;
 }
-.card-cost {
+.hand--card--cost {
   position: absolute;
   color: rgb(255, 255, 255);
   border: ridge 10px var(--player-color);
@@ -259,29 +259,27 @@ section div {
   width: 40%;
   text-align: center;
 }
-.hand-img-container {
+.hand--card--img-container {
   border: ridge 4px var(--player-color);
   width: 100%;
   height: 40%;
   margin-bottom: 5px;
 }
-.hand-card-img {
+.hand--card--img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.card-name {
+.hand--card--name {
   font-size: 1.5rem;
   text-align: center;
   font-weight: bold;
 }
-.card-ability-container {
-}
-.card-ability {
+.hand--card--ability {
   font-size: 1.8rem;
   text-align: center;
 }
-.hand-atk-heal-stat {
+.hand--card--left-stat {
   position: absolute;
   color: rgb(255, 255, 255);
   border: ridge 10px var(--player-color);
@@ -293,7 +291,7 @@ section div {
   width: 40%;
   text-align: center;
 }
-.hand-turn-stat {
+.hand--card--turn-stat {
   position: absolute;
   color: rgb(255, 255, 255);
   border: ridge 10px var(--player-color);
@@ -308,7 +306,7 @@ section div {
 
 /* ///////player right side//////// */
 
-.player-buttons {
+.buttons {
   height: 60%;
   display: flex;
   flex-direction: column;
@@ -329,7 +327,7 @@ section div {
   color: aqua;
 }
 
-.player-buttons button {
+.buttons button {
   width: 50%;
   height: 30%;
   font-size: 3rem;
