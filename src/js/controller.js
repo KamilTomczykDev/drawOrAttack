@@ -7,8 +7,8 @@ if (module.hot) {
 
 ////////////////////////
 
-const elToHover = document.querySelector(".board-card-img");
-const secondEl = document.querySelector(".board-card-fullview");
+const elToHover = document.querySelector(".board--card--img");
+const secondEl = document.querySelector(".hover-view");
 
 elToHover.addEventListener("mouseover", () => (secondEl.style.opacity = "1"));
 elToHover.addEventListener("mouseout", () => (secondEl.style.opacity = "0"));

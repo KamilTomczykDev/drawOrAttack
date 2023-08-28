@@ -578,8 +578,8 @@ var _webImmediateJs = require("core-js/modules/web.immediate.js");
 var _runtime = require("regenerator-runtime/runtime");
 if (module.hot) module.hot.accept();
 ////////////////////////
-const elToHover = document.querySelector(".board-card-img");
-const secondEl = document.querySelector(".board-card-fullview");
+const elToHover = document.querySelector(".board--card--img");
+const secondEl = document.querySelector(".hover-view");
 elToHover.addEventListener("mouseover", ()=>secondEl.style.opacity = "1");
 elToHover.addEventListener("mouseout", ()=>secondEl.style.opacity = "0");
 
