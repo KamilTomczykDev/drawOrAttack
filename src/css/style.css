@@ -34,8 +34,6 @@ body {
 }
 
 .game {
-  width: 1920px;
-  height: 100vh;
   max-width: 1920px;
   max-height: 1080px;
   background-color: rgba(182, 100, 0, 0.705);
@@ -47,10 +45,9 @@ body {
 }
 .enemy-side {
   background-color: brown;
-  height: 40%;
+  height: 40vh;
 }
 .enemy-section {
-  height: 100%;
 }
 .enemy-section--hero {
   height: 60%;
@@ -77,13 +74,13 @@ body {
 }
 
 .player-side {
-  height: 60%;
+  height: 60vh;
   background-color: blue;
 }
 
 .enemy-section,
 .player--mid-section {
-  width: 50%;
+  width: 50vw;
   background-color: aqua;
 }
 
@@ -98,7 +95,7 @@ section div {
 .turn-counter,
 .player--left-section,
 .player--right-section {
-  width: 25%;
+  width: 25vw;
 }
 
 .player--mid-section {
