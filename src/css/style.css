@@ -16,12 +16,13 @@ body,
 .enemy-section,
 .turn-counter,
 .timer,
-.player-section,
+.player--mid-section,
 .board,
-.buttons-and-mana,
+.player--right-section,
 .buttons,
 .mana--container,
-.enemy-section--hero {
+.enemy-section--hero,
+.player--left-section {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -81,7 +82,7 @@ body {
 }
 
 .enemy-section,
-.player-section {
+.player--mid-section {
   width: 50%;
   background-color: aqua;
 }
@@ -95,14 +96,29 @@ section div {
 
 .timer,
 .turn-counter,
-.cementary,
-.buttons-and-mana {
+.player--left-section,
+.player--right-section {
   width: 25%;
 }
 
-.player-section {
+.player--mid-section {
   flex-direction: column;
   border-top: solid;
+}
+
+/*////// player left side styling /////// */
+
+.player--left-section {
+  flex-direction: column;
+  row-gap: 15%;
+}
+.skull {
+  width: 50%;
+}
+.deck {
+  width: 40%;
+  border: ridge 10px var(--player-color);
+  border-radius: 20px;
 }
 
 /* ///////player board styling//////// */
@@ -329,7 +345,7 @@ section div {
 }
 
 /* ///////player right side//////// */
-.buttons-and-mana {
+.player--right-section {
   flex-direction: column;
 }
 .buttons {
