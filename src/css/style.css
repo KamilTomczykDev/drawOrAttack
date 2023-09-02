@@ -31,19 +31,28 @@ body {
   font-family: "Press Start 2P", cursive;
   height: 100vh;
   overflow: hidden;
+  background-image: url("/src/img/background.png");
 }
 
 .game {
-  background-color: rgba(182, 100, 0, 0.705);
 }
 .enemy-side,
 .player-side {
   display: flex;
 }
 .enemy-side {
-  background-color: brown;
   height: 40vh;
   max-height: 432px;
+}
+.enemy-section {
+  background-image: url("../img/enemy-background.png");
+  border-radius: 50px 50px 0px 0;
+  background-size: cover;
+  border-top: ridge rgb(171, 0, 0);
+  border-right: ridge rgb(171, 0, 0);
+  border-left: ridge rgb(171, 0, 0);
+  border-bottom: solid rgb(48, 24, 0);
+  border-width: 20px 20px 5px 20px;
 }
 .enemy-section--hero {
   height: 240px;
@@ -72,7 +81,6 @@ body {
 .player-side {
   height: 60vh;
   max-height: 648px;
-  background-color: blue;
 }
 
 .enemy-section,
@@ -99,7 +107,14 @@ section div {
 
 .player--mid-section {
   flex-direction: column;
-  border-top: solid;
+  background-image: url("../img/player-background.png");
+  border-top: solid rgb(48, 24, 0);
+  border-right: ridge var(--player-color);
+  border-left: ridge var(--player-color);
+  border-bottom: ridge var(--player-color);
+  border-width: 5px 20px 20px 20px;
+  border-radius: 0 0 50px 50px;
+  background-size: cover;
 }
 
 /*////// player left side styling /////// */
@@ -121,7 +136,6 @@ section div {
 
 .board {
   height: 20%;
-  margin-top: 40px;
 }
 .board--card {
   margin: 0 10px 0 10px;
@@ -187,7 +201,7 @@ section div {
   border-radius: 35px;
   position: absolute;
   height: 275px;
-  width: 200px;
+  width: 190px;
   top: -300px;
   right: -50px;
   padding: 8px;
@@ -263,14 +277,16 @@ section div {
   border-radius: 35px;
   position: absolute;
   height: 275px;
-  width: 200px;
+  width: 190px;
   top: 50px;
   padding: 8px;
   background-color: rgb(255, 230, 165);
   transition: all 0.5s;
+  cursor: pointer;
 }
 .hand--card:hover {
   top: -60px;
+  opacity: 0.9;
 }
 .hand--card--cost {
   position: absolute;
@@ -367,4 +383,11 @@ section div {
   background-color: var(--cost-color);
   border: ridge 15px var(--player-color);
   border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.buttons button:hover {
+  background-color: #ffffff;
+  color: black;
 }
