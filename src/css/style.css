@@ -286,7 +286,6 @@ section div {
 }
 .hand--card:hover {
   top: -90px;
-  opacity: 0.9;
 }
 .hand--card--cost {
   position: absolute;
@@ -414,15 +413,15 @@ section div {
     border-width: 5px 15px 15px 15px;
   }
   .buttons button {
-    font-size: 20px;
+    font-size: 18px;
     margin: 2px;
-    border-width: 15px;
+    border-width: 12px;
   }
   .mana--counter {
     font-size: 20px;
   }
   .mana {
-    padding: 25px;
+    padding: 22px;
   }
 
   /*//////*/
@@ -541,7 +540,7 @@ section div {
     font-size: 10px;
   }
 }
-@media (min-width: 500px) and (max-width: 1279px) {
+@media (min-width: 768px) and (max-width: 1279px) {
   .timer {
     font-size: 35px;
   }
@@ -697,5 +696,187 @@ section div {
   }
   .hand--card--ability {
     font-size: 6px;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 767px) and (orientation: portrait) {
+  .timer {
+    font-size: 20px;
+  }
+  .turn-counter {
+    font-size: 18px;
+  }
+  .skull {
+    width: 45px;
+  }
+  .deck {
+    width: 60px;
+    border-width: 3px;
+    border-radius: 8px;
+  }
+  .enemy-section {
+    border-width: 4px 4px 1px 4px;
+    border-radius: 0px;
+  }
+  .player--mid-section {
+    border-width: 1px 4px 4px 4px;
+    border-radius: 0px;
+  }
+  .buttons button {
+    font-size: 10px;
+    padding: 5px 15px;
+    border-radius: 6px;
+    margin: 2px;
+    border-width: 5px;
+  }
+  .mana--counter {
+    font-size: 8px;
+    border-radius: 6px;
+    border-width: 5px;
+  }
+  .mana--container {
+    width: 50px;
+    gap: 2px;
+    row-gap: 1px;
+  }
+  .mana {
+    padding: 4px;
+  }
+
+  /*//////*/
+  .enemy-section--hero {
+    height: 80px;
+  }
+  .enemy-section--hero--img {
+    border-width: 5px;
+  }
+  .enemy-section--hero--health {
+    font-size: 10px;
+    border-width: 5px;
+    padding: 2px 2px 1px 2px;
+    margin-top: -15px;
+  }
+  .board {
+    height: 250px;
+  }
+  .board--card {
+    height: 65px;
+    margin: 0 2px 0 2px;
+    border-width: 5px;
+  }
+  .board--card--turn-stat,
+  .board--card--left-stat {
+    font-size: 15px;
+    border-width: 5px;
+    border-radius: 50%;
+    top: 40px;
+  }
+  .board--card--left-stat {
+    left: -8px;
+  }
+  .board--card--turn-stat {
+    right: -8px;
+  }
+  .hero {
+    height: 120px;
+    margin: 15px 0 5px 0;
+  }
+  .hero--img {
+    border-width: 8px;
+  }
+  .hero--health {
+    font-size: 20px;
+    border-width: 8px;
+    margin-top: -25px;
+  }
+  .hover-view {
+    height: 140px;
+    width: 100px;
+    top: -180px;
+    padding: 3px;
+    border-width: 7px;
+    right: -25px;
+    border-radius: 15px;
+  }
+  .hover-view--cost {
+    border-width: 7px;
+    font-size: 20px;
+    left: -15px;
+  }
+  .hover-view--img-container {
+    border-width: 4px;
+    border-radius: 10px;
+    height: 70px;
+  }
+  .hover-view--name {
+    font-size: 8px;
+  }
+  .hover-view--ability {
+    font-size: 6px;
+  }
+  .hover-view--left-stat {
+    border-width: 7px;
+    font-size: 20px;
+    left: -15px;
+  }
+  .hover-view--turn-stat {
+    border-width: 7px;
+    font-size: 20px;
+    right: -15px;
+  }
+  .hand--card {
+    height: 144px;
+    width: 100px;
+    border-width: 7px;
+    border-radius: 15px;
+    padding: 3px;
+    top: 60px;
+  }
+  .hand--card:hover {
+    top: -50px;
+  }
+  .hand--card--turn-stat,
+  .hand--card--left-stat,
+  .hand--card--cost {
+    border-width: 7px;
+    font-size: 20px;
+  }
+  .hand--card--cost,
+  .hand--card--left-stat {
+    left: -15px;
+  }
+  .hand--card--turn-stat {
+    right: -15px;
+  }
+  .hand--card--img-container {
+    border-width: 4px;
+    border-radius: 10px;
+    height: 70px;
+  }
+  .hand--card--name {
+    font-size: 8px;
+  }
+  .hand--card--ability {
+    font-size: 6px;
+  }
+  /*  //// */
+  .timer,
+  .turn-counter,
+  .player--left-section,
+  .player--right-section {
+    width: 25px;
+    position: absolute;
+  }
+  .enemy-section,
+  .player--mid-section {
+    width: 100vw;
+  }
+  .player--left-section {
+    top: 55vh;
+    left: 50px;
+  }
+  .player--right-section {
+    top: 55vh;
+    right: 50px;
   }
 }
