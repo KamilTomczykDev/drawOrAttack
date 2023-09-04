@@ -12,7 +12,7 @@
   padding: 0;
 }
 
-body, .enemy-section, .turn-counter, .timer, .player--mid-section, .board, .player--right-section, .buttons, .mana--container, .enemy-section--hero, .player--left-section {
+body, .enemy-section, .turn-counter, .timer, .player--mid-section, .board, .player--right-section, .buttons, .mana--container, .enemy-section--hero {
   justify-content: center;
   align-items: center;
   display: flex;
@@ -40,6 +40,7 @@ body {
   border: 20px ridge #ab0000;
   border-bottom: 5px solid #301800;
   border-radius: 50px 50px 0 0;
+  position: relative;
 }
 
 .enemy-section--hero {
@@ -63,9 +64,21 @@ body {
   font-weight: bold;
 }
 
+.enemy-section--discription {
+  opacity: 0;
+  background-color: brown;
+  border: 10px ridge #ab0000;
+  padding: 10px;
+  font-size: 20px;
+  transition: all .3s;
+  position: absolute;
+  bottom: 100px;
+  left: 100px;
+}
+
 .turn-counter {
   text-align: center;
-  font-size: 80px;
+  font-size: 50px;
 }
 
 .player-side {
@@ -75,12 +88,12 @@ body {
 
 .enemy-section, .player--mid-section {
   background-color: #0ff;
-  width: 50vw;
-  max-width: 960px;
+  width: 70vw;
+  max-width: 1344px;
 }
 
 .timer {
-  font-size: 100px;
+  font-size: 80px;
 }
 
 section div {
@@ -88,8 +101,9 @@ section div {
 }
 
 .timer, .turn-counter, .player--left-section, .player--right-section {
-  width: 25vw;
-  max-width: 480px;
+  width: 15vw;
+  max-width: 288px;
+  margin-top: -50px;
 }
 
 .player--mid-section {
@@ -105,18 +119,26 @@ section div {
 }
 
 .player--left-section {
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   row-gap: 25px;
+  display: flex;
 }
 
 .skull {
-  width: 180px;
+  width: 140px;
 }
 
 .deck {
-  border: ridge 15px var(--player-color);
-  border-radius: 20px;
-  width: 190px;
+  border: ridge 8px var(--player-color);
+  border-radius: 10px;
+  width: 100px;
+  margin-left: 20px;
+}
+
+.skull-number, .deck-number {
+  font-size: 40px;
 }
 
 .board {
@@ -275,11 +297,11 @@ section div {
   padding: 8px;
   transition: all .5s;
   position: absolute;
-  top: 50px;
+  top: 30px;
 }
 
 .hand--card:hover {
-  top: -90px;
+  top: -140px;
 }
 
 .hand--card--cost {
@@ -362,9 +384,10 @@ section div {
 }
 
 .mana {
+  border: solid 3px var(--player-color);
   background: radial-gradient(circle, #00a7ff 0%, #560979ac 50%, #00e8ff00 100%);
   border-radius: 50%;
-  padding: 30px;
+  padding: 15px;
 }
 
 .buttons button {
@@ -376,7 +399,7 @@ section div {
   margin: 10px;
   padding: 15px 50px;
   font-family: "Press Start 2P", cursive;
-  font-size: 30px;
+  font-size: 20px;
   transition: all .2s;
 }
 
@@ -395,13 +418,14 @@ section div {
   }
 
   .skull {
-    width: 125px;
+    width: 100px;
   }
 
   .deck {
-    border-width: 10px;
-    border-radius: 20px;
-    width: 150px;
+    border-width: 8px;
+    border-radius: 8px;
+    width: 80px;
+    margin-left: 20px;
   }
 
   .enemy-section {
@@ -413,17 +437,20 @@ section div {
   }
 
   .buttons button {
-    border-width: 12px;
-    margin: 2px;
-    font-size: 18px;
+    border-width: 10px;
+    border-radius: 12px;
+    margin: 4px;
+    padding: 10px 20px;
+    font-size: 15px;
   }
 
   .mana--counter {
-    font-size: 20px;
+    border-radius: 12px;
+    font-size: 15px;
   }
 
   .mana {
-    padding: 22px;
+    padding: 15px;
   }
 
   .enemy-section--hero {
@@ -532,7 +559,7 @@ section div {
   }
 
   .hand--card:hover {
-    top: -70px;
+    top: -90px;
   }
 
   .hand--card--turn-stat, .hand--card--left-stat, .hand--card--cost {
@@ -575,7 +602,11 @@ section div {
   .deck {
     border-width: 6px;
     border-radius: 12px;
-    width: 100px;
+    width: 70px;
+  }
+
+  .deck-number, .skull-number {
+    font-size: 30px;
   }
 
   .enemy-section {
@@ -587,17 +618,17 @@ section div {
   }
 
   .buttons button {
-    border-width: 10px;
+    border-width: 8px;
     border-radius: 10px;
-    margin: 5px;
-    padding: 7px 25px;
-    font-size: 20px;
+    margin: 2px;
+    padding: 7px 20px;
+    font-size: 13px;
   }
 
   .mana--counter {
     border-width: 10px;
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 15px;
   }
 
   .mana--container {
@@ -605,7 +636,7 @@ section div {
   }
 
   .mana {
-    padding: 15px;
+    padding: 10px;
   }
 
   .enemy-section--hero {
@@ -746,7 +777,7 @@ section div {
   }
 }
 
-@media (width >= 320px) and (width <= 767px) and (orientation: portrait) {
+@media (width >= 320px) and (width <= 767px) {
   .timer {
     font-size: 20px;
   }
@@ -762,12 +793,21 @@ section div {
   .deck {
     border-width: 3px;
     border-radius: 8px;
-    width: 60px;
+    width: 40px;
+  }
+
+  .deck-number, .skull-number {
+    margin: 0;
+    font-size: 10px;
   }
 
   .enemy-section {
     border-width: 4px 4px 1px;
     border-radius: 0;
+  }
+
+  .enemy-section--discription {
+    font-size: 10px;
   }
 
   .player--mid-section {
@@ -795,22 +835,22 @@ section div {
   }
 
   .mana {
-    padding: 4px;
+    padding: 6px;
   }
 
   .enemy-section--hero {
-    height: 80px;
+    height: 200px;
   }
 
   .enemy-section--hero--img {
-    border-width: 5px;
+    border-width: 10px;
   }
 
   .enemy-section--hero--health {
-    border-width: 5px;
-    margin-top: -15px;
-    padding: 2px 2px 1px;
-    font-size: 10px;
+    border-width: 10px;
+    margin-top: -30px;
+    padding: 5px 5px 2px;
+    font-size: 20px;
   }
 
   .board {
@@ -820,7 +860,7 @@ section div {
   .board--card {
     border-width: 5px;
     height: 65px;
-    margin: 0 2px;
+    margin: -20px 2px 0;
   }
 
   .board--card--turn-stat, .board--card--left-stat {
@@ -839,7 +879,7 @@ section div {
   }
 
   .hero {
-    height: 120px;
+    height: 80px;
     margin: 15px 0 5px;
   }
 
@@ -945,12 +985,12 @@ section div {
   }
 
   .player--left-section {
-    top: 55vh;
+    top: 60vh;
     left: 50px;
   }
 
   .player--right-section {
-    top: 55vh;
+    top: 60vh;
     right: 50px;
   }
 }

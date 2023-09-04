@@ -21,8 +21,7 @@ body,
 .player--right-section,
 .buttons,
 .mana--container,
-.enemy-section--hero,
-.player--left-section {
+.enemy-section--hero {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,6 +52,7 @@ body {
   border-left: ridge rgb(171, 0, 0);
   border-bottom: solid rgb(48, 24, 0);
   border-width: 20px 20px 5px 20px;
+  position: relative;
 }
 .enemy-section--hero {
   height: 240px;
@@ -72,9 +72,21 @@ body {
   background-color: white;
   margin-top: -50px;
 }
+.enemy-section--discription {
+  padding: 10px;
+  position: absolute;
+  font-size: 20px;
+  left: 30%;
+  background-color: brown;
+  bottom: 100px;
+  left: 100px;
+  border: ridge 10px rgb(171, 0, 0);
+  transition: all 0.3s;
+  opacity: 0;
+}
 
 .turn-counter {
-  font-size: 80px;
+  font-size: 50px;
   text-align: center;
 }
 
@@ -85,13 +97,13 @@ body {
 
 .enemy-section,
 .player--mid-section {
-  width: 50vw;
-  max-width: 960px;
+  width: 70vw;
+  max-width: 1344px;
   background-color: aqua;
 }
 
 .timer {
-  font-size: 100px;
+  font-size: 80px;
 }
 section div {
   font-size: 50px;
@@ -101,8 +113,9 @@ section div {
 .turn-counter,
 .player--left-section,
 .player--right-section {
-  width: 25vw;
-  max-width: 480px;
+  width: 15vw;
+  max-width: 288px;
+  margin-top: -50px;
 }
 
 .player--mid-section {
@@ -120,16 +133,24 @@ section div {
 /*////// player left side styling /////// */
 
 .player--left-section {
-  flex-direction: column;
+  display: flex;
+  align-items: center;
   row-gap: 25px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .skull {
-  width: 180px;
+  width: 140px;
 }
 .deck {
-  width: 190px;
-  border: ridge 15px var(--player-color);
-  border-radius: 20px;
+  width: 100px;
+  border: ridge 8px var(--player-color);
+  border-radius: 10px;
+  margin-left: 20px;
+}
+.skull-number,
+.deck-number {
+  font-size: 40px;
 }
 
 /* ///////player board styling//////// */
@@ -278,14 +299,14 @@ section div {
   position: absolute;
   height: 275px;
   width: 190px;
-  top: 50px;
+  top: 30px;
   padding: 8px;
   background-color: rgb(255, 230, 165);
   transition: all 0.5s;
   cursor: pointer;
 }
 .hand--card:hover {
-  top: -90px;
+  top: -140px;
 }
 .hand--card--cost {
   position: absolute;
@@ -361,7 +382,8 @@ section div {
 
 .mana {
   border-radius: 50%;
-  padding: 30px;
+  border: solid 3px var(--player-color);
+  padding: 15px;
   background: rgb(0, 167, 255);
   background: radial-gradient(
     circle,
@@ -372,7 +394,7 @@ section div {
 }
 
 .buttons button {
-  font-size: 30px;
+  font-size: 20px;
   padding: 15px 50px;
   font-family: "Press Start 2P", cursive;
   color: white;
@@ -399,12 +421,13 @@ section div {
     font-size: 50px;
   }
   .skull {
-    width: 125px;
+    width: 100px;
   }
   .deck {
-    width: 150px;
-    border-width: 10px;
-    border-radius: 20px;
+    width: 80px;
+    border-width: 8px;
+    border-radius: 8px;
+    margin-left: 20px;
   }
   .enemy-section {
     border-width: 15px 15px 5px 15px;
@@ -413,15 +436,18 @@ section div {
     border-width: 5px 15px 15px 15px;
   }
   .buttons button {
-    font-size: 18px;
-    margin: 2px;
-    border-width: 12px;
+    font-size: 15px;
+    padding: 10px 20px;
+    border-radius: 12px;
+    margin: 4px;
+    border-width: 10px;
   }
   .mana--counter {
-    font-size: 20px;
+    font-size: 15px;
+    border-radius: 12px;
   }
   .mana {
-    padding: 22px;
+    padding: 15px;
   }
 
   /*//////*/
@@ -513,7 +539,7 @@ section div {
     padding: 6px;
   }
   .hand--card:hover {
-    top: -70px;
+    top: -90px;
   }
   .hand--card--turn-stat,
   .hand--card--left-stat,
@@ -551,9 +577,13 @@ section div {
     width: 75px;
   }
   .deck {
-    width: 100px;
+    width: 70px;
     border-width: 6px;
     border-radius: 12px;
+  }
+  .deck-number,
+  .skull-number {
+    font-size: 30px;
   }
   .enemy-section {
     border-width: 8px 8px 2px 8px;
@@ -562,14 +592,14 @@ section div {
     border-width: 2px 8px 8px 8px;
   }
   .buttons button {
-    font-size: 20px;
-    padding: 7px 25px;
+    font-size: 13px;
+    padding: 7px 20px;
     border-radius: 10px;
-    margin: 5px;
-    border-width: 10px;
+    margin: 2px;
+    border-width: 8px;
   }
   .mana--counter {
-    font-size: 20px;
+    font-size: 15px;
     border-radius: 10px;
     border-width: 10px;
   }
@@ -578,7 +608,7 @@ section div {
     row-gap: 5px;
   }
   .mana {
-    padding: 15px;
+    padding: 10px;
   }
 
   /*//////*/
@@ -699,7 +729,7 @@ section div {
   }
 }
 
-@media (min-width: 320px) and (max-width: 767px) and (orientation: portrait) {
+@media (min-width: 320px) and (max-width: 767px) {
   .timer {
     font-size: 20px;
   }
@@ -710,13 +740,21 @@ section div {
     width: 45px;
   }
   .deck {
-    width: 60px;
+    width: 40px;
     border-width: 3px;
     border-radius: 8px;
+  }
+  .deck-number,
+  .skull-number {
+    font-size: 10px;
+    margin: 0;
   }
   .enemy-section {
     border-width: 4px 4px 1px 4px;
     border-radius: 0px;
+  }
+  .enemy-section--discription {
+    font-size: 10px;
   }
   .player--mid-section {
     border-width: 1px 4px 4px 4px;
@@ -740,28 +778,28 @@ section div {
     row-gap: 1px;
   }
   .mana {
-    padding: 4px;
+    padding: 6px;
   }
 
   /*//////*/
   .enemy-section--hero {
-    height: 80px;
+    height: 200px;
   }
   .enemy-section--hero--img {
-    border-width: 5px;
+    border-width: 10px;
   }
   .enemy-section--hero--health {
-    font-size: 10px;
-    border-width: 5px;
-    padding: 2px 2px 1px 2px;
-    margin-top: -15px;
+    font-size: 20px;
+    border-width: 10px;
+    padding: 5px 5px 2px 5px;
+    margin-top: -30px;
   }
   .board {
     height: 250px;
   }
   .board--card {
     height: 65px;
-    margin: 0 2px 0 2px;
+    margin: -20px 2px 0 2px;
     border-width: 5px;
   }
   .board--card--turn-stat,
@@ -778,7 +816,7 @@ section div {
     right: -8px;
   }
   .hero {
-    height: 120px;
+    height: 80px;
     margin: 15px 0 5px 0;
   }
   .hero--img {
@@ -872,11 +910,11 @@ section div {
     width: 100vw;
   }
   .player--left-section {
-    top: 55vh;
+    top: 60vh;
     left: 50px;
   }
   .player--right-section {
-    top: 55vh;
+    top: 60vh;
     right: 50px;
   }
 }
