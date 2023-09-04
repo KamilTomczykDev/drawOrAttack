@@ -731,10 +731,17 @@ section div {
 
 @media (min-width: 320px) and (max-width: 767px) {
   .timer {
-    font-size: 20px;
+    font-size: 30px;
+    position: absolute;
+    top: 70px;
+    right: 70px;
+    z-index: 10;
   }
   .turn-counter {
-    font-size: 18px;
+    font-size: 20px;
+    z-index: 10;
+    top: 70px;
+    left: 50px;
   }
   .skull {
     width: 45px;
@@ -743,11 +750,12 @@ section div {
     width: 40px;
     border-width: 3px;
     border-radius: 8px;
+    margin: 0;
   }
   .deck-number,
   .skull-number {
-    font-size: 10px;
-    margin: 0;
+    font-size: 15px;
+    margin-bottom: -30px;
   }
   .enemy-section {
     border-width: 4px 4px 1px 4px;
@@ -761,7 +769,7 @@ section div {
     border-radius: 0px;
   }
   .buttons button {
-    font-size: 10px;
+    font-size: 13px;
     padding: 5px 15px;
     border-radius: 6px;
     margin: 2px;
@@ -773,7 +781,7 @@ section div {
     border-width: 5px;
   }
   .mana--container {
-    width: 50px;
+    width: 100px;
     gap: 2px;
     row-gap: 1px;
   }
@@ -783,7 +791,7 @@ section div {
 
   /*//////*/
   .enemy-section--hero {
-    height: 200px;
+    height: 159px;
   }
   .enemy-section--hero--img {
     border-width: 10px;
@@ -798,8 +806,8 @@ section div {
     height: 250px;
   }
   .board--card {
-    height: 65px;
-    margin: -20px 2px 0 2px;
+    height: 55px;
+    margin: -40px 2px 0 2px;
     border-width: 5px;
   }
   .board--card--turn-stat,
@@ -816,35 +824,40 @@ section div {
     right: -8px;
   }
   .hero {
-    height: 80px;
+    height: 100px;
     margin: 15px 0 5px 0;
   }
   .hero--img {
     border-width: 8px;
   }
   .hero--health {
-    font-size: 20px;
-    border-width: 8px;
-    margin-top: -25px;
+    font-size: 10px;
+    border-width: 6px;
+    margin-top: -20px;
+    padding: 3 3 1 3;
   }
   .hover-view {
-    height: 140px;
-    width: 100px;
+    height: 100px;
+    width: 75px;
     top: -180px;
     padding: 3px;
     border-width: 7px;
-    right: -25px;
+    right: -10px;
     border-radius: 15px;
+    display: none;
   }
   .hover-view--cost {
     border-width: 7px;
-    font-size: 20px;
-    left: -15px;
+    font-size: 15px;
+    left: -10px;
   }
   .hover-view--img-container {
     border-width: 4px;
     border-radius: 10px;
-    height: 70px;
+    height: 40px;
+  }
+  .hover-view--img-container {
+    object-fit: fill;
   }
   .hover-view--name {
     font-size: 8px;
@@ -853,25 +866,25 @@ section div {
     font-size: 6px;
   }
   .hover-view--left-stat {
-    border-width: 7px;
-    font-size: 20px;
-    left: -15px;
+    border-width: 5px;
+    font-size: 15px;
+    left: -10px;
   }
   .hover-view--turn-stat {
-    border-width: 7px;
-    font-size: 20px;
-    right: -15px;
+    border-width: 5px;
+    font-size: 15px;
+    right: -10px;
   }
   .hand--card {
-    height: 144px;
-    width: 100px;
+    height: 100px;
+    width: 75px;
     border-width: 7px;
     border-radius: 15px;
-    padding: 3px;
+    padding: 2px;
     top: 60px;
   }
   .hand--card:hover {
-    top: -50px;
+    top: 60px;
   }
   .hand--card--turn-stat,
   .hand--card--left-stat,
@@ -887,12 +900,19 @@ section div {
     right: -15px;
   }
   .hand--card--img-container {
-    border-width: 4px;
-    border-radius: 10px;
-    height: 70px;
+    border-width: 2px;
+    border-radius: 5px;
+    height: 40px;
+    width: 60px;
+    margin: 0;
+  }
+  .hand--card--img {
+    height: 40px;
+    width: 55px;
+    margin-top: -20px;
   }
   .hand--card--name {
-    font-size: 8px;
+    font-size: 6px;
   }
   .hand--card--ability {
     font-size: 6px;
@@ -915,6 +935,6 @@ section div {
   }
   .player--right-section {
     top: 60vh;
-    right: 50px;
+    right: 60px;
   }
 }
