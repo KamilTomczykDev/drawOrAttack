@@ -42,7 +42,6 @@ body {
   z-index: 1000;
   color: white;
 }
-
 .enemy-side,
 .player-side {
   display: flex;
