@@ -29,7 +29,7 @@
 118F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\timsort\build133373802422203241 1
 140F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\lmdb\node_modules\msgpackr\index.js133373802428336877 0
 142F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\@parcel\core\lib\SymbolPropagation.js133373802474535959 0
-112F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\src\js\controller.js133376439794657167 0
+112F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\src\js\controller.js133383179323292739 0
 126F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\js-yaml\lib\loader.js133373802436846151 0
 137F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\core-js\stable\array\flat-map.js133373808180453958 0
 136F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\source-map\lib\binary-search.js133373802423682910 0
@@ -55,7 +55,7 @@
 144F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\core-js\full\array\virtual\to-sorted.js133373808237737200 0
 139F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\core-js\features\object\entries.js133373808160882610 0
 134F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\svgo\plugins\plugins-types.ts133373802464929143 0
-96F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist133382257167107132 1
+96F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist133384198965686755 1
 163F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\csso\node_modules\css-tree\lib\syntax\node\SelectorList.js133373802481979959 0
 139F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\type-fest\source\package-json.d.ts133373802442042233 0
 121F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\stable\stable.js133373802411592995 0
@@ -93,7 +93,7 @@
 146F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\core-js\stable\typed-array\int32-array.js133373808196008225 0
 129F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\node-addon-api\README.md133373802436716218 0
 165F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\csso\node_modules\css-tree\lib\syntax\scope\atrulePrelude.js133373802472579537 0
-102F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\index.html133380750289889836 0
+102F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\index.html133384194553601670 0
 144F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\svgo\plugins\cleanupEnableBackground.js133373802428550806 0
 117F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\css-what\lib133373802410038702 1
 142F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\@swc\helpers\_\_await_async_generator133373802485281543 1
@@ -297,7 +297,7 @@
 147F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\csso\cjs\restructure\8-restructRuleset.cjs133373802424046944 0
 109F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\src\img\skull.png133378088896623877 0
 137F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\core-js\full\typed-array\sort.js133373808222930418 0
-109F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\src\css\style.css133382257158845824 0
+109F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\src\css\style.css133384198964416438 0
 146F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\core-js\actual\url-search-params\index.js133373808191715848 0
 174F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\css-select\node_modules\entities\lib\generated\decode-data-xml.js.map133373802446703582 0
 118F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\color-convert133373802421179340 1
@@ -987,7 +987,7 @@
 145F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\core-js\features\string\virtual\index.js133373808193436570 0
 134F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\utility-types\dist\index.d.ts133373802434441330 0
 139F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\core-js\features\array\includes.js133373808189644777 0
-122F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist\weakFarmer2.d47a8e3b.jpeg133382257167027301 0
+122F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist\weakFarmer2.d47a8e3b.jpeg133384192226151369 0
 132F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\utility-types\dist\index.js133373802413317352 0
 138F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\mdn-data\css\at-rules.schema.json133373802422892833 0
 143F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\core-js\features\array\virtual\sort.js133373808222709662 0
@@ -2988,7 +2988,7 @@
 152F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\csso\node_modules\css-tree\cjs\parser\index.cjs133373802458695849 0
 125F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\import-fresh\license133373802403725154 0
 129F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\csso\cjs\replace\Url.cjs133373802449275096 0
-120F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist\background.fc6c49d6.png133382257166707189 0
+120F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist\background.fc6c49d6.png133384192226001460 0
 147F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\@babel\helper-validator-identifier\LICENSE133373802403675187 0
 134F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\@mischnic\json-sourcemap\dist133373802419544536 1
 139F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\core-js\internals\entry-virtual.js133373808161292371 0
@@ -3418,7 +3418,7 @@
 132F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\core-js\es\array\unshift.js133373808249242238 0
 143F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\dom-serializer\lib\esm\foreignNames.js133373802407322493 0
 138F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\dom-serializer\lib\esm\index.d.ts133373802432067436 0
-119F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist\cardBack.ab0175f1.jpeg133382257166707189 0
+119F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist\cardBack.ab0175f1.jpeg133384192226011458 0
 142F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\dom-serializer\lib\esm\index.d.ts.map133373802426404868 0
 155F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\csso\node_modules\css-tree\lib\syntax\node\Hash.js133373802477187627 0
 137F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\core-js\full\typed-array\with.js133373808253394342 0
@@ -4070,7 +4070,7 @@
 143F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\core-js\features\instance\find-last.js133373808178310472 0
 141F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\css-tree\lib\lexer\prepare-tokens.js133373802482339746 0
 139F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\core-js\modules\es.object.proto.js133373808164804666 0
-119F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist\mainHero.ab36d2d7.jpeg133382257166787162 0
+119F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist\mainHero.ab36d2d7.jpeg133384192226031449 0
 143F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\core-js\features\date\to-iso-string.js133373808234089175 0
 182F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\@parcel\optimizer-htmlnano\node_modules\css-tree\lib\syntax\pseudo\slotted.js133373802470320243 0
 133F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\css-tree\lib\lexer\search.js133373802482780607 0
@@ -6371,7 +6371,7 @@
 135F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\core-js\full\array\iterator.js133373808201550396 0
 131F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\core-js\full\array\keys.js133373808203201406 0
 133F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\@swc\helpers\lib\_type_of.js133373802483420206 0
-126F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist\enemy-background.95d8d8b9.png133382257166707189 0
+126F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist\enemy-background.95d8d8b9.png133384192226001460 0
 157F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\@babel\highlight\node_modules\chalk\types\index.d.ts133373802422053324 0
 140F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\core-js\full\array\last-index-of.js133373808203801806 0
 136F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\core-js\full\array\last-item.js133373808204131686 0
@@ -7749,7 +7749,7 @@
 136F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\caniuse-lite\data\regions\CA.js133373802466028466 0
 142F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\caniuse-lite\data\features\flexbox.js133373802486782012 0
 136F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\caniuse-lite\data\regions\CF.js133373802467122811 0
-107F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist\index.html133381723851304103 0
+107F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist\index.html133384194556279968 0
 136F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\caniuse-lite\data\regions\CG.js133373802467317219 0
 136F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\caniuse-lite\data\regions\CH.js133373802467756963 0
 136F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\caniuse-lite\data\regions\CI.js133373802468266669 0
@@ -9568,12 +9568,12 @@
 120F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\.bin\semver.cmd133373802514754155 0
 118F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\.bin\svgo.cmd133373802514784138 0
 132F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\node_modules\.bin\update-browserslist-db133373802514774135 0
-121F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist\firstEnemy.91fbd31f.jpeg133382257165926979 0
+121F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist\firstEnemy.91fbd31f.jpeg133384192226031449 0
 130F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist\firstEnemy.91fbd31f.jpeg.23012.2d133375416042647100 0
-115F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist\index.c92073ef.css133382257166675475 0
-119F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist\index.c92073ef.css.map133382257167027301 0
-114F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist\index.e37f48ea.js133382257166676465 0
-118F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist\index.e37f48ea.js.map133382257167027301 0
-127F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist\player-background.267737ef.png133382257166787162 0
-115F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist\skull.bd8a06dc.png133382257166707189 0
+115F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist\index.c92073ef.css133384198965416909 0
+119F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist\index.c92073ef.css.map133384198965596811 0
+114F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist\index.e37f48ea.js133384192225981501 0
+118F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist\index.e37f48ea.js.map133384192226151369 0
+127F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist\player-background.267737ef.png133384192226011458 0
+115F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist\skull.bd8a06dc.png133384192225991474 0
 121F:\Pobrane\complete-javascript-course-master\complete-javascript-course-master\drawOrAttack\dist\weakFarmer.4ca6e5b4.jpeg133375461806427057 0

@@ -240,15 +240,11 @@ section div {
   font-size: 40px;
   left: -30px;
 }
-.hover-view--img-container {
-  border: ridge 8px var(--player-color);
-  height: 125px;
-  border-radius: 10px;
-  margin-bottom: 5px;
-}
 .hover-view--img {
+  border: ridge 8px var(--player-color);
+  height: 45%;
   width: 100%;
-  height: 100%;
+  border-radius: 10px;
   object-fit: cover;
 }
 .hover-view--name {
@@ -318,15 +314,13 @@ section div {
   font-size: 40px;
   left: -30px;
 }
-.hand--card--img-container {
+
+.hand--card--img {
   border: ridge 8px var(--player-color);
   border-radius: 10px;
-  height: 125px;
-  margin-bottom: 5px;
-}
-.hand--card--img {
   width: 100%;
-  height: 100%;
+  height: 45%;
+  margin-bottom: 5px;
   object-fit: cover;
 }
 .hand--card--name {
@@ -412,6 +406,8 @@ section div {
 }
 
 /* MEDIA QUERIES */
+
+/* // MEDIUM SCREENS // */
 
 @media (min-width: 1280px) and (max-width: 1550px) {
   .timer {
@@ -510,10 +506,9 @@ section div {
     font-size: 30px;
     left: -15px;
   }
-  .hover-view--img-container {
+  .hover-view--img {
     border-width: 5px;
     border-radius: 10px;
-    height: 90px;
   }
   .hover-view--name {
     font-size: 15px;
@@ -539,7 +534,7 @@ section div {
     padding: 6px;
   }
   .hand--card:hover {
-    top: -90px;
+    top: -120px;
   }
   .hand--card--turn-stat,
   .hand--card--left-stat,
@@ -554,10 +549,9 @@ section div {
   .hand--card--turn-stat {
     right: -15px;
   }
-  .hand--card--img-container {
+  .hand--card--img {
     border-width: 5px;
     border-radius: 10px;
-    height: 90px;
   }
   .hand--card--name {
     font-size: 15px;
@@ -566,12 +560,175 @@ section div {
     font-size: 10px;
   }
 }
-@media (min-width: 768px) and (max-width: 1279px) {
+
+/* // TABLETS // */
+@media (768px <= width <= 1023px) {
+  .timer {
+    font-size: 25px;
+  }
+  .turn-counter {
+    font-size: 20px;
+  }
+  .skull {
+    width: 60px;
+  }
+  .deck {
+    width: 50px;
+    border-width: 6px;
+    border-radius: 12px;
+  }
+  .deck-number,
+  .skull-number {
+    font-size: 20px;
+  }
+  .enemy-section {
+    border-width: 8px 8px 2px 8px;
+  }
+  .player--mid-section {
+    border-width: 2px 8px 8px 8px;
+  }
+  .buttons button {
+    font-size: 13px;
+    padding: 7px 20px;
+    border-radius: 10px;
+    margin: 2px;
+    border-width: 8px;
+  }
+  .mana--counter {
+    font-size: 15px;
+    border-radius: 10px;
+    border-width: 10px;
+  }
+  .mana--container {
+    gap: 10px;
+    row-gap: 5px;
+  }
+  .mana {
+    padding: 10px;
+  }
+
+  /*//////*/
+  .enemy-section--hero {
+    height: 150px;
+  }
+  .enemy-section--hero--img {
+    border-width: 10px;
+  }
+  .enemy-section--hero--health {
+    font-size: 20px;
+    border-width: 10px;
+    padding: 5px 5px 1px 5px;
+    margin-top: -30px;
+  }
+  .board {
+    height: 250px;
+  }
+  .board--card {
+    height: 65px;
+    margin: 0 2px 0 2px;
+    border-width: 5px;
+  }
+  .board--card--turn-stat,
+  .board--card--left-stat {
+    font-size: 15px;
+    border-width: 5px;
+    border-radius: 50%;
+    top: 40px;
+  }
+  .board--card--left-stat {
+    left: -8px;
+  }
+  .board--card--turn-stat {
+    right: -8px;
+  }
+  .hero {
+    height: 120px;
+    margin: 15px 0 5px 0;
+  }
+  .hero--img {
+    border-width: 8px;
+  }
+  .hero--health {
+    font-size: 20px;
+    border-width: 8px;
+    margin-top: -25px;
+  }
+  .hover-view {
+    height: 100px;
+    width: 80px;
+    top: -180px;
+    padding: 2px;
+    border-width: 5px;
+    right: -10px;
+    border-radius: 10px;
+  }
+  .hover-view--cost {
+    border-width: 5px;
+    font-size: 12px;
+    left: -15px;
+  }
+  .hover-view--img {
+    border-width: 4px;
+    border-radius: 5px;
+  }
+  .hover-view--name {
+    font-size: 8px;
+  }
+  .hover-view--ability {
+    font-size: 6px;
+  }
+  .hover-view--left-stat {
+    border-width: 5px;
+    font-size: 12px;
+    left: -15px;
+  }
+  .hover-view--turn-stat {
+    border-width: 5px;
+    font-size: 12px;
+    right: -15px;
+  }
+  .hand--card {
+    height: 144px;
+    width: 100px;
+    border-width: 7px;
+    border-radius: 15px;
+    padding: 3px;
+    top: 20px;
+  }
+  .hand--card:hover {
+    top: -100px;
+  }
+  .hand--card--turn-stat,
+  .hand--card--left-stat,
+  .hand--card--cost {
+    border-width: 7px;
+    font-size: 20px;
+  }
+  .hand--card--cost,
+  .hand--card--left-stat {
+    left: -15px;
+  }
+  .hand--card--turn-stat {
+    right: -15px;
+  }
+  .hand--card--img {
+    border-width: 4px;
+    border-radius: 10px;
+  }
+  .hand--card--name {
+    font-size: 8px;
+  }
+  .hand--card--ability {
+    font-size: 6px;
+  }
+}
+
+@media (1024px <= width <= 1279px) {
   .timer {
     font-size: 35px;
   }
   .turn-counter {
-    font-size: 35px;
+    font-size: 30px;
   }
   .skull {
     width: 75px;
@@ -660,7 +817,7 @@ section div {
   .hover-view {
     height: 140px;
     width: 100px;
-    top: -180px;
+    top: -50px;
     padding: 3px;
     border-width: 7px;
     right: -25px;
@@ -671,10 +828,9 @@ section div {
     font-size: 20px;
     left: -15px;
   }
-  .hover-view--img-container {
+  .hover-view--img {
     border-width: 4px;
     border-radius: 10px;
-    height: 70px;
   }
   .hover-view--name {
     font-size: 8px;
@@ -716,10 +872,9 @@ section div {
   .hand--card--turn-stat {
     right: -15px;
   }
-  .hand--card--img-container {
+  .hand--card--img {
     border-width: 4px;
     border-radius: 10px;
-    height: 70px;
   }
   .hand--card--name {
     font-size: 8px;
@@ -728,7 +883,7 @@ section div {
     font-size: 6px;
   }
 }
-
+/* // MOBILE DEVICES // */
 @media (min-width: 320px) and (max-width: 767px) {
   .timer {
     font-size: 30px;
@@ -851,13 +1006,9 @@ section div {
     font-size: 15px;
     left: -10px;
   }
-  .hover-view--img-container {
+  .hover-view--img {
     border-width: 4px;
     border-radius: 10px;
-    height: 40px;
-  }
-  .hover-view--img-container {
-    object-fit: fill;
   }
   .hover-view--name {
     font-size: 8px;
@@ -899,12 +1050,9 @@ section div {
   .hand--card--turn-stat {
     right: -15px;
   }
-  .hand--card--img-container {
+  .hand--card--img {
     border-width: 2px;
     border-radius: 5px;
-    height: 40px;
-    width: 60px;
-    margin: 0;
   }
   .hand--card--img {
     height: 40px;
