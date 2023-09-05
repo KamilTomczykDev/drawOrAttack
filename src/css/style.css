@@ -5,12 +5,13 @@
   --heal-color: rgb(0, 186, 0);
   --player-color: #388eff;
 }
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+/* viewport width too low */
+
 /* flex shortcut */
 body,
 .enemy-section,
@@ -32,9 +33,16 @@ body {
   overflow: hidden;
   background-image: url("/src/img/background.png");
 }
-
-.game {
+.modal-viewport-error {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(84, 84, 84);
+  display: none;
+  z-index: 1000;
+  color: white;
 }
+
 .enemy-side,
 .player-side {
   display: flex;
@@ -226,6 +234,7 @@ section div {
   top: -300px;
   right: -50px;
   padding: 8px;
+
   background-color: rgb(255, 230, 165);
   transition: all 0.5s;
   opacity: 1;
@@ -245,6 +254,7 @@ section div {
   height: 45%;
   width: 100%;
   border-radius: 10px;
+  margin-bottom: 5px;
   object-fit: cover;
 }
 .hover-view--name {
@@ -560,7 +570,167 @@ section div {
     font-size: 10px;
   }
 }
+/* // small screens // */
+@media (1024px <= width <= 1279px) {
+  .timer {
+    font-size: 35px;
+  }
+  .turn-counter {
+    font-size: 30px;
+  }
+  .skull {
+    width: 75px;
+  }
+  .deck {
+    width: 70px;
+    border-width: 6px;
+    border-radius: 12px;
+  }
+  .deck-number,
+  .skull-number {
+    font-size: 30px;
+  }
+  .enemy-section {
+    border-width: 8px 8px 2px 8px;
+  }
+  .player--mid-section {
+    border-width: 2px 8px 8px 8px;
+  }
+  .buttons button {
+    font-size: 13px;
+    padding: 7px 20px;
+    border-radius: 10px;
+    margin: 2px;
+    border-width: 8px;
+  }
+  .mana--counter {
+    font-size: 15px;
+    border-radius: 10px;
+    border-width: 10px;
+  }
+  .mana--container {
+    gap: 10px;
+    row-gap: 5px;
+  }
+  .mana {
+    padding: 10px;
+  }
 
+  /*//////*/
+  .enemy-section--hero {
+    height: 150px;
+  }
+  .enemy-section--hero--img {
+    border-width: 10px;
+  }
+  .enemy-section--hero--health {
+    font-size: 20px;
+    border-width: 10px;
+    padding: 5px 5px 1px 5px;
+    margin-top: -30px;
+  }
+  .board {
+    height: 250px;
+  }
+  .board--card {
+    height: 65px;
+    margin: 0 2px 0 2px;
+    border-width: 5px;
+  }
+  .board--card--turn-stat,
+  .board--card--left-stat {
+    font-size: 15px;
+    border-width: 5px;
+    border-radius: 50%;
+    top: 40px;
+  }
+  .board--card--left-stat {
+    left: -8px;
+  }
+  .board--card--turn-stat {
+    right: -8px;
+  }
+  .hero {
+    height: 120px;
+    margin: 15px 0 5px 0;
+  }
+  .hero--img {
+    border-width: 8px;
+  }
+  .hero--health {
+    font-size: 20px;
+    border-width: 8px;
+    margin-top: -25px;
+  }
+  .hover-view {
+    height: 140px;
+    width: 100px;
+    top: -150px;
+    padding: 3px;
+    border-width: 7px;
+    right: -25px;
+    border-radius: 15px;
+  }
+  .hover-view--cost {
+    border-width: 7px;
+    font-size: 20px;
+    left: -15px;
+  }
+  .hover-view--img {
+    border-width: 4px;
+    border-radius: 10px;
+  }
+  .hover-view--name {
+    font-size: 8px;
+  }
+  .hover-view--ability {
+    font-size: 6px;
+  }
+  .hover-view--left-stat {
+    border-width: 7px;
+    font-size: 20px;
+    left: -15px;
+  }
+  .hover-view--turn-stat {
+    border-width: 7px;
+    font-size: 20px;
+    right: -15px;
+  }
+  .hand--card {
+    height: 144px;
+    width: 100px;
+    border-width: 7px;
+    border-radius: 15px;
+    padding: 3px;
+    top: 50px;
+  }
+  .hand--card:hover {
+    top: -50px;
+  }
+  .hand--card--turn-stat,
+  .hand--card--left-stat,
+  .hand--card--cost {
+    border-width: 7px;
+    font-size: 20px;
+  }
+  .hand--card--cost,
+  .hand--card--left-stat {
+    left: -15px;
+  }
+  .hand--card--turn-stat {
+    right: -15px;
+  }
+  .hand--card--img {
+    border-width: 4px;
+    border-radius: 10px;
+  }
+  .hand--card--name {
+    font-size: 8px;
+  }
+  .hand--card--ability {
+    font-size: 6px;
+  }
+}
 /* // TABLETS // */
 @media (768px <= width <= 1023px) {
   .timer {
@@ -656,7 +826,7 @@ section div {
   .hover-view {
     height: 100px;
     width: 80px;
-    top: -180px;
+    top: -125px;
     padding: 2px;
     border-width: 5px;
     right: -10px;
@@ -664,28 +834,33 @@ section div {
   }
   .hover-view--cost {
     border-width: 5px;
-    font-size: 12px;
-    left: -15px;
+    font-size: 14px;
+    left: -8px;
+    top: -12px;
   }
   .hover-view--img {
-    border-width: 4px;
+    border-width: 2px;
     border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
   }
   .hover-view--name {
-    font-size: 8px;
+    font-size: 6px;
   }
   .hover-view--ability {
-    font-size: 6px;
+    font-size: 5px;
   }
   .hover-view--left-stat {
     border-width: 5px;
-    font-size: 12px;
-    left: -15px;
+    font-size: 14px;
+    left: -8px;
+    bottom: -12px;
   }
   .hover-view--turn-stat {
     border-width: 5px;
-    font-size: 12px;
-    right: -15px;
+    font-size: 14px;
+    right: -8px;
+    bottom: -12px;
   }
   .hand--card {
     height: 144px;
@@ -723,366 +898,24 @@ section div {
   }
 }
 
-@media (1024px <= width <= 1279px) {
-  .timer {
-    font-size: 35px;
-  }
-  .turn-counter {
-    font-size: 30px;
-  }
-  .skull {
-    width: 75px;
-  }
-  .deck {
-    width: 70px;
-    border-width: 6px;
-    border-radius: 12px;
-  }
-  .deck-number,
-  .skull-number {
-    font-size: 30px;
-  }
-  .enemy-section {
-    border-width: 8px 8px 2px 8px;
-  }
-  .player--mid-section {
-    border-width: 2px 8px 8px 8px;
-  }
-  .buttons button {
-    font-size: 13px;
-    padding: 7px 20px;
-    border-radius: 10px;
-    margin: 2px;
-    border-width: 8px;
-  }
-  .mana--counter {
-    font-size: 15px;
-    border-radius: 10px;
-    border-width: 10px;
-  }
-  .mana--container {
-    gap: 10px;
-    row-gap: 5px;
-  }
-  .mana {
-    padding: 10px;
-  }
-
-  /*//////*/
-  .enemy-section--hero {
-    height: 150px;
-  }
-  .enemy-section--hero--img {
-    border-width: 10px;
-  }
-  .enemy-section--hero--health {
-    font-size: 20px;
-    border-width: 10px;
-    padding: 5px 5px 1px 5px;
-    margin-top: -30px;
-  }
-  .board {
-    height: 250px;
-  }
-  .board--card {
-    height: 65px;
-    margin: 0 2px 0 2px;
-    border-width: 5px;
-  }
-  .board--card--turn-stat,
-  .board--card--left-stat {
-    font-size: 15px;
-    border-width: 5px;
-    border-radius: 50%;
-    top: 40px;
-  }
-  .board--card--left-stat {
-    left: -8px;
-  }
-  .board--card--turn-stat {
-    right: -8px;
-  }
-  .hero {
-    height: 120px;
-    margin: 15px 0 5px 0;
-  }
-  .hero--img {
-    border-width: 8px;
-  }
-  .hero--health {
-    font-size: 20px;
-    border-width: 8px;
-    margin-top: -25px;
-  }
-  .hover-view {
-    height: 140px;
-    width: 100px;
-    top: -50px;
-    padding: 3px;
-    border-width: 7px;
-    right: -25px;
-    border-radius: 15px;
-  }
-  .hover-view--cost {
-    border-width: 7px;
-    font-size: 20px;
-    left: -15px;
-  }
-  .hover-view--img {
-    border-width: 4px;
-    border-radius: 10px;
-  }
-  .hover-view--name {
-    font-size: 8px;
-  }
-  .hover-view--ability {
-    font-size: 6px;
-  }
-  .hover-view--left-stat {
-    border-width: 7px;
-    font-size: 20px;
-    left: -15px;
-  }
-  .hover-view--turn-stat {
-    border-width: 7px;
-    font-size: 20px;
-    right: -15px;
-  }
-  .hand--card {
-    height: 144px;
-    width: 100px;
-    border-width: 7px;
-    border-radius: 15px;
-    padding: 3px;
-    top: 50px;
-  }
-  .hand--card:hover {
-    top: -50px;
-  }
-  .hand--card--turn-stat,
-  .hand--card--left-stat,
-  .hand--card--cost {
-    border-width: 7px;
-    font-size: 20px;
-  }
-  .hand--card--cost,
-  .hand--card--left-stat {
-    left: -15px;
-  }
-  .hand--card--turn-stat {
-    right: -15px;
-  }
-  .hand--card--img {
-    border-width: 4px;
-    border-radius: 10px;
-  }
-  .hand--card--name {
-    font-size: 8px;
-  }
-  .hand--card--ability {
-    font-size: 6px;
-  }
-}
 /* // MOBILE DEVICES // */
-@media (min-width: 320px) and (max-width: 767px) {
-  .timer {
-    font-size: 30px;
-    position: absolute;
-    top: 70px;
-    right: 70px;
-    z-index: 10;
+@media (min-width: 0px) and (max-width: 767px) {
+  .modal-viewport-error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  .turn-counter {
-    font-size: 20px;
-    z-index: 10;
-    top: 70px;
-    left: 50px;
-  }
-  .skull {
-    width: 45px;
-  }
-  .deck {
-    width: 40px;
-    border-width: 3px;
-    border-radius: 8px;
-    margin: 0;
-  }
-  .deck-number,
-  .skull-number {
-    font-size: 15px;
-    margin-bottom: -30px;
-  }
-  .enemy-section {
-    border-width: 4px 4px 1px 4px;
-    border-radius: 0px;
-  }
-  .enemy-section--discription {
-    font-size: 10px;
-  }
-  .player--mid-section {
-    border-width: 1px 4px 4px 4px;
-    border-radius: 0px;
-  }
-  .buttons button {
-    font-size: 13px;
-    padding: 5px 15px;
-    border-radius: 6px;
-    margin: 2px;
-    border-width: 5px;
-  }
-  .mana--counter {
-    font-size: 8px;
-    border-radius: 6px;
-    border-width: 5px;
-  }
-  .mana--container {
-    width: 100px;
-    gap: 2px;
-    row-gap: 1px;
-  }
-  .mana {
-    padding: 6px;
-  }
-
-  /*//////*/
-  .enemy-section--hero {
-    height: 159px;
-  }
-  .enemy-section--hero--img {
-    border-width: 10px;
-  }
-  .enemy-section--hero--health {
-    font-size: 20px;
-    border-width: 10px;
-    padding: 5px 5px 2px 5px;
-    margin-top: -30px;
-  }
-  .board {
-    height: 250px;
-  }
-  .board--card {
-    height: 55px;
-    margin: -40px 2px 0 2px;
-    border-width: 5px;
-  }
-  .board--card--turn-stat,
-  .board--card--left-stat {
-    font-size: 15px;
-    border-width: 5px;
-    border-radius: 50%;
-    top: 40px;
-  }
-  .board--card--left-stat {
-    left: -8px;
-  }
-  .board--card--turn-stat {
-    right: -8px;
-  }
-  .hero {
-    height: 100px;
-    margin: 15px 0 5px 0;
-  }
-  .hero--img {
-    border-width: 8px;
-  }
-  .hero--health {
-    font-size: 10px;
-    border-width: 6px;
-    margin-top: -20px;
-    padding: 3 3 1 3;
-  }
-  .hover-view {
-    height: 100px;
-    width: 75px;
-    top: -180px;
-    padding: 3px;
-    border-width: 7px;
-    right: -10px;
-    border-radius: 15px;
+  .game {
     display: none;
   }
-  .hover-view--cost {
-    border-width: 7px;
-    font-size: 15px;
-    left: -10px;
+}
+@media (height <= 500px) {
+  .modal-viewport-error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  .hover-view--img {
-    border-width: 4px;
-    border-radius: 10px;
-  }
-  .hover-view--name {
-    font-size: 8px;
-  }
-  .hover-view--ability {
-    font-size: 6px;
-  }
-  .hover-view--left-stat {
-    border-width: 5px;
-    font-size: 15px;
-    left: -10px;
-  }
-  .hover-view--turn-stat {
-    border-width: 5px;
-    font-size: 15px;
-    right: -10px;
-  }
-  .hand--card {
-    height: 100px;
-    width: 75px;
-    border-width: 7px;
-    border-radius: 15px;
-    padding: 2px;
-    top: 60px;
-  }
-  .hand--card:hover {
-    top: 60px;
-  }
-  .hand--card--turn-stat,
-  .hand--card--left-stat,
-  .hand--card--cost {
-    border-width: 7px;
-    font-size: 20px;
-  }
-  .hand--card--cost,
-  .hand--card--left-stat {
-    left: -15px;
-  }
-  .hand--card--turn-stat {
-    right: -15px;
-  }
-  .hand--card--img {
-    border-width: 2px;
-    border-radius: 5px;
-  }
-  .hand--card--img {
-    height: 40px;
-    width: 55px;
-    margin-top: -20px;
-  }
-  .hand--card--name {
-    font-size: 6px;
-  }
-  .hand--card--ability {
-    font-size: 6px;
-  }
-  /*  //// */
-  .timer,
-  .turn-counter,
-  .player--left-section,
-  .player--right-section {
-    width: 25px;
-    position: absolute;
-  }
-  .enemy-section,
-  .player--mid-section {
-    width: 100vw;
-  }
-  .player--left-section {
-    top: 60vh;
-    left: 50px;
-  }
-  .player--right-section {
-    top: 60vh;
-    right: 60px;
+  .game {
+    display: none;
   }
 }
