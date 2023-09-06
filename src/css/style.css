@@ -74,7 +74,7 @@ body {
   border: ridge 20px rgb(171, 0, 0);
   color: rgb(171, 0, 0);
   font-weight: bold;
-  font-size: 50px;
+  font-size: 40px;
   padding: 10px 10px 5px 10px;
   background-color: white;
   margin-top: -50px;
@@ -83,10 +83,9 @@ body {
   padding: 10px;
   position: absolute;
   font-size: 20px;
-  left: 30%;
+  left: 5%;
   background-color: brown;
   bottom: 100px;
-  left: 100px;
   border: ridge 10px rgb(171, 0, 0);
   transition: all 0.3s;
   opacity: 0;
@@ -120,13 +119,16 @@ section div {
 .turn-counter,
 .player--left-section,
 .player--right-section {
+  text-shadow: 3px 3px var(--player-color);
   width: 15vw;
   max-width: 288px;
   margin-top: -50px;
 }
 
 .player--mid-section {
+  position: relative;
   flex-direction: column;
+  justify-content: flex-start;
   background-image: url("../img/player-background.png");
   border-top: solid rgb(48, 24, 0);
   border-right: ridge var(--player-color);
@@ -163,7 +165,8 @@ section div {
 /* ///////player board styling//////// */
 
 .board {
-  height: 300px;
+  margin-top: 2%;
+  height: 110px;
 }
 .board--card {
   margin: 0 10px 0 10px;
@@ -236,7 +239,7 @@ section div {
 
   background-color: rgb(255, 230, 165);
   transition: all 0.5s;
-  opacity: 1;
+  opacity: 0;
 }
 .hover-view--cost {
   position: absolute;
@@ -294,21 +297,24 @@ section div {
 .hand {
   display: flex;
   justify-content: center;
+  align-items: center;
   height: 275px;
-  background-color: rgb(28, 28, 252);
-  position: relative;
+  width: 100%;
+  position: absolute;
+  bottom: -100px;
 }
 .hand--card {
   border: ridge 15px var(--player-color);
   border-radius: 25px;
-  position: absolute;
+  position: relative;
   height: 275px;
   width: 190px;
-  top: 30px;
+  top: 100px;
   padding: 8px;
   background-color: rgb(255, 230, 165);
   transition: all 0.5s;
   cursor: pointer;
+  margin-right: 25px;
 }
 .hand--card:hover {
   top: -140px;
@@ -375,6 +381,7 @@ section div {
   padding: 10px 20px;
   color: white;
   font-size: 30px;
+  text-shadow: none;
 }
 .mana--container {
   gap: 20px;
@@ -416,9 +423,21 @@ section div {
 
 /* MEDIA QUERIES */
 
+@media (1920px <= width) {
+  .hand--card:hover {
+    top: 0px;
+  }
+  .hand {
+    bottom: -30px;
+  }
+}
+
 /* // MEDIUM SCREENS // */
 
-@media (min-width: 1280px) and (max-width: 1550px) {
+@media (1280px <= width <= 1550px) {
+  .hand {
+    bottom: -60px;
+  }
   .timer {
     font-size: 60px;
   }
@@ -469,7 +488,7 @@ section div {
     margin-top: -30px;
   }
   .board {
-    height: 200px;
+    height: 80px;
   }
   .board--card {
     height: 80px;
@@ -543,7 +562,7 @@ section div {
     padding: 6px;
   }
   .hand--card:hover {
-    top: -120px;
+    top: -50px;
   }
   .hand--card--turn-stat,
   .hand--card--left-stat,
@@ -571,6 +590,9 @@ section div {
 }
 /* // small screens // */
 @media (1024px <= width <= 1279px) {
+  .hand {
+    bottom: -90px;
+  }
   .timer {
     font-size: 35px;
   }
@@ -629,11 +651,11 @@ section div {
     margin-top: -30px;
   }
   .board {
-    height: 250px;
+    height: 65px;
   }
   .board--card {
     height: 65px;
-    margin: 0 2px 0 2px;
+    margin: 0 5px 0 5px;
     border-width: 5px;
   }
   .board--card--turn-stat,
@@ -704,7 +726,7 @@ section div {
     top: 50px;
   }
   .hand--card:hover {
-    top: -50px;
+    top: -30px;
   }
   .hand--card--turn-stat,
   .hand--card--left-stat,
@@ -730,8 +752,14 @@ section div {
     font-size: 6px;
   }
 }
+
 /* // TABLETS // */
 @media (768px <= width <= 1023px) {
+  .timer,
+  .turn-counter,
+  .player--left-section {
+    text-shadow: 1px 1px var(--player-color);
+  }
   .timer {
     font-size: 25px;
   }
@@ -790,7 +818,7 @@ section div {
     margin-top: -30px;
   }
   .board {
-    height: 250px;
+    height: 65px;
   }
   .board--card {
     height: 65px;
@@ -870,7 +898,7 @@ section div {
     top: 20px;
   }
   .hand--card:hover {
-    top: -100px;
+    top: -60px;
   }
   .hand--card--turn-stat,
   .hand--card--left-stat,
