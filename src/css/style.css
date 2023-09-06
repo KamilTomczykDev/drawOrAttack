@@ -672,7 +672,7 @@ section div {
     right: -8px;
   }
   .hero {
-    height: 120px;
+    height: 100px;
     margin: 15px 0 5px 0;
   }
   .hero--img {
@@ -755,6 +755,9 @@ section div {
 
 /* // TABLETS // */
 @media (768px <= width <= 1023px) {
+  .hand {
+    bottom: -150px;
+  }
   .timer,
   .turn-counter,
   .player--left-section {
@@ -839,7 +842,7 @@ section div {
     right: -8px;
   }
   .hero {
-    height: 120px;
+    height: 80px;
     margin: 15px 0 5px 0;
   }
   .hero--img {
@@ -898,7 +901,7 @@ section div {
     top: 20px;
   }
   .hand--card:hover {
-    top: -60px;
+    top: -100px;
   }
   .hand--card--turn-stat,
   .hand--card--left-stat,
@@ -936,7 +939,7 @@ section div {
     display: none;
   }
 }
-@media (height <= 500px) {
+@media (height <= 400px) {
   .modal-viewport-error {
     display: flex;
     justify-content: center;

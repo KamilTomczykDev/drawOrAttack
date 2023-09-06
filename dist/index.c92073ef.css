@@ -710,7 +710,7 @@ section div {
   }
 
   .hero {
-    height: 120px;
+    height: 100px;
     margin: 15px 0 5px;
   }
 
@@ -806,6 +806,10 @@ section div {
 }
 
 @media (768px <= width <= 1023px) {
+  .hand {
+    bottom: -150px;
+  }
+
   .timer, .turn-counter, .player--left-section {
     text-shadow: 1px 1px var(--player-color);
   }
@@ -903,7 +907,7 @@ section div {
   }
 
   .hero {
-    height: 120px;
+    height: 80px;
     margin: 15px 0 5px;
   }
 
@@ -973,7 +977,7 @@ section div {
   }
 
   .hand--card:hover {
-    top: -60px;
+    top: -100px;
   }
 
   .hand--card--turn-stat, .hand--card--left-stat, .hand--card--cost {
@@ -1015,7 +1019,7 @@ section div {
   }
 }
 
-@media (height <= 500px) {
+@media (height <= 400px) {
   .modal-viewport-error {
     justify-content: center;
     align-items: center;
