@@ -23,11 +23,22 @@ console.log(board);
 createHover(enemySide, enemyDisc);
 
 board.addEventListener("mouseover", function (e) {
-  const clicked = e.target.closest(".board--card--img");
+  const clicked = e.target.closest(".board--card");
   if (!clicked) return;
   console.log(clicked);
-  const elementFound = document.getElementById("1");
+  const elementFound = document.getElementById(`${clicked.dataset.id}`);
   elementFound.style.opacity = "1";
+  if (e.target !== clicked) {
+    elementFound.style.opacity = "0";
+  }
   // console.log(clicked.dataset.id);
   // console.log(clicked.closest(clicked));
+});
+
+board.addEventListener("mouseout", function (e) {
+  const clicked = e.target.closest(".board--card");
+  if (!clicked) return;
+  console.log(clicked);
+  const elementFound = document.getElementById(`${clicked.dataset.id}`);
+  elementFound.style.opacity = "1";
 });
