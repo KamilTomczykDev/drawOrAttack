@@ -596,7 +596,6 @@ board.addEventListener("mouseover", function(e) {
     console.log(clicked);
     const elementFound = document.getElementById(`${clicked.dataset.id}`);
     elementFound.style.opacity = "1";
-    if (e.target !== clicked) elementFound.style.opacity = "0";
 // console.log(clicked.dataset.id);
 // console.log(clicked.closest(clicked));
 });
@@ -605,7 +604,7 @@ board.addEventListener("mouseout", function(e) {
     if (!clicked) return;
     console.log(clicked);
     const elementFound = document.getElementById(`${clicked.dataset.id}`);
-    elementFound.style.opacity = "1";
+    elementFound.style.opacity = "0";
 });
 
 },{"core-js/modules/web.immediate.js":"49tUX","regenerator-runtime/runtime":"dXNgZ"}],"49tUX":[function(require,module,exports) {
