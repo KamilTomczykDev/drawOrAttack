@@ -576,9 +576,10 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 },{}],"aenu9":[function(require,module,exports) {
 var _webImmediateJs = require("core-js/modules/web.immediate.js");
 var _runtime = require("regenerator-runtime/runtime");
+"use strict";
 if (module.hot) module.hot.accept();
 ////////////////////////
-const boardCard = document.querySelector(".board--card--img");
+const board = document.querySelector(".board");
 const hoverView = document.querySelector(".hover-view");
 const enemySide = document.querySelector(".enemy-section");
 const enemyDisc = document.querySelector(".enemy-section--discription");
@@ -587,8 +588,14 @@ const createHover = function(firstEl, secondEl) {
     firstEl.addEventListener("mouseover", ()=>secondEl.style.opacity = "1");
     firstEl.addEventListener("mouseout", ()=>secondEl.style.opacity = "0");
 };
-createHover(boardCard, hoverView);
+console.log(board);
 createHover(enemySide, enemyDisc);
+board.addEventListener("mouseover", function(e) {
+    const clicked = e.target.closest(".board--card");
+    if (!clicked) return;
+    console.log(clicked.closest(".hover-view"));
+    console.log(clicked);
+});
 
 },{"core-js/modules/web.immediate.js":"49tUX","regenerator-runtime/runtime":"dXNgZ"}],"49tUX":[function(require,module,exports) {
 "use strict";

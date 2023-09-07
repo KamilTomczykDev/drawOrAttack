@@ -1,3 +1,5 @@
+"use strict";
+
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 
@@ -7,7 +9,7 @@ if (module.hot) {
 
 ////////////////////////
 
-const boardCard = document.querySelector(".board--card--img");
+const board = document.querySelector(".board");
 const hoverView = document.querySelector(".hover-view");
 const enemySide = document.querySelector(".enemy-section");
 const enemyDisc = document.querySelector(".enemy-section--discription");
@@ -17,6 +19,12 @@ const createHover = function (firstEl, secondEl) {
   firstEl.addEventListener("mouseover", () => (secondEl.style.opacity = "1"));
   firstEl.addEventListener("mouseout", () => (secondEl.style.opacity = "0"));
 };
-
-createHover(boardCard, hoverView);
+console.log(board);
 createHover(enemySide, enemyDisc);
+
+board.addEventListener("mouseover", function (e) {
+  const clicked = e.target.closest(".board--card");
+  if (!clicked) return;
+  console.log(clicked.closest(".hover-view"));
+  console.log(clicked);
+});
