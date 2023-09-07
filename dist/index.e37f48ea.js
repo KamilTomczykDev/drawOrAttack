@@ -591,10 +591,13 @@ const createHover = function(firstEl, secondEl) {
 console.log(board);
 createHover(enemySide, enemyDisc);
 board.addEventListener("mouseover", function(e) {
-    const clicked = e.target.closest(".board--card");
+    const clicked = e.target.closest(".board--card--img");
     if (!clicked) return;
-    console.log(clicked.closest(".hover-view"));
     console.log(clicked);
+    const elementFound = document.getElementById("1");
+    elementFound.style.opacity = "1";
+// console.log(clicked.dataset.id);
+// console.log(clicked.closest(clicked));
 });
 
 },{"core-js/modules/web.immediate.js":"49tUX","regenerator-runtime/runtime":"dXNgZ"}],"49tUX":[function(require,module,exports) {

@@ -11,7 +11,15 @@
   box-sizing: border-box;
 }
 /* viewport width too low */
-
+.modal-viewport-error {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(84, 84, 84);
+  display: none;
+  z-index: 1000;
+  color: white;
+}
 /* flex shortcut */
 body,
 .enemy-section,
@@ -33,14 +41,8 @@ body {
   overflow: hidden;
   background-image: url("/src/img/background.png");
 }
-.modal-viewport-error {
-  position: absolute;
-  height: 100vh;
-  width: 100vw;
-  background-color: rgb(84, 84, 84);
-  display: none;
-  z-index: 1000;
-  color: white;
+.--visible {
+  opacity: 1;
 }
 .enemy-side,
 .player-side {

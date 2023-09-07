@@ -12,6 +12,16 @@
   padding: 0;
 }
 
+.modal-viewport-error {
+  z-index: 1000;
+  color: #fff;
+  background-color: #545454;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  position: absolute;
+}
+
 body, .enemy-section, .turn-counter, .timer, .player--mid-section, .board, .player--right-section, .buttons, .mana--container, .enemy-section--hero {
   justify-content: center;
   align-items: center;
@@ -25,14 +35,8 @@ body {
   overflow: hidden;
 }
 
-.modal-viewport-error {
-  z-index: 1000;
-  color: #fff;
-  background-color: #545454;
-  width: 100vw;
-  height: 100vh;
-  display: none;
-  position: absolute;
+.--visible {
+  opacity: 1;
 }
 
 .enemy-side, .player-side {
