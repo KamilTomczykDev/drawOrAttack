@@ -4,12 +4,15 @@
   --atk-color: rgb(207, 0, 0);
   --heal-color: rgb(0, 186, 0);
   --player-color: #388eff;
+  --menu-color: #9b842d;
 }
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+/* game menu */
+
 /* viewport width too low */
 .modal-viewport-error {
   position: absolute;
@@ -40,6 +43,85 @@ body {
   height: 100vh;
   overflow: hidden;
   background-image: url("/src/img/background.png");
+}
+.game {
+  display: none;
+}
+.game-menu {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.game-menu--container {
+  /* background-color: #388eff; */
+  z-index: 1002;
+  cursor: pointer;
+}
+
+.game-menu--container--logo {
+  animation-name: floating;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  margin-bottom: 50px;
+}
+@keyframes floating {
+  0% {
+    transform: translate(0, -30px);
+  }
+  50% {
+    transform: translate(0, 30px);
+  }
+  100% {
+    transform: translate(0, -30px);
+  }
+}
+.game-menu--container--text {
+  color: grey;
+  text-align: center;
+  padding: 40px;
+  display: block;
+  transition: all 1s;
+  color: var(--menu-color);
+  position: absolute;
+  width: 100%;
+  bottom: -100px;
+}
+.game-menu--footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 1002;
+  bottom: -250px;
+  font-size: 30px;
+}
+.fa-brands {
+  font-size: 40px;
+}
+.fa-brands:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+.fa-brands:active {
+  opacity: 0.5;
+}
+.game-menu--footer--author {
+  color: var(--menu-color);
+  font-size: 12px;
+  padding: 12px;
+}
+.game-menu--background {
+  position: absolute;
+  background-color: black;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1001;
+}
+.game-menu--container:hover .game-menu--container--text {
+  font-size: large;
 }
 .--visible {
   opacity: 1;
@@ -243,6 +325,9 @@ section div {
   transition: all 0.5s;
   opacity: 0;
 }
+.hover-view:hover {
+  display: none;
+}
 .hover-view--cost {
   position: absolute;
   color: rgb(255, 255, 255);
@@ -437,6 +522,9 @@ section div {
 /* // MEDIUM SCREENS // */
 
 @media (1280px <= width <= 1550px) {
+  .game-menu--container--logo {
+    width: 700px;
+  }
   .hand {
     bottom: -60px;
   }
@@ -940,6 +1028,9 @@ section div {
   .game {
     display: none;
   }
+  .game-menu {
+    display: none;
+  }
 }
 @media (height <= 400px) {
   .modal-viewport-error {
@@ -948,6 +1039,9 @@ section div {
     align-items: center;
   }
   .game {
+    display: none;
+  }
+  .game-menu {
     display: none;
   }
 }

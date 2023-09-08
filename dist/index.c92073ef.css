@@ -4,6 +4,7 @@
   --atk-color: #cf0000;
   --heal-color: #00ba00;
   --player-color: #388eff;
+  --menu-color: #9b842d;
 }
 
 * {
@@ -33,6 +34,97 @@ body {
   height: 100vh;
   font-family: "Press Start 2P", cursive;
   overflow: hidden;
+}
+
+.game {
+  display: none;
+}
+
+.game-menu {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: absolute;
+}
+
+.game-menu--container {
+  z-index: 1002;
+  cursor: pointer;
+}
+
+.game-menu--container--logo {
+  margin-bottom: 50px;
+  animation-name: floating;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes floating {
+  0% {
+    transform: translate(0, -30px);
+  }
+
+  50% {
+    transform: translate(0, 30px);
+  }
+
+  100% {
+    transform: translate(0, -30px);
+  }
+}
+
+.game-menu--container--text {
+  color: var(--menu-color);
+  text-align: center;
+  width: 100%;
+  padding: 40px;
+  transition: all 1s;
+  display: block;
+  position: absolute;
+  bottom: -100px;
+}
+
+.game-menu--footer {
+  z-index: 1002;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  display: flex;
+  position: absolute;
+  bottom: -250px;
+}
+
+.fa-brands {
+  font-size: 40px;
+}
+
+.fa-brands:hover {
+  opacity: .7;
+  cursor: pointer;
+}
+
+.fa-brands:active {
+  opacity: .5;
+}
+
+.game-menu--footer--author {
+  color: var(--menu-color);
+  padding: 12px;
+  font-size: 12px;
+}
+
+.game-menu--background {
+  z-index: 1001;
+  background-color: #000;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+}
+
+.game-menu--container:hover .game-menu--container--text {
+  font-size: large;
 }
 
 .--visible {
@@ -237,6 +329,10 @@ section div {
   right: -50px;
 }
 
+.hover-view:hover {
+  display: none;
+}
+
 .hover-view--cost {
   color: #fff;
   border: ridge 10px var(--player-color);
@@ -433,6 +529,10 @@ section div {
 }
 
 @media (1280px <= width <= 1550px) {
+  .game-menu--container--logo {
+    width: 700px;
+  }
+
   .hand {
     bottom: -60px;
   }
@@ -1018,7 +1118,7 @@ section div {
     display: flex;
   }
 
-  .game {
+  .game, .game-menu {
     display: none;
   }
 }
@@ -1030,7 +1130,7 @@ section div {
     display: flex;
   }
 
-  .game {
+  .game, .game-menu {
     display: none;
   }
 }
