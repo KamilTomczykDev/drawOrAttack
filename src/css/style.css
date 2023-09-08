@@ -18,10 +18,10 @@
   position: absolute;
   height: 100vh;
   width: 100vw;
-  background-color: rgb(84, 84, 84);
+  background-color: rgb(0, 0, 0);
   display: none;
   z-index: 1000;
-  color: white;
+  color: var(--menu-color);
 }
 /* flex shortcut */
 body,
@@ -65,6 +65,7 @@ body {
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
   margin-bottom: 50px;
+  width: 800px;
 }
 @keyframes floating {
   0% {
@@ -87,15 +88,16 @@ body {
   position: absolute;
   width: 100%;
   bottom: -100px;
+  font-size: 30px;
 }
-.game-menu--footer {
+.footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: absolute;
-  z-index: 1002;
-  bottom: -250px;
+  z-index: 1003;
+  bottom: 0px;
   font-size: 30px;
 }
 .fa-brands {
@@ -108,7 +110,7 @@ body {
 .fa-brands:active {
   opacity: 0.5;
 }
-.game-menu--footer--author {
+.footer--author {
   color: var(--menu-color);
   font-size: 12px;
   padding: 12px;
@@ -121,7 +123,7 @@ body {
   z-index: 1001;
 }
 .game-menu--container:hover .game-menu--container--text {
-  font-size: large;
+  font-size: 40px;
 }
 .--visible {
   opacity: 1;
@@ -523,7 +525,15 @@ section div {
 
 @media (1280px <= width <= 1550px) {
   .game-menu--container--logo {
-    width: 700px;
+    width: 600px;
+  }
+
+  .game-menu--container--text {
+    font-size: 15px;
+    bottom: -70px;
+  }
+  .game-menu--container:hover .game-menu--container--text {
+    font-size: 20px;
   }
   .hand {
     bottom: -60px;
@@ -680,6 +690,22 @@ section div {
 }
 /* // small screens // */
 @media (1024px <= width <= 1279px) {
+  .game-menu--container--logo {
+    width: 550px;
+  }
+  .game-menu--container--text {
+    font-size: 15px;
+    bottom: -50px;
+  }
+  .game-menu--container:hover .game-menu--container--text {
+    font-size: 20px;
+  }
+  .footer--author {
+    font-size: 8px;
+  }
+  .fa-brands {
+    font-size: 30px;
+  }
   .hand {
     bottom: -90px;
   }
@@ -845,6 +871,22 @@ section div {
 
 /* // TABLETS // */
 @media (768px <= width <= 1023px) {
+  .game-menu--container--logo {
+    width: 400px;
+  }
+  .game-menu--container--text {
+    font-size: 15px;
+    bottom: -50px;
+  }
+  .game-menu--container:hover .game-menu--container--text {
+    font-size: 20px;
+  }
+  .fa-brands {
+    font-size: 25px;
+  }
+  .footer--author {
+    font-size: 8px;
+  }
   .hand {
     bottom: -150px;
   }

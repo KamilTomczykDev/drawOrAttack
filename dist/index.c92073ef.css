@@ -15,8 +15,8 @@
 
 .modal-viewport-error {
   z-index: 1000;
-  color: #fff;
-  background-color: #545454;
+  color: var(--menu-color);
+  background-color: #000;
   width: 100vw;
   height: 100vh;
   display: none;
@@ -53,6 +53,7 @@ body {
 }
 
 .game-menu--container--logo {
+  width: 800px;
   margin-bottom: 50px;
   animation-name: floating;
   animation-duration: 3s;
@@ -79,21 +80,22 @@ body {
   text-align: center;
   width: 100%;
   padding: 40px;
+  font-size: 30px;
   transition: all 1s;
   display: block;
   position: absolute;
   bottom: -100px;
 }
 
-.game-menu--footer {
-  z-index: 1002;
+.footer {
+  z-index: 1003;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 30px;
   display: flex;
   position: absolute;
-  bottom: -250px;
+  bottom: 0;
 }
 
 .fa-brands {
@@ -109,7 +111,7 @@ body {
   opacity: .5;
 }
 
-.game-menu--footer--author {
+.footer--author {
   color: var(--menu-color);
   padding: 12px;
   font-size: 12px;
@@ -124,7 +126,7 @@ body {
 }
 
 .game-menu--container:hover .game-menu--container--text {
-  font-size: large;
+  font-size: 40px;
 }
 
 .--visible {
@@ -530,7 +532,16 @@ section div {
 
 @media (1280px <= width <= 1550px) {
   .game-menu--container--logo {
-    width: 700px;
+    width: 600px;
+  }
+
+  .game-menu--container--text {
+    font-size: 15px;
+    bottom: -70px;
+  }
+
+  .game-menu--container:hover .game-menu--container--text {
+    font-size: 20px;
   }
 
   .hand {
@@ -717,6 +728,27 @@ section div {
 }
 
 @media (1024px <= width <= 1279px) {
+  .game-menu--container--logo {
+    width: 550px;
+  }
+
+  .game-menu--container--text {
+    font-size: 15px;
+    bottom: -50px;
+  }
+
+  .game-menu--container:hover .game-menu--container--text {
+    font-size: 20px;
+  }
+
+  .footer--author {
+    font-size: 8px;
+  }
+
+  .fa-brands {
+    font-size: 30px;
+  }
+
   .hand {
     bottom: -90px;
   }
@@ -910,6 +942,27 @@ section div {
 }
 
 @media (768px <= width <= 1023px) {
+  .game-menu--container--logo {
+    width: 400px;
+  }
+
+  .game-menu--container--text {
+    font-size: 15px;
+    bottom: -50px;
+  }
+
+  .game-menu--container:hover .game-menu--container--text {
+    font-size: 20px;
+  }
+
+  .fa-brands {
+    font-size: 25px;
+  }
+
+  .footer--author {
+    font-size: 8px;
+  }
+
   .hand {
     bottom: -150px;
   }
