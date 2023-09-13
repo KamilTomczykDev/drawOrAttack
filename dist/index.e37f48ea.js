@@ -575,39 +575,53 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"aenu9":[function(require,module,exports) {
 var _webImmediateJs = require("core-js/modules/web.immediate.js");
+var _modelJs = require("./model.js");
+var _apiJs = require("./API.js");
+var _viewJs = require("./view.js");
 var _runtime = require("regenerator-runtime/runtime");
 "use strict";
 if (module.hot) module.hot.accept();
 ////////////////////////
-const board = document.querySelector(".board");
-const hoverView = document.querySelector(".hover-view");
-const enemySide = document.querySelector(".enemy-section");
-const enemyDisc = document.querySelector(".enemy-section--discription");
-const enemyHealth = document.querySelector(".enemy-section--hero--health");
-const createHover = function(firstEl, secondEl) {
-    firstEl.addEventListener("mouseover", ()=>secondEl.style.opacity = "1");
-    firstEl.addEventListener("mouseout", ()=>secondEl.style.opacity = "0");
+const startTimer = function() {
+    _modelJs.state.timer = 25;
+    const countdown = setInterval(function() {
+        --_modelJs.state.timer;
+        console.log(_modelJs.state.timer);
+        _viewJs.renderTimer(_modelJs.state.timer);
+        if (_modelJs.state.timer < 1) {
+            clearInterval(countdown);
+            startTimer();
+        }
+    }, 1000);
 };
-console.log(board);
-createHover(enemySide, enemyDisc);
-board.addEventListener("mouseover", function(e) {
-    const clicked = e.target.closest(".board--card");
-    if (!clicked) return;
-    console.log(clicked);
-    const elementFound = document.getElementById(`${clicked.dataset.id}`);
-    elementFound.style.opacity = "1";
-// console.log(clicked.dataset.id);
-// console.log(clicked.closest(clicked));
-});
-board.addEventListener("mouseout", function(e) {
-    const clicked = e.target.closest(".board--card");
-    if (!clicked) return;
-    console.log(clicked);
-    const elementFound = document.getElementById(`${clicked.dataset.id}`);
-    elementFound.style.opacity = "0";
-});
+const draw = function() {
+    const number = Math.trunc(Math.random() * _modelJs.state.deck.length);
+    if (_modelJs.state.deck.length === 0) return;
+    if (_modelJs.state.hand.length === 6) {
+        _modelJs.state.cementary.push(_modelJs.state.deck[number]);
+        const cementaryNum = document.querySelector(".skull-number");
+        _viewJs.giveAnimation(cementaryNum);
+    } else _modelJs.state.hand.push(_modelJs.state.deck[number]);
+    const x = _modelJs.state.deck.splice(number, 1);
+    console.log(_modelJs.state.hand);
+    console.log(_modelJs.state.deck);
+    console.log(number);
+    console.log(_apiJs.defaultDeckArray);
+    renderUI();
+};
+const renderUI = function() {
+    _viewJs.renderCementaryNum(_modelJs.state.cementary);
+    _viewJs.renderDeckNum(_modelJs.state.deck);
+    _viewJs.renderHand(_modelJs.state.hand);
+};
+const gameInit = function() {
+    renderUI();
+    startTimer();
+};
+_viewJs.addHandlerGameInit(gameInit);
+_viewJs.addHandlerDraw(draw);
 
-},{"core-js/modules/web.immediate.js":"49tUX","regenerator-runtime/runtime":"dXNgZ"}],"49tUX":[function(require,module,exports) {
+},{"core-js/modules/web.immediate.js":"49tUX","./model.js":"Y4A21","./API.js":"iKbJC","./view.js":"ky8MP","regenerator-runtime/runtime":"dXNgZ"}],"49tUX":[function(require,module,exports) {
 "use strict";
 // TODO: Remove this module from `core-js@4` since it's split to modules listed below
 require("52e9b3eefbbce1ed");
@@ -1852,7 +1866,249 @@ module.exports = function(scheduler, hasTimeArg) {
 "use strict";
 /* global Bun -- Deno case */ module.exports = typeof Bun == "function" && Bun && typeof Bun.version == "string";
 
-},{}],"dXNgZ":[function(require,module,exports) {
+},{}],"Y4A21":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "state", ()=>state);
+var _apiJs = require("./API.js");
+const state = {
+    deck: [],
+    board: [],
+    hand: [],
+    cementary: [],
+    currentTurn: 1,
+    timer: 25,
+    enemy: {
+        attack: 5,
+        hp: 30
+    }
+};
+state.deck = [
+    ..._apiJs.defaultDeckArray
+];
+
+},{"./API.js":"iKbJC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iKbJC":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "card1", ()=>card1);
+parcelHelpers.export(exports, "card2", ()=>card2);
+parcelHelpers.export(exports, "card3", ()=>card3);
+parcelHelpers.export(exports, "card4", ()=>card4);
+parcelHelpers.export(exports, "card5", ()=>card5);
+parcelHelpers.export(exports, "card6", ()=>card6);
+parcelHelpers.export(exports, "card7", ()=>card7);
+parcelHelpers.export(exports, "card8", ()=>card8);
+parcelHelpers.export(exports, "card9", ()=>card9);
+parcelHelpers.export(exports, "card10", ()=>card10);
+parcelHelpers.export(exports, "card11", ()=>card11);
+parcelHelpers.export(exports, "card12", ()=>card12);
+parcelHelpers.export(exports, "card13", ()=>card13);
+parcelHelpers.export(exports, "card14", ()=>card14);
+parcelHelpers.export(exports, "card15", ()=>card15);
+parcelHelpers.export(exports, "card16", ()=>card16);
+parcelHelpers.export(exports, "card17", ()=>card17);
+parcelHelpers.export(exports, "card18", ()=>card18);
+parcelHelpers.export(exports, "card19", ()=>card19);
+parcelHelpers.export(exports, "card20", ()=>card20);
+parcelHelpers.export(exports, "card21", ()=>card21);
+parcelHelpers.export(exports, "card22", ()=>card22);
+parcelHelpers.export(exports, "card23", ()=>card23);
+parcelHelpers.export(exports, "card24", ()=>card24);
+parcelHelpers.export(exports, "card25", ()=>card25);
+parcelHelpers.export(exports, "card26", ()=>card26);
+parcelHelpers.export(exports, "card27", ()=>card27);
+parcelHelpers.export(exports, "card28", ()=>card28);
+parcelHelpers.export(exports, "card29", ()=>card29);
+parcelHelpers.export(exports, "card30", ()=>card30);
+parcelHelpers.export(exports, "defaultDeckArray", ()=>defaultDeckArray);
+class Card {
+    constructor(name, defaultAttack, attack, healing, cost, defaultTurns, turns, ability, img, id){
+        this.name = name;
+        this.defaultAttack = defaultAttack;
+        this.attack = attack;
+        this.healing = healing;
+        this.cost = cost;
+        this.defaultTurns = defaultTurns;
+        this.turns = turns;
+        this.ability = ability;
+        this.img = img;
+        this.id = id;
+    }
+}
+const card1 = new Card("Weak Farmer", 2, 2, 0, 1, 3, 3, "", "/weakFarmer2.d47a8e3b.jpeg", 1);
+const card2 = new Card("Weak Farmer", 2, 2, 0, 1, 3, 3, "", "/weakFarmer2.d47a8e3b.jpeg", 2);
+const card3 = new Card("Tree of Vitality", 0, 0, 5, 2, 4, 4, "", "/weakFarmer2.d47a8e3b.jpeg", 3);
+const card4 = new Card("Tree of Vitality", 0, 0, 5, 2, 4, 4, "", "/weakFarmer2.d47a8e3b.jpeg", 4);
+const card5 = new Card("Hound", 3, 3, 0, 1, 2, 2, "", "/weakFarmer2.d47a8e3b.jpeg", 5);
+const card6 = new Card("Hound", 3, 3, 0, 1, 2, 2, "", "/weakFarmer2.d47a8e3b.jpeg", 6);
+const card7 = new Card("Castle Guardian", 4, 4, 0, 2, 2, 2, "", "/weakFarmer2.d47a8e3b.jpeg", 7);
+const card8 = new Card("Castle Guardian", 4, 4, 0, 2, 2, 2, "", "/weakFarmer2.d47a8e3b.jpeg", 8);
+const card9 = new Card("Caplan of Miridith", 0, 0, 5, 3, 4, 4, "", "/weakFarmer2.d47a8e3b.jpeg", 9);
+const card10 = new Card("Caplan of Miridith", 0, 0, 4, 3, 4, 4, "", "/weakFarmer2.d47a8e3b.jpeg", 10);
+const card11 = new Card("Strong farmer", 4, 4, 0, 3, 2, 2, "", "/weakFarmer2.d47a8e3b.jpeg", 11);
+const card12 = new Card("Strong farmer", 4, 4, 0, 3, 2, 2, "", "/weakFarmer2.d47a8e3b.jpeg", 12);
+const card13 = new Card("Berserker", 6, 6, 0, 4, 1, 1, "", "/weakFarmer2.d47a8e3b.jpeg", 13);
+const card14 = new Card("Berserker", 6, 6, 0, 4, 1, 1, "", "/weakFarmer2.d47a8e3b.jpeg", 14);
+const card15 = new Card("King's Defender", 4, 4, 0, 4, 3, 3, "", "/weakFarmer2.d47a8e3b.jpeg", 15);
+const card16 = new Card("King's Defender", 4, 4, 0, 4, 3, 3, "", "/weakFarmer2.d47a8e3b.jpeg", 16);
+const card17 = new Card("Military Hornist", 2, 2, 0, 4, 3, 3, "rage", "/weakFarmer2.d47a8e3b.jpeg", 17);
+const card18 = new Card("Military Hornist", 2, 2, 0, 4, 3, 3, "rage", "/weakFarmer2.d47a8e3b.jpeg", 18);
+const card19 = new Card("Light of Azhura", 0, 0, 6, 5, 3, 3, "blessing", "/weakFarmer2.d47a8e3b.jpeg", 19);
+const card20 = new Card("Light of Azhura", 0, 0, 6, 5, 3, 3, "blessing", "/weakFarmer2.d47a8e3b.jpeg", 20);
+const card21 = new Card("Firandil the Bloody", 6, 6, 0, 5, 3, 3, "rage", "/weakFarmer2.d47a8e3b.jpeg", 21);
+const card22 = new Card("Burning Wagon", 7, 7, 0, 5, 1, 1, "", "/weakFarmer2.d47a8e3b.jpeg", 22);
+const card23 = new Card("Burning Wagon", 7, 7, 0, 5, 1, 1, "", "/weakFarmer2.d47a8e3b.jpeg", 23);
+const card24 = new Card("Time traveler", 5, 5, 0, 6, 2, 2, "Hourglass", "/weakFarmer2.d47a8e3b.jpeg", 24);
+const card25 = new Card("Time traveler", 2, 2, 0, 6, 2, 2, "Hourglass", "/weakFarmer2.d47a8e3b.jpeg", 25);
+const card26 = new Card("Ciril the Mighty", 7, 7, 0, 7, 4, 4, "", "/weakFarmer2.d47a8e3b.jpeg", 26);
+const card27 = new Card("Archmage Valorian", 6, 6, 0, 7, 5, 5, "", "/weakFarmer2.d47a8e3b.jpeg", 27);
+const card28 = new Card("Princess Laurith", 0, 0, 10, 7, 3, 3, "blessing", "/weakFarmer2.d47a8e3b.jpeg", 28);
+const card29 = new Card("Karcoth The King", 10, 10, 0, 8, 3, 3, "", "/weakFarmer2.d47a8e3b.jpeg", 29);
+const card30 = new Card("Azhura", 8, 8, 0, 9, 3, 3, "hourglass", "/weakFarmer2.d47a8e3b.jpeg", 30);
+const defaultDeckArray = [
+    card1,
+    card2,
+    card3,
+    card4,
+    card5,
+    card6,
+    card7,
+    card8,
+    card9,
+    card10,
+    card11,
+    card12,
+    card13,
+    card14,
+    card15,
+    card16,
+    card17,
+    card18,
+    card19,
+    card20,
+    card21,
+    card22,
+    card23,
+    card24,
+    card25,
+    card26,
+    card27,
+    card28,
+    card29,
+    card30
+];
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"ky8MP":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "giveAnimation", ()=>giveAnimation);
+parcelHelpers.export(exports, "renderCementaryNum", ()=>renderCementaryNum);
+parcelHelpers.export(exports, "renderDeckNum", ()=>renderDeckNum);
+parcelHelpers.export(exports, "renderTimer", ()=>renderTimer);
+parcelHelpers.export(exports, "renderHand", ()=>renderHand);
+parcelHelpers.export(exports, "addHandlerGameInit", ()=>addHandlerGameInit);
+parcelHelpers.export(exports, "addHandlerDraw", ()=>addHandlerDraw);
+const board = document.querySelector(".board");
+const hoverView = document.querySelector(".hover-view");
+const enemySide = document.querySelector(".enemy-section");
+const enemyDiscription = document.querySelector(".enemy-section--discription");
+const enemyHealth = document.querySelector(".enemy-section--hero--health");
+const gameMenu = document.querySelector(".game-menu");
+const gameMenuCntnr = document.querySelector(".game-menu--container");
+const game = document.querySelector(".game");
+const footer = document.querySelector(".footer");
+const deckNum = document.querySelector(".deck-number");
+const cementaryNum = document.querySelector(".skull-number");
+const drawBtn = document.querySelector(".button--draw");
+const giveAnimation = function(parentEl) {
+    parentEl.classList.add("shake-animation");
+    setTimeout(function() {
+        parentEl.classList.remove("shake-animation");
+    }, 1000);
+};
+const renderCementaryNum = (data)=>cementaryNum.textContent = data.length;
+const renderDeckNum = (data)=>deckNum.textContent = data.length;
+const renderTimer = function(data) {
+    const timer = document.querySelector(".timer");
+    timer.textContent = `${data}s`;
+};
+const renderHand = async function(data) {
+    const parentElement = document.querySelector(".hand");
+    parentElement.innerHTML = "";
+    data.forEach(function(card) {
+        const markup = `
+    <div class="hand--card">
+        <div class="hand--card--cost">${card.cost}</div>
+        <img src="${card.img}" class="hand--card--img" />
+        <p class="hand--card--name">${card.name}</p>
+        <p class="hand--card--ability"><br />${card.ability}</p>
+        <div class="hand--card--left-stat ${card.healing > 0 ? "healer" : ""}">${card.attack === 0 ? card.healing : card.attack}</div>
+        <div class="hand--card--turn-stat">${card.turns}</div>
+    </div>
+    `;
+        parentElement.insertAdjacentHTML("beforeend", markup);
+    });
+};
+const addHandlerGameInit = function(handler) {
+    gameMenuCntnr.addEventListener("click", (e)=>handler());
+};
+const addHandlerDraw = function(handler) {
+    drawBtn.addEventListener("click", function(e) {
+        handler();
+    });
+};
+// game animation events //
+enemySide.addEventListener("mouseover", ()=>enemyDiscription.style.opacity = "1");
+enemySide.addEventListener("mouseout", ()=>enemyDiscription.style.opacity = "0");
+board.addEventListener("mouseover", function(e) {
+    const clicked = e.target.closest(".board--card");
+    if (!clicked) return;
+    const elementFound = document.getElementById(`${clicked.dataset.id}`);
+    elementFound.style.opacity = "1";
+});
+board.addEventListener("mouseout", function(e) {
+    const clicked = e.target.closest(".board--card");
+    if (!clicked) return;
+    const elementFound = document.getElementById(`${clicked.dataset.id}`);
+    elementFound.style.opacity = "0";
+});
+gameMenuCntnr.addEventListener("click", function(e) {
+    gameMenu.style.display = "none";
+    footer.style.display = "none";
+    game.style.opacity = "1";
+});
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dXNgZ":[function(require,module,exports) {
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
  *

@@ -11,8 +11,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-/* game menu */
-
 /* viewport width too low */
 .modal-viewport-error {
   position: absolute;
@@ -42,11 +40,10 @@ body {
   font-family: "Press Start 2P", cursive;
   height: 100vh;
   overflow: hidden;
-  background-image: url("/src/img/background.png");
+  background-image: url("/src/img/background-dark.png");
+  background-size: cover;
 }
-.game {
-  display: none;
-}
+/* game menu */
 .game-menu {
   position: absolute;
   display: flex;
@@ -54,11 +51,9 @@ body {
   align-items: center;
 }
 .game-menu--container {
-  /* background-color: #388eff; */
   z-index: 1002;
   cursor: pointer;
 }
-
 .game-menu--container--logo {
   animation-name: floating;
   animation-duration: 3s;
@@ -66,7 +61,9 @@ body {
   animation-timing-function: ease-in-out;
   margin-bottom: 50px;
   width: 800px;
+  margin-top: -6%;
 }
+/* logo animation */
 @keyframes floating {
   0% {
     transform: translate(0, -30px);
@@ -77,6 +74,9 @@ body {
   100% {
     transform: translate(0, -30px);
   }
+}
+a {
+  text-decoration: none;
 }
 .game-menu--container--text {
   color: grey;
@@ -89,6 +89,18 @@ body {
   width: 100%;
   bottom: -100px;
   font-size: 30px;
+}
+.game-menu--container:hover .game-menu--container--text {
+  font-size: 35px;
+  color: #fad448;
+}
+.game-menu--background {
+  position: absolute;
+  background-image: url("../img/background-dark.png");
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1001;
 }
 .footer {
   display: flex;
@@ -115,18 +127,10 @@ body {
   font-size: 12px;
   padding: 12px;
 }
-.game-menu--background {
-  position: absolute;
-  background-color: black;
-  height: 100vh;
-  width: 100vw;
-  z-index: 1001;
-}
-.game-menu--container:hover .game-menu--container--text {
-  font-size: 40px;
-}
-.--visible {
-  opacity: 1;
+/* the actual game */
+.game {
+  opacity: 0;
+  transition: all 5s;
 }
 .enemy-side,
 .player-side {
@@ -186,21 +190,15 @@ body {
   height: 60vh;
   max-height: 648px;
 }
-
 .enemy-section,
 .player--mid-section {
   width: 70vw;
   max-width: 1344px;
   background-color: aqua;
 }
-
 .timer {
   font-size: 80px;
 }
-section div {
-  font-size: 50px;
-}
-
 .timer,
 .turn-counter,
 .player--left-section,
@@ -209,8 +207,8 @@ section div {
   width: 15vw;
   max-width: 288px;
   margin-top: -50px;
+  color: white;
 }
-
 .player--mid-section {
   position: relative;
   flex-direction: column;
@@ -225,14 +223,20 @@ section div {
   background-size: cover;
 }
 
-/*////// player left side styling /////// */
+/* player left side styling */
 
 .player--left-section {
   display: flex;
   align-items: center;
   row-gap: 25px;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
+}
+.deck-container,
+.skull-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .skull {
   width: 140px;
@@ -246,9 +250,11 @@ section div {
 .skull-number,
 .deck-number {
   font-size: 40px;
+  color: white;
+  display: inline;
 }
 
-/* ///////player board styling//////// */
+/* player board styling */
 
 .board {
   margin-top: 2%;
@@ -273,10 +279,6 @@ section div {
   right: -18px;
   background-color: var(--turn-color);
 }
-.healer {
-  color: white;
-  background-color: var(--heal-color);
-}
 
 .board--card--turn-stat,
 .board--card--left-stat {
@@ -288,7 +290,7 @@ section div {
   top: 60px;
 }
 
-/* ///////player hero styling//////// */
+/* player hero styling */
 
 .hero {
   height: 175px;
@@ -311,7 +313,7 @@ section div {
   background-color: white;
   margin-top: -40px;
 }
-/*/ board-card-fullview */
+/* hover-view styling */
 
 .hover-view {
   border: ridge 15px var(--player-color);
@@ -381,7 +383,7 @@ section div {
   text-align: center;
 }
 
-/* ///////player hand styling//////// */
+/* player hand styling*/
 
 .hand {
   display: flex;
@@ -455,7 +457,7 @@ section div {
   font-size: 40px;
 }
 
-/* ///////player right side//////// */
+/* player right side*/
 .player--right-section {
   flex-direction: column;
 }
@@ -510,8 +512,34 @@ section div {
   color: black;
 }
 
+.healer {
+  color: white;
+  background-color: var(--heal-color);
+}
+.shake-animation {
+  animation: tilt-n-move-shaking 0.15s infinite;
+}
+@keyframes tilt-n-move-shaking {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(5px, 5px) rotate(5deg);
+  }
+  50% {
+    transform: translate(0, 0) rotate(0eg);
+  }
+  75% {
+    transform: translate(-5px, 5px) rotate(-5deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+
 /* MEDIA QUERIES */
 
+/* LARGE SCREENS */
 @media (1920px <= width) {
   .hand--card:hover {
     top: 0px;
@@ -521,8 +549,7 @@ section div {
   }
 }
 
-/* // MEDIUM SCREENS // */
-
+/* MEDIUM SCREENS */
 @media (1280px <= width <= 1550px) {
   .game-menu--container--logo {
     width: 600px;
@@ -573,8 +600,6 @@ section div {
   .mana {
     padding: 15px;
   }
-
-  /*//////*/
   .enemy-section--hero {
     height: 180px;
   }
@@ -688,7 +713,8 @@ section div {
     font-size: 10px;
   }
 }
-/* // small screens // */
+
+/* SMALL SCREENS */
 @media (1024px <= width <= 1279px) {
   .game-menu--container--logo {
     width: 550px;
@@ -869,7 +895,7 @@ section div {
   }
 }
 
-/* // TABLETS // */
+/* TABLETS */
 @media (768px <= width <= 1023px) {
   .game-menu--container--logo {
     width: 400px;
@@ -938,8 +964,6 @@ section div {
   .mana {
     padding: 10px;
   }
-
-  /*//////*/
   .enemy-section--hero {
     height: 150px;
   }
@@ -1060,7 +1084,7 @@ section div {
   }
 }
 
-/* // MOBILE DEVICES // */
+/* DEVICES NOT SUPPPORTED */
 @media (min-width: 0px) and (max-width: 767px) {
   .modal-viewport-error {
     display: flex;

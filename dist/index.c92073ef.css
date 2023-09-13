@@ -30,14 +30,11 @@ body, .enemy-section, .turn-counter, .timer, .player--mid-section, .board, .play
 }
 
 body {
-  background-image: url("background.fc6c49d6.png");
+  background-image: url("background-dark.c4469fe3.png");
+  background-size: cover;
   height: 100vh;
   font-family: "Press Start 2P", cursive;
   overflow: hidden;
-}
-
-.game {
-  display: none;
 }
 
 .game-menu {
@@ -54,6 +51,7 @@ body {
 
 .game-menu--container--logo {
   width: 800px;
+  margin-top: -6%;
   margin-bottom: 50px;
   animation-name: floating;
   animation-duration: 3s;
@@ -75,6 +73,10 @@ body {
   }
 }
 
+a {
+  text-decoration: none;
+}
+
 .game-menu--container--text {
   color: var(--menu-color);
   text-align: center;
@@ -85,6 +87,20 @@ body {
   display: block;
   position: absolute;
   bottom: -100px;
+}
+
+.game-menu--container:hover .game-menu--container--text {
+  color: #fad448;
+  font-size: 35px;
+}
+
+.game-menu--background {
+  z-index: 1001;
+  background-image: url("background-dark.c4469fe3.png");
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
 }
 
 .footer {
@@ -117,20 +133,9 @@ body {
   font-size: 12px;
 }
 
-.game-menu--background {
-  z-index: 1001;
-  background-color: #000;
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-}
-
-.game-menu--container:hover .game-menu--container--text {
-  font-size: 40px;
-}
-
-.--visible {
-  opacity: 1;
+.game {
+  opacity: 0;
+  transition: all 5s;
 }
 
 .enemy-side, .player-side {
@@ -204,12 +209,9 @@ body {
   font-size: 80px;
 }
 
-section div {
-  font-size: 50px;
-}
-
 .timer, .turn-counter, .player--left-section, .player--right-section {
   text-shadow: 3px 3px var(--player-color);
+  color: #fff;
   width: 15vw;
   max-width: 288px;
   margin-top: -50px;
@@ -230,10 +232,16 @@ section div {
 }
 
 .player--left-section {
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   row-gap: 25px;
+  display: flex;
+}
+
+.deck-container, .skull-container {
+  justify-content: center;
+  align-items: center;
   display: flex;
 }
 
@@ -249,7 +257,9 @@ section div {
 }
 
 .skull-number, .deck-number {
+  color: #fff;
   font-size: 40px;
+  display: inline;
 }
 
 .board {
@@ -278,11 +288,6 @@ section div {
   color: #fff;
   background-color: var(--turn-color);
   right: -18px;
-}
-
-.healer {
-  color: #fff;
-  background-color: var(--heal-color);
 }
 
 .board--card--turn-stat, .board--card--left-stat {
@@ -518,6 +523,37 @@ section div {
 .buttons button:hover {
   color: #000;
   background-color: #fff;
+}
+
+.healer {
+  color: #fff;
+  background-color: var(--heal-color);
+}
+
+.shake-animation {
+  animation: .15s infinite tilt-n-move-shaking;
+}
+
+@keyframes tilt-n-move-shaking {
+  0% {
+    transform: translate(0)rotate(0);
+  }
+
+  25% {
+    transform: translate(5px, 5px)rotate(5deg);
+  }
+
+  50% {
+    transform: translate(0, 0) rotate(0eg);
+  }
+
+  75% {
+    transform: translate(-5px, 5px)rotate(-5deg);
+  }
+
+  100% {
+    transform: translate(0)rotate(0);
+  }
 }
 
 @media (width >= 1920px) {
