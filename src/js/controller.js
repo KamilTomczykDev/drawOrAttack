@@ -9,13 +9,13 @@ import "regenerator-runtime/runtime";
 if (module.hot) {
   module.hot.accept();
 }
-
+const hand = document.querySelector(".hand");
 ////////////////////////
 const startTimer = function () {
   model.state.timer = 25;
   const countdown = setInterval(function () {
     --model.state.timer;
-    console.log(model.state.timer);
+    // console.log(model.state.timer);
     view.renderTimer(model.state.timer);
     if (model.state.timer < 1) {
       clearInterval(countdown);
@@ -35,13 +35,14 @@ const draw = function () {
     model.state.hand.push(model.state.deck[number]);
   }
   const x = model.state.deck.splice(number, 1);
-  console.log(model.state.hand);
-  console.log(model.state.deck);
-  console.log(number);
-  console.log(data.defaultDeckArray);
+  // console.log(model.state.hand);
+  // console.log(model.state.deck);
+  // console.log(number);
+  // console.log(data.defaultDeckArray);
 
   renderUI();
 };
+
 const renderUI = function () {
   view.renderCementaryNum(model.state.cementary);
   view.renderDeckNum(model.state.deck);
@@ -52,5 +53,19 @@ const gameInit = function () {
   renderUI();
   startTimer();
 };
+
+hand.addEventListener("click", function (e) {
+  const clicked = e.target.closest(".hand--card");
+  if (!clicked) return;
+  console.log(clicked.id);
+  const boardArr = model.state.hand.filter((el) => el.id === +clicked.id);
+  model.state.board.push(...boardArr);
+  console.log(model.state.board);
+  const newArr = model.state.hand.filter((el) => el.id !== +clicked.id);
+  console.log(newArr);
+  model.state.hand = newArr;
+  console.log(model.state.hand);
+  renderUI();
+});
 view.addHandlerGameInit(gameInit);
 view.addHandlerDraw(draw);

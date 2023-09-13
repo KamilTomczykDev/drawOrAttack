@@ -10,6 +10,7 @@ const footer = document.querySelector(".footer");
 const deckNum = document.querySelector(".deck-number");
 const cementaryNum = document.querySelector(".skull-number");
 const drawBtn = document.querySelector(".button--draw");
+const hand = document.querySelector(".hand");
 
 /////////////////////////////////////////////////////
 export const giveAnimation = function (parentEl) {
@@ -33,7 +34,7 @@ export const renderHand = async function (data) {
   parentElement.innerHTML = "";
   data.forEach(function (card) {
     const markup = `
-    <div class="hand--card">
+    <div class="hand--card" id="${card.id}">
         <div class="hand--card--cost">${card.cost}</div>
         <img src="${card.img}" class="hand--card--img" />
         <p class="hand--card--name">${card.name}</p>
