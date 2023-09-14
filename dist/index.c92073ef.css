@@ -167,6 +167,10 @@ a {
   max-height: 432px;
 }
 
+.enemy-side:hover .enemy-section--discription {
+  opacity: 1;
+}
+
 .enemy-section {
   background-image: url("enemy-background.95d8d8b9.png");
   background-size: cover;
@@ -203,6 +207,7 @@ a {
   border: 10px ridge #ab0000;
   padding: 10px;
   font-size: 20px;
+  line-height: 120%;
   transition: all .3s;
   position: absolute;
   bottom: 100px;
@@ -386,6 +391,7 @@ a {
   text-align: center;
   font-size: 20px;
   font-weight: bold;
+  line-height: 120%;
 }
 
 .hover-view--ability {
@@ -443,7 +449,7 @@ a {
 }
 
 .hand--card:hover {
-  top: -140px;
+  top: -80px;
 }
 
 .hand--card--cost {
@@ -468,8 +474,9 @@ a {
 
 .hand--card--name {
   text-align: center;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
+  line-height: 120%;
 }
 
 .hand--card--ability {

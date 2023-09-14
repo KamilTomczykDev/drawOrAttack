@@ -158,6 +158,9 @@ a {
   height: 40vh;
   max-height: 432px;
 }
+.enemy-side:hover .enemy-section--discription {
+  opacity: 1;
+}
 .enemy-section {
   background-image: url("../img/enemy-background.png");
   border-radius: 50px 50px 0px 0;
@@ -188,6 +191,7 @@ a {
   margin-top: -50px;
 }
 .enemy-section--discription {
+  line-height: 120%;
   padding: 10px;
   position: absolute;
   font-size: 20px;
@@ -374,6 +378,7 @@ a {
   font-size: 20px;
   text-align: center;
   font-weight: bold;
+  line-height: 120%;
 }
 .hover-view--ability {
   padding: 0 10px;
@@ -428,7 +433,7 @@ a {
   margin-right: 25px;
 }
 .hand--card:hover {
-  top: -140px;
+  top: -80px;
 }
 .hand--card--cost {
   position: absolute;
@@ -450,9 +455,10 @@ a {
   object-fit: cover;
 }
 .hand--card--name {
-  font-size: 20px;
+  font-size: 18px;
   text-align: center;
   font-weight: bold;
+  line-height: 120%;
 }
 .hand--card--ability {
   padding: 0 10px;

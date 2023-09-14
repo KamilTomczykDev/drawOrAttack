@@ -14,7 +14,7 @@ const hand = document.querySelector(".hand");
 const turnCounter = document.querySelector(".turn-counter");
 const playerHp = document.querySelector(".hero--health");
 const nextTurnText = document.querySelector(".next-turn--container");
-const btns = document.querySelector("#btn");
+const attackBtn = document.querySelector(".button--attack");
 
 /////////////////////////////////////////////////////
 export const giveShakeAnimation = function (parentEl) {
@@ -45,6 +45,16 @@ export const nextTurnAnimation = () => {
   }, 2300);
 };
 
+export const changeCursorAttack = () => {
+  attackBtn.style.cursor = "not-allowed";
+  setTimeout(() => (attackBtn.style.cursor = "pointer"), 2500);
+};
+
+export const changeCursorDraw = () => {
+  drawBtn.style.cursor = "not-allowed";
+  setTimeout(() => (drawBtn.style.cursor = "pointer"), 2500);
+};
+
 export const renderCementaryNum = (data) =>
   (cementaryNum.textContent = data.length);
 
@@ -53,12 +63,6 @@ export const renderDeckNum = (data) => (deckNum.textContent = data.length);
 export const renderTimer = function (data) {
   const timer = document.querySelector(".timer");
   timer.textContent = `${data}s`;
-};
-
-export const stopCursor = () => {
-  btns.style.cursor = "not-allowed";
-  console.log(btns);
-  setTimeout(() => (btns.style.cursor = "pointer"), 2500);
 };
 
 export const renderHand = async function (data) {
@@ -131,28 +135,49 @@ export const renderTurn = function (data) {
 
 export const renderPlayer = (data) => (playerHp.textContent = data);
 
-// event handlers //
+export const renderEnemy = (data) => {
+  const parentElement = document.querySelector(".enemy-section");
+  parentElement.innerHTML = "";
+  const markup = `
+  <div class="enemy-section--hero">
+  <img
+    class="enemy-section--hero--img"
+    src="${data.img}"
+  />
+  <span class="enemy-section--hero--health">${data.hp}</span>
+  <div class="enemy-section--discription">
+    ${data.name}<br/><br/>${data.discription}
+  </div>
+</div>
+  `;
+  parentElement.insertAdjacentHTML("beforeend", markup);
+};
+
+//add event handlers //
 
 export const addHandlerGameInit = function (handler) {
   gameMenuCntnr.addEventListener("click", (e) => handler());
 };
 
 export const addHandlerDraw = function (handler) {
-  drawBtn.addEventListener("click", function (e) {
-    handler();
-  });
+  drawBtn.addEventListener("click", handler);
 };
 
-// game animation events //
+export const removeHandlerDraw = function (handler) {
+  drawBtn.removeEventListener("click", handler);
+};
 
-enemySide.addEventListener(
-  "mouseover",
-  () => (enemyDiscription.style.opacity = "1")
-);
-enemySide.addEventListener(
-  "mouseout",
-  () => (enemyDiscription.style.opacity = "0")
-);
+export const addHandlerAttack = function (handler) {
+  attackBtn.addEventListener("click", handler);
+};
+
+export const removeHandlerAttack = function (handler) {
+  attackBtn.removeEventListener("click", handler);
+};
+
+//remove event handlers//
+
+// game animation events //
 
 board.addEventListener("mouseover", function (e) {
   const clicked = e.target.closest(".board--card");

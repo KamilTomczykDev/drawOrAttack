@@ -340,8 +340,8 @@ export const card24 = new Card(
 );
 export const card25 = new Card(
   "Time traveler",
-  2,
-  2,
+  5,
+  5,
   0,
   0,
   6,

@@ -597,11 +597,14 @@ const startTimer = function() {
         if (_modelJs.state.timer < 1) {
             clearInterval(countdown);
             startTimer();
-            _viewJs.stopCursor();
             nextTurn();
             setTimeout(()=>draw(), 2000);
         }
     }, 1000);
+};
+const giveHandlersBack = ()=>{
+    _viewJs.addHandlerAttack(attackBtnClick);
+    _viewJs.addHandlerDraw(drawBtnClick);
 };
 const draw = function() {
     const number = Math.trunc(Math.random() * _modelJs.state.deck.length);
@@ -614,18 +617,45 @@ const draw = function() {
     const x = _modelJs.state.deck.splice(number, 1);
     renderUI();
 };
-const turnNumberUp = ()=>_modelJs.state.turn += 1;
+const turnNumberUp = ()=>{
+    _modelJs.state.turn += 1;
+    if (_modelJs.state.turn === 9) {
+        _modelJs.state.enemy.attack = 8;
+        _modelJs.state.enemy.name = "Nazgramm the Bloodlord";
+        _modelJs.state.enemy.discription = "Deal 8 dmg each round";
+    // model.state.enemy.img = blablabla;
+    }
+    if (_modelJs.state.turn === 18) {
+        _modelJs.state.enemy.attack = 10;
+        _modelJs.state.enemy.name = "Nazgramm (Demon form)";
+        _modelJs.state.enemy.discription = "Deal 10 dmg and kill random unit each round";
+    // model.state.enemy.img = blablabla;
+    }
+};
+const nazgrammUltimate = ()=>{
+    if (_modelJs.state.turn >= 18 && _modelJs.state.board.length > 0) {
+        const number = Math.trunc(Math.random() * _modelJs.state.board.length);
+        _modelJs.state.cementary.push(_modelJs.state.board[number]);
+        const x = _modelJs.state.board.splice(number, 1);
+        renderUI();
+    }
+};
 const manaNumberUp = ()=>{
-    _modelJs.state.maxMana += 1;
+    if (_modelJs.state.maxMana !== 9) _modelJs.state.maxMana += 1;
     _modelJs.state.currentMana = _modelJs.state.maxMana;
 };
 const nextTurn = function() {
     const player = document.querySelector(".hero");
     const playerImg = document.querySelector(".hero--img");
     const playerHpElement = document.querySelector(".hero--health");
+    _viewJs.changeCursorAttack();
+    _viewJs.changeCursorDraw();
     setTimer();
+    applyHealing();
     turnNumberUp();
     manaNumberUp();
+    _viewJs.removeHandlerDraw(drawBtnClick);
+    _viewJs.removeHandlerAttack(attackBtnClick);
     setTimeout(function() {
         _modelJs.state.playerHp -= _modelJs.state.enemy.attack;
         _viewJs.giveShakeAnimation(playerHpElement);
@@ -635,15 +665,32 @@ const nextTurn = function() {
         killUnits();
         renderUI();
         setTimer();
+        giveHandlersBack();
+        nazgrammUltimate();
     }, 2000);
 };
 const drawBtnClick = function() {
     nextTurn();
-    _viewJs.stopCursor();
     setTimeout(()=>{
         draw();
     // setTimer();
     }, 2500);
+};
+const applyHealing = ()=>{
+    _modelJs.state.board.forEach((card)=>{
+        if (card.healing > 0) _modelJs.state.playerHp += card.healing;
+    });
+};
+const attackBtnClick = function() {
+    const enemyHpElement = document.querySelector(".enemy-section--hero--health");
+    _modelJs.state.board.forEach((card)=>{
+        _modelJs.state.enemy.hp -= card.attack;
+    });
+    nextTurn();
+    setTimeout(function() {
+        _viewJs.giveShakeAnimation(enemyHpElement);
+        _viewJs.giveDamageAnimation(enemyHpElement);
+    }, 2000);
 };
 const renderUI = function() {
     _viewJs.renderCementaryNum(_modelJs.state.cementary);
@@ -653,6 +700,7 @@ const renderUI = function() {
     _viewJs.renderMana(_modelJs.state.currentMana, _modelJs.state.maxMana);
     _viewJs.renderTurn(_modelJs.state.turn);
     _viewJs.renderPlayer(_modelJs.state.playerHp);
+    _viewJs.renderEnemy(_modelJs.state.enemy);
 };
 const gameInit = function() {
     draw();
@@ -662,20 +710,14 @@ const gameInit = function() {
     renderUI();
     startTimer();
 };
-hand.addEventListener("click", function(e) {
+const handHandler = function(e) {
     const clicked = e.target.closest(".hand--card");
     if (!clicked) return;
     const foundCard = _modelJs.state.hand.find((el)=>el.id === +clicked.id);
     if (foundCard.cost <= _modelJs.state.currentMana) {
-        if (foundCard.ability === "Rage" && _modelJs.state.board.length > 0) _modelJs.state.board.forEach((card)=>{
-            if (card.attack > 0) card.attack += 1;
-        });
-        if (foundCard.ability === "Blessing" && _modelJs.state.board.length > 0) _modelJs.state.board.forEach((card)=>{
-            if (card.healing > 0) card.healing += 1;
-        });
-        if (foundCard.ability === "Hourglass" && _modelJs.state.board.length > 0) _modelJs.state.board.forEach((card)=>{
-            card.turns += 1;
-        });
+        checkForRage(foundCard);
+        checkForBlessing(foundCard);
+        checkForHourglass(foundCard);
         const boardArr = _modelJs.state.hand.filter((el)=>el.id === foundCard.id);
         _modelJs.state.board.push(...boardArr);
         const newArr = _modelJs.state.hand.filter((el)=>el.id !== foundCard.id);
@@ -683,7 +725,24 @@ hand.addEventListener("click", function(e) {
         _modelJs.state.currentMana -= foundCard.cost;
         renderUI();
     }
-});
+};
+const checkForRage = function(card) {
+    if (card.ability === "Rage" && _modelJs.state.board.length > 0) _modelJs.state.board.forEach((card)=>{
+        if (card.attack > 0) card.attack += 1;
+    });
+};
+const checkForBlessing = function(card) {
+    if (card.ability === "Blessing" && _modelJs.state.board.length > 0) _modelJs.state.board.forEach((card)=>{
+        if (card.healing > 0) card.healing += 1;
+    });
+};
+const checkForHourglass = function(card) {
+    if (card.ability === "Hourglass" && _modelJs.state.board.length > 0) _modelJs.state.board.forEach((card)=>{
+        card.turns += 1;
+    });
+};
+hand.addEventListener("click", handHandler);
+_viewJs.addHandlerAttack(attackBtnClick);
 _viewJs.addHandlerGameInit(gameInit);
 _viewJs.addHandlerDraw(drawBtnClick);
 
@@ -1945,8 +2004,11 @@ const state = {
     currentTurn: 1,
     timer: 25,
     enemy: {
+        name: "Mysterious Creature",
         attack: 5,
-        hp: 30
+        hp: 30,
+        img: "firstEnemy.91fbd31f.jpeg",
+        discription: "Deal 5 dmg each round."
     },
     playerHp: 30,
     currentMana: 1,
@@ -2030,7 +2092,7 @@ const card21 = new Card("Firandil the Bloody", 6, 6, 0, 0, 5, 3, 3, "Rage", "/we
 const card22 = new Card("Burning Wagon", 7, 7, 0, 0, 5, 1, 1, "", "/weakFarmer2.d47a8e3b.jpeg", 22);
 const card23 = new Card("Burning Wagon", 7, 7, 0, 0, 5, 1, 1, "", "/weakFarmer2.d47a8e3b.jpeg", 23);
 const card24 = new Card("Time traveler", 5, 5, 0, 0, 6, 2, 2, "Hourglass", "/weakFarmer2.d47a8e3b.jpeg", 24);
-const card25 = new Card("Time traveler", 2, 2, 0, 0, 6, 2, 2, "Hourglass", "/weakFarmer2.d47a8e3b.jpeg", 25);
+const card25 = new Card("Time traveler", 5, 5, 0, 0, 6, 2, 2, "Hourglass", "/weakFarmer2.d47a8e3b.jpeg", 25);
 const card26 = new Card("Ciril the Mighty", 7, 7, 0, 0, 7, 4, 4, "", "/weakFarmer2.d47a8e3b.jpeg", 26);
 const card27 = new Card("Archmage Valorian", 6, 6, 0, 0, 7, 5, 5, "", "/weakFarmer2.d47a8e3b.jpeg", 27);
 const card28 = new Card("Princess Laurith", 0, 0, 9, 9, 7, 3, 3, "Blessing", "/weakFarmer2.d47a8e3b.jpeg", 28);
@@ -2105,17 +2167,22 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "giveShakeAnimation", ()=>giveShakeAnimation);
 parcelHelpers.export(exports, "giveDamageAnimation", ()=>giveDamageAnimation);
 parcelHelpers.export(exports, "nextTurnAnimation", ()=>nextTurnAnimation);
+parcelHelpers.export(exports, "changeCursorAttack", ()=>changeCursorAttack);
+parcelHelpers.export(exports, "changeCursorDraw", ()=>changeCursorDraw);
 parcelHelpers.export(exports, "renderCementaryNum", ()=>renderCementaryNum);
 parcelHelpers.export(exports, "renderDeckNum", ()=>renderDeckNum);
 parcelHelpers.export(exports, "renderTimer", ()=>renderTimer);
-parcelHelpers.export(exports, "stopCursor", ()=>stopCursor);
 parcelHelpers.export(exports, "renderHand", ()=>renderHand);
 parcelHelpers.export(exports, "renderBoard", ()=>renderBoard);
 parcelHelpers.export(exports, "renderMana", ()=>renderMana);
 parcelHelpers.export(exports, "renderTurn", ()=>renderTurn);
 parcelHelpers.export(exports, "renderPlayer", ()=>renderPlayer);
+parcelHelpers.export(exports, "renderEnemy", ()=>renderEnemy);
 parcelHelpers.export(exports, "addHandlerGameInit", ()=>addHandlerGameInit);
 parcelHelpers.export(exports, "addHandlerDraw", ()=>addHandlerDraw);
+parcelHelpers.export(exports, "removeHandlerDraw", ()=>removeHandlerDraw);
+parcelHelpers.export(exports, "addHandlerAttack", ()=>addHandlerAttack);
+parcelHelpers.export(exports, "removeHandlerAttack", ()=>removeHandlerAttack);
 const board = document.querySelector(".board");
 const hoverView = document.querySelector(".hover-view");
 const enemySide = document.querySelector(".enemy-section");
@@ -2132,7 +2199,7 @@ const hand = document.querySelector(".hand");
 const turnCounter = document.querySelector(".turn-counter");
 const playerHp = document.querySelector(".hero--health");
 const nextTurnText = document.querySelector(".next-turn--container");
-const btns = document.querySelector("#btn");
+const attackBtn = document.querySelector(".button--attack");
 const giveShakeAnimation = function(parentEl) {
     parentEl.classList.add("shake-animation");
     setTimeout(function() {
@@ -2157,16 +2224,19 @@ const nextTurnAnimation = ()=>{
         nextTurnText.style.display = "none";
     }, 2300);
 };
+const changeCursorAttack = ()=>{
+    attackBtn.style.cursor = "not-allowed";
+    setTimeout(()=>attackBtn.style.cursor = "pointer", 2500);
+};
+const changeCursorDraw = ()=>{
+    drawBtn.style.cursor = "not-allowed";
+    setTimeout(()=>drawBtn.style.cursor = "pointer", 2500);
+};
 const renderCementaryNum = (data)=>cementaryNum.textContent = data.length;
 const renderDeckNum = (data)=>deckNum.textContent = data.length;
 const renderTimer = function(data) {
     const timer = document.querySelector(".timer");
     timer.textContent = `${data}s`;
-};
-const stopCursor = ()=>{
-    btns.style.cursor = "not-allowed";
-    console.log(btns);
-    setTimeout(()=>btns.style.cursor = "pointer", 2500);
 };
 const renderHand = async function(data) {
     const parentElement = document.querySelector(".hand");
@@ -2226,17 +2296,40 @@ const renderTurn = function(data) {
     turnCounter.textContent = `${data}${rest} turn`;
 };
 const renderPlayer = (data)=>playerHp.textContent = data;
+const renderEnemy = (data)=>{
+    const parentElement = document.querySelector(".enemy-section");
+    parentElement.innerHTML = "";
+    const markup = `
+  <div class="enemy-section--hero">
+  <img
+    class="enemy-section--hero--img"
+    src="${data.img}"
+  />
+  <span class="enemy-section--hero--health">${data.hp}</span>
+  <div class="enemy-section--discription">
+    ${data.name}<br/><br/>${data.discription}
+  </div>
+</div>
+  `;
+    parentElement.insertAdjacentHTML("beforeend", markup);
+};
 const addHandlerGameInit = function(handler) {
     gameMenuCntnr.addEventListener("click", (e)=>handler());
 };
 const addHandlerDraw = function(handler) {
-    drawBtn.addEventListener("click", function(e) {
-        handler();
-    });
+    drawBtn.addEventListener("click", handler);
 };
+const removeHandlerDraw = function(handler) {
+    drawBtn.removeEventListener("click", handler);
+};
+const addHandlerAttack = function(handler) {
+    attackBtn.addEventListener("click", handler);
+};
+const removeHandlerAttack = function(handler) {
+    attackBtn.removeEventListener("click", handler);
+};
+//remove event handlers//
 // game animation events //
-enemySide.addEventListener("mouseover", ()=>enemyDiscription.style.opacity = "1");
-enemySide.addEventListener("mouseout", ()=>enemyDiscription.style.opacity = "0");
 board.addEventListener("mouseover", function(e) {
     const clicked = e.target.closest(".board--card");
     if (!clicked) return;
