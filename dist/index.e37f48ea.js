@@ -583,39 +583,81 @@ var _runtime = require("regenerator-runtime/runtime");
 if (module.hot) module.hot.accept();
 const hand = document.querySelector(".hand");
 ////////////////////////
+const setTimer = ()=>_modelJs.state.timer = 25;
+const subtractTurn = (data)=>data.forEach((card)=>card.turns -= 1);
+const killUnits = ()=>{
+    if (_modelJs.state.board.length > 0) _modelJs.state.cementary.push(..._modelJs.state.board.filter((card)=>+card.turns === 0));
+    _modelJs.state.board = _modelJs.state.board.filter((card)=>+card.turns !== 0);
+    console.log(_modelJs.state.cementary);
+};
 const startTimer = function() {
-    _modelJs.state.timer = 25;
+    setTimer();
     const countdown = setInterval(function() {
         --_modelJs.state.timer;
-        // console.log(model.state.timer);
         _viewJs.renderTimer(_modelJs.state.timer);
         if (_modelJs.state.timer < 1) {
             clearInterval(countdown);
             startTimer();
+            nextTurn();
+            setTimeout(()=>draw(), 2000);
         }
     }, 1000);
 };
 const draw = function() {
     const number = Math.trunc(Math.random() * _modelJs.state.deck.length);
     if (_modelJs.state.deck.length === 0) return;
-    if (_modelJs.state.hand.length === 6) {
+    if (_modelJs.state.hand.length === 5) {
         _modelJs.state.cementary.push(_modelJs.state.deck[number]);
         const cementaryNum = document.querySelector(".skull-number");
-        _viewJs.giveAnimation(cementaryNum);
+        _viewJs.giveShakeAnimation(cementaryNum);
     } else _modelJs.state.hand.push(_modelJs.state.deck[number]);
     const x = _modelJs.state.deck.splice(number, 1);
-    // console.log(model.state.hand);
-    // console.log(model.state.deck);
-    // console.log(number);
-    // console.log(data.defaultDeckArray);
     renderUI();
+};
+const turnNumberUp = ()=>_modelJs.state.turn += 1;
+const manaNumberUp = ()=>{
+    _modelJs.state.maxMana += 1;
+    _modelJs.state.currentMana = _modelJs.state.maxMana;
+};
+const nextTurn = function() {
+    const player = document.querySelector(".hero");
+    const playerImg = document.querySelector(".hero--img");
+    const playerHpElement = document.querySelector(".hero--health");
+    setTimer();
+    turnNumberUp();
+    manaNumberUp();
+    setTimeout(function() {
+        _modelJs.state.playerHp -= _modelJs.state.enemy.attack;
+        _viewJs.giveShakeAnimation(playerHpElement);
+        _viewJs.giveDamageAnimation(playerHpElement);
+        _viewJs.nextTurnAnimation();
+        subtractTurn(_modelJs.state.board);
+        killUnits();
+        renderUI();
+        setTimer();
+    }, 2000);
+};
+const drawBtnClick = function() {
+    nextTurn();
+    setTimeout(()=>{
+        draw();
+    // setTimer();
+    }, 2500);
 };
 const renderUI = function() {
     _viewJs.renderCementaryNum(_modelJs.state.cementary);
     _viewJs.renderDeckNum(_modelJs.state.deck);
     _viewJs.renderHand(_modelJs.state.hand);
+    _viewJs.renderBoard(_modelJs.state.board);
+    _viewJs.renderMana(_modelJs.state.currentMana, _modelJs.state.maxMana);
+    _viewJs.renderTurn(_modelJs.state.turn);
+    _viewJs.renderPlayer(_modelJs.state.playerHp);
 };
 const gameInit = function() {
+    draw();
+    draw();
+    draw();
+    _modelJs.state.playerHp = 30;
     renderUI();
     startTimer();
 };
@@ -623,17 +665,23 @@ hand.addEventListener("click", function(e) {
     const clicked = e.target.closest(".hand--card");
     if (!clicked) return;
     console.log(clicked.id);
-    const boardArr = _modelJs.state.hand.filter((el)=>el.id === +clicked.id);
-    _modelJs.state.board.push(...boardArr);
-    console.log(_modelJs.state.board);
-    const newArr = _modelJs.state.hand.filter((el)=>el.id !== +clicked.id);
-    console.log(newArr);
-    _modelJs.state.hand = newArr;
-    console.log(_modelJs.state.hand);
-    renderUI();
+    const foundCard = _modelJs.state.hand.find((el)=>el.id === +clicked.id);
+    if (foundCard.cost <= _modelJs.state.currentMana) {
+        const boardArr = _modelJs.state.hand.filter((el)=>el.id === foundCard.id);
+        _modelJs.state.board.push(...boardArr);
+        console.log(_modelJs.state.board);
+        console.log(foundCard);
+        const newArr = _modelJs.state.hand.filter((el)=>el.id !== foundCard.id);
+        console.log(newArr);
+        _modelJs.state.hand = newArr;
+        console.log(_modelJs.state.hand);
+        _modelJs.state.currentMana -= foundCard.cost;
+        if (foundCard.ability === "rage") _modelJs.board.forEach((card)=>card.attack += 1);
+        renderUI();
+    }
 });
 _viewJs.addHandlerGameInit(gameInit);
-_viewJs.addHandlerDraw(draw);
+_viewJs.addHandlerDraw(drawBtnClick);
 
 },{"core-js/modules/web.immediate.js":"euzye","./model.js":"Y4A21","./API.js":"iKbJC","./view.js":"ky8MP","regenerator-runtime/runtime":"9hb6J"}],"euzye":[function(require,module,exports) {
 "use strict";
@@ -1895,7 +1943,11 @@ const state = {
     enemy: {
         attack: 5,
         hp: 30
-    }
+    },
+    playerHp: 30,
+    currentMana: 1,
+    maxMana: 1,
+    turn: 1
 };
 state.deck = [
     ..._apiJs.defaultDeckArray
@@ -1958,7 +2010,7 @@ const card6 = new Card("Hound", 3, 3, 0, 1, 2, 2, "", "/weakFarmer2.d47a8e3b.jpe
 const card7 = new Card("Castle Guardian", 4, 4, 0, 2, 2, 2, "", "/weakFarmer2.d47a8e3b.jpeg", 7);
 const card8 = new Card("Castle Guardian", 4, 4, 0, 2, 2, 2, "", "/weakFarmer2.d47a8e3b.jpeg", 8);
 const card9 = new Card("Caplan of Miridith", 0, 0, 5, 3, 4, 4, "", "/weakFarmer2.d47a8e3b.jpeg", 9);
-const card10 = new Card("Caplan of Miridith", 0, 0, 4, 3, 4, 4, "", "/weakFarmer2.d47a8e3b.jpeg", 10);
+const card10 = new Card("Caplan of Miridith", 0, 0, 5, 3, 4, 4, "", "/weakFarmer2.d47a8e3b.jpeg", 10);
 const card11 = new Card("Strong farmer", 4, 4, 0, 3, 2, 2, "", "/weakFarmer2.d47a8e3b.jpeg", 11);
 const card12 = new Card("Strong farmer", 4, 4, 0, 3, 2, 2, "", "/weakFarmer2.d47a8e3b.jpeg", 12);
 const card13 = new Card("Berserker", 6, 6, 0, 4, 1, 1, "", "/weakFarmer2.d47a8e3b.jpeg", 13);
@@ -1976,8 +2028,8 @@ const card24 = new Card("Time traveler", 5, 5, 0, 6, 2, 2, "Hourglass", "/weakFa
 const card25 = new Card("Time traveler", 2, 2, 0, 6, 2, 2, "Hourglass", "/weakFarmer2.d47a8e3b.jpeg", 25);
 const card26 = new Card("Ciril the Mighty", 7, 7, 0, 7, 4, 4, "", "/weakFarmer2.d47a8e3b.jpeg", 26);
 const card27 = new Card("Archmage Valorian", 6, 6, 0, 7, 5, 5, "", "/weakFarmer2.d47a8e3b.jpeg", 27);
-const card28 = new Card("Princess Laurith", 0, 0, 10, 7, 3, 3, "blessing", "/weakFarmer2.d47a8e3b.jpeg", 28);
-const card29 = new Card("Karcoth The King", 10, 10, 0, 8, 3, 3, "", "/weakFarmer2.d47a8e3b.jpeg", 29);
+const card28 = new Card("Princess Laurith", 0, 0, 9, 7, 3, 3, "blessing", "/weakFarmer2.d47a8e3b.jpeg", 28);
+const card29 = new Card("Karcoth The King", 9, 9, 0, 8, 3, 3, "", "/weakFarmer2.d47a8e3b.jpeg", 29);
 const card30 = new Card("Azhura", 8, 8, 0, 9, 3, 3, "hourglass", "/weakFarmer2.d47a8e3b.jpeg", 30);
 const defaultDeckArray = [
     card1,
@@ -2045,11 +2097,17 @@ exports.export = function(dest, destName, get) {
 },{}],"ky8MP":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "giveAnimation", ()=>giveAnimation);
+parcelHelpers.export(exports, "giveShakeAnimation", ()=>giveShakeAnimation);
+parcelHelpers.export(exports, "giveDamageAnimation", ()=>giveDamageAnimation);
+parcelHelpers.export(exports, "nextTurnAnimation", ()=>nextTurnAnimation);
 parcelHelpers.export(exports, "renderCementaryNum", ()=>renderCementaryNum);
 parcelHelpers.export(exports, "renderDeckNum", ()=>renderDeckNum);
 parcelHelpers.export(exports, "renderTimer", ()=>renderTimer);
 parcelHelpers.export(exports, "renderHand", ()=>renderHand);
+parcelHelpers.export(exports, "renderBoard", ()=>renderBoard);
+parcelHelpers.export(exports, "renderMana", ()=>renderMana);
+parcelHelpers.export(exports, "renderTurn", ()=>renderTurn);
+parcelHelpers.export(exports, "renderPlayer", ()=>renderPlayer);
 parcelHelpers.export(exports, "addHandlerGameInit", ()=>addHandlerGameInit);
 parcelHelpers.export(exports, "addHandlerDraw", ()=>addHandlerDraw);
 const board = document.querySelector(".board");
@@ -2065,11 +2123,32 @@ const deckNum = document.querySelector(".deck-number");
 const cementaryNum = document.querySelector(".skull-number");
 const drawBtn = document.querySelector(".button--draw");
 const hand = document.querySelector(".hand");
-const giveAnimation = function(parentEl) {
+const turnCounter = document.querySelector(".turn-counter");
+const playerHp = document.querySelector(".hero--health");
+const nextTurnText = document.querySelector(".next-turn--container");
+const giveShakeAnimation = function(parentEl) {
     parentEl.classList.add("shake-animation");
     setTimeout(function() {
         parentEl.classList.remove("shake-animation");
     }, 1000);
+};
+const giveDamageAnimation = function(parentEl) {
+    parentEl.style.backgroundColor = "red";
+    setTimeout(function() {
+        parentEl.style.backgroundColor = "white";
+    }, 1000);
+};
+const nextTurnAnimation = ()=>{
+    nextTurnText.style.display = "flex";
+    setTimeout(function() {
+        nextTurnText.style.opacity = 1;
+    }, 500);
+    setTimeout(function() {
+        nextTurnText.style.opacity = 0;
+    }, 1500);
+    setTimeout(function() {
+        nextTurnText.style.display = "none";
+    }, 2300);
 };
 const renderCementaryNum = (data)=>cementaryNum.textContent = data.length;
 const renderDeckNum = (data)=>deckNum.textContent = data.length;
@@ -2094,6 +2173,47 @@ const renderHand = async function(data) {
         parentElement.insertAdjacentHTML("beforeend", markup);
     });
 };
+const renderBoard = function(data) {
+    const parentElement = board;
+    parentElement.innerHTML = "";
+    data.forEach(function(card) {
+        const markup = `
+    <div class="board--card" data-id="${card.id}00">
+      <img class="board--card--img" src="${card.img}" />
+      <div class="board--card--left-stat  ${card.healing > 0 ? "healer" : ""}">${card.attack === 0 ? card.healing : card.attack}</div>
+      <div class="board--card--turn-stat">${card.turns}</div>
+      <div class="hover-view" id="${card.id}00">
+        <div class="hover-view--cost">${card.cost}</div>
+        <img src="${card.img}" class="hover-view--img" />
+        <p class="hover-view--name">${card.name}</p>
+        <p class="hover-view--ability"><br />${card.ability}</p>
+        <div class="hover-view--left-stat ${card.healing > 0 ? "healer" : ""}">${card.attack === 0 ? card.healing : card.attack}</div>
+        <div class="hover-view--turn-stat">${card.turns}</div>
+      </div>
+    </div>
+    `;
+        parentElement.insertAdjacentHTML("beforeend", markup);
+    });
+};
+const renderMana = function(currentData, maxData) {
+    const manaCounter = document.querySelector(".mana--counter");
+    const manaContainer = document.querySelector(".mana--container");
+    manaCounter.textContent = `${currentData}/${maxData}`;
+    const markup = `
+    <p class="mana"></p>
+  `;
+    manaContainer.innerHTML = "";
+    for(let i = 1; i <= currentData; i++)manaContainer.insertAdjacentHTML("beforeend", markup);
+};
+const renderTurn = function(data) {
+    let rest;
+    if (data === 1) rest = "st";
+    if (data === 2) rest = "nd";
+    if (data === 3) rest = "rd";
+    if (data > 3) rest = "th";
+    turnCounter.textContent = `${data}${rest} turn`;
+};
+const renderPlayer = (data)=>playerHp.textContent = data;
 const addHandlerGameInit = function(handler) {
     gameMenuCntnr.addEventListener("click", (e)=>handler());
 };

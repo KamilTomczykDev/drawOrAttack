@@ -11,13 +11,36 @@ const deckNum = document.querySelector(".deck-number");
 const cementaryNum = document.querySelector(".skull-number");
 const drawBtn = document.querySelector(".button--draw");
 const hand = document.querySelector(".hand");
+const turnCounter = document.querySelector(".turn-counter");
+const playerHp = document.querySelector(".hero--health");
+const nextTurnText = document.querySelector(".next-turn--container");
 
 /////////////////////////////////////////////////////
-export const giveAnimation = function (parentEl) {
+export const giveShakeAnimation = function (parentEl) {
   parentEl.classList.add("shake-animation");
   setTimeout(function () {
     parentEl.classList.remove("shake-animation");
   }, 1000);
+};
+
+export const giveDamageAnimation = function (parentEl) {
+  parentEl.style.backgroundColor = "red";
+  setTimeout(function () {
+    parentEl.style.backgroundColor = "white";
+  }, 1000);
+};
+export const nextTurnAnimation = () => {
+  nextTurnText.style.display = "flex";
+
+  setTimeout(function () {
+    nextTurnText.style.opacity = 1;
+  }, 500);
+  setTimeout(function () {
+    nextTurnText.style.opacity = 0;
+  }, 1500);
+  setTimeout(function () {
+    nextTurnText.style.display = "none";
+  }, 2300);
 };
 export const renderCementaryNum = (data) =>
   (cementaryNum.textContent = data.length);
@@ -49,7 +72,58 @@ export const renderHand = async function (data) {
   });
 };
 
+export const renderBoard = function (data) {
+  const parentElement = board;
+  parentElement.innerHTML = "";
+  data.forEach(function (card) {
+    const markup = `
+    <div class="board--card" data-id="${card.id}00">
+      <img class="board--card--img" src="${card.img}" />
+      <div class="board--card--left-stat  ${
+        card.healing > 0 ? "healer" : ""
+      }">${card.attack === 0 ? card.healing : card.attack}</div>
+      <div class="board--card--turn-stat">${card.turns}</div>
+      <div class="hover-view" id="${card.id}00">
+        <div class="hover-view--cost">${card.cost}</div>
+        <img src="${card.img}" class="hover-view--img" />
+        <p class="hover-view--name">${card.name}</p>
+        <p class="hover-view--ability"><br />${card.ability}</p>
+        <div class="hover-view--left-stat ${
+          card.healing > 0 ? "healer" : ""
+        }">${card.attack === 0 ? card.healing : card.attack}</div>
+        <div class="hover-view--turn-stat">${card.turns}</div>
+      </div>
+    </div>
+    `;
+    parentElement.insertAdjacentHTML("beforeend", markup);
+  });
+};
+
+export const renderMana = function (currentData, maxData) {
+  const manaCounter = document.querySelector(".mana--counter");
+  const manaContainer = document.querySelector(".mana--container");
+  manaCounter.textContent = `${currentData}/${maxData}`;
+  const markup = `
+    <p class="mana"></p>
+  `;
+  manaContainer.innerHTML = "";
+  for (let i = 1; i <= currentData; i++) {
+    manaContainer.insertAdjacentHTML("beforeend", markup);
+  }
+};
+export const renderTurn = function (data) {
+  let rest;
+  if (data === 1) rest = "st";
+  if (data === 2) rest = "nd";
+  if (data === 3) rest = "rd";
+  if (data > 3) rest = "th";
+  turnCounter.textContent = `${data}${rest} turn`;
+};
+
+export const renderPlayer = (data) => (playerHp.textContent = data);
+
 // event handlers //
+
 export const addHandlerGameInit = function (handler) {
   gameMenuCntnr.addEventListener("click", (e) => handler());
 };
@@ -61,6 +135,7 @@ export const addHandlerDraw = function (handler) {
 };
 
 // game animation events //
+
 enemySide.addEventListener(
   "mouseover",
   () => (enemyDiscription.style.opacity = "1")

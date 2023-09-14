@@ -136,7 +136,7 @@ export const card10 = new Card(
   "Caplan of Miridith",
   0,
   0,
-  4,
+  5,
   3,
   4,
   4,
@@ -352,7 +352,7 @@ export const card28 = new Card(
   "Princess Laurith",
   0,
   0,
-  10,
+  9,
   7,
   3,
   3,
@@ -362,8 +362,8 @@ export const card28 = new Card(
 );
 export const card29 = new Card(
   "Karcoth The King",
-  10,
-  10,
+  9,
+  9,
   0,
   8,
   3,

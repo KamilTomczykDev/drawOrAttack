@@ -132,6 +132,24 @@ a {
   opacity: 0;
   transition: all 5s;
 }
+.next-turn--container {
+  position: absolute;
+  width: 100vw;
+  z-index: 1;
+  max-width: 1920px;
+  height: 100vh;
+  max-height: 1080px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: all 1s;
+}
+.next-turn--text {
+  color: white;
+  text-shadow: #388eff 10px 10px 0;
+  font-size: 100px;
+}
 .enemy-side,
 .player-side {
   display: flex;
@@ -298,6 +316,7 @@ a {
   display: flex;
   align-items: center;
   flex-direction: column;
+  background-color: #ff3838;
 }
 .hero--img {
   border: ridge 15px var(--player-color);
@@ -312,6 +331,7 @@ a {
   padding: 5px 5px 0 5px;
   background-color: white;
   margin-top: -40px;
+  transition: background-color 1s;
 }
 /* hover-view styling */
 

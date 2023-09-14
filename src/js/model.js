@@ -11,6 +11,10 @@ export const state = {
     attack: 5,
     hp: 30,
   },
+  playerHp: 30,
+  currentMana: 1,
+  maxMana: 1,
+  turn: 1,
 };
 
 state.deck = [...data.defaultDeckArray];
