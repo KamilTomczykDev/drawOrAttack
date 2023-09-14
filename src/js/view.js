@@ -14,6 +14,7 @@ const hand = document.querySelector(".hand");
 const turnCounter = document.querySelector(".turn-counter");
 const playerHp = document.querySelector(".hero--health");
 const nextTurnText = document.querySelector(".next-turn--container");
+const btns = document.querySelector("#btn");
 
 /////////////////////////////////////////////////////
 export const giveShakeAnimation = function (parentEl) {
@@ -29,6 +30,7 @@ export const giveDamageAnimation = function (parentEl) {
     parentEl.style.backgroundColor = "white";
   }, 1000);
 };
+
 export const nextTurnAnimation = () => {
   nextTurnText.style.display = "flex";
 
@@ -42,6 +44,7 @@ export const nextTurnAnimation = () => {
     nextTurnText.style.display = "none";
   }, 2300);
 };
+
 export const renderCementaryNum = (data) =>
   (cementaryNum.textContent = data.length);
 
@@ -50,6 +53,12 @@ export const renderDeckNum = (data) => (deckNum.textContent = data.length);
 export const renderTimer = function (data) {
   const timer = document.querySelector(".timer");
   timer.textContent = `${data}s`;
+};
+
+export const stopCursor = () => {
+  btns.style.cursor = "not-allowed";
+  console.log(btns);
+  setTimeout(() => (btns.style.cursor = "pointer"), 2500);
 };
 
 export const renderHand = async function (data) {
@@ -90,8 +99,8 @@ export const renderBoard = function (data) {
         <p class="hover-view--ability"><br />${card.ability}</p>
         <div class="hover-view--left-stat ${
           card.healing > 0 ? "healer" : ""
-        }">${card.attack === 0 ? card.healing : card.attack}</div>
-        <div class="hover-view--turn-stat">${card.turns}</div>
+        }">${card.attack === 0 ? card.healing : card.defaultAttack}</div>
+        <div class="hover-view--turn-stat">${card.defaultTurns}</div>
       </div>
     </div>
     `;

@@ -21,8 +21,6 @@ const killUnits = () => {
       ...model.state.board.filter((card) => +card.turns === 0)
     );
   model.state.board = model.state.board.filter((card) => +card.turns !== 0);
-
-  console.log(model.state.cementary);
 };
 
 const startTimer = function () {
@@ -33,6 +31,7 @@ const startTimer = function () {
     if (model.state.timer < 1) {
       clearInterval(countdown);
       startTimer();
+      view.stopCursor();
       nextTurn();
       setTimeout(() => draw(), 2000);
     }
@@ -79,6 +78,7 @@ const nextTurn = function () {
 
 const drawBtnClick = function () {
   nextTurn();
+  view.stopCursor();
   setTimeout(() => {
     draw();
     // setTimer();
@@ -107,21 +107,26 @@ const gameInit = function () {
 hand.addEventListener("click", function (e) {
   const clicked = e.target.closest(".hand--card");
   if (!clicked) return;
-  console.log(clicked.id);
   const foundCard = model.state.hand.find((el) => el.id === +clicked.id);
   if (foundCard.cost <= model.state.currentMana) {
+    if (foundCard.ability === "Rage" && model.state.board.length > 0)
+      model.state.board.forEach((card) => {
+        if (card.attack > 0) card.attack += 1;
+      });
+    if (foundCard.ability === "Blessing" && model.state.board.length > 0)
+      model.state.board.forEach((card) => {
+        if (card.healing > 0) card.healing += 1;
+      });
+    if (foundCard.ability === "Hourglass" && model.state.board.length > 0)
+      model.state.board.forEach((card) => {
+        card.turns += 1;
+      });
     const boardArr = model.state.hand.filter((el) => el.id === foundCard.id);
     model.state.board.push(...boardArr);
-    console.log(model.state.board);
-
-    console.log(foundCard);
     const newArr = model.state.hand.filter((el) => el.id !== foundCard.id);
-    console.log(newArr);
     model.state.hand = newArr;
-    console.log(model.state.hand);
     model.state.currentMana -= foundCard.cost;
-    if (foundCard.ability === "rage")
-      model.board.forEach((card) => (card.attack += 1));
+
     renderUI();
   }
 });

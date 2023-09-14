@@ -588,7 +588,6 @@ const subtractTurn = (data)=>data.forEach((card)=>card.turns -= 1);
 const killUnits = ()=>{
     if (_modelJs.state.board.length > 0) _modelJs.state.cementary.push(..._modelJs.state.board.filter((card)=>+card.turns === 0));
     _modelJs.state.board = _modelJs.state.board.filter((card)=>+card.turns !== 0);
-    console.log(_modelJs.state.cementary);
 };
 const startTimer = function() {
     setTimer();
@@ -598,6 +597,7 @@ const startTimer = function() {
         if (_modelJs.state.timer < 1) {
             clearInterval(countdown);
             startTimer();
+            _viewJs.stopCursor();
             nextTurn();
             setTimeout(()=>draw(), 2000);
         }
@@ -639,6 +639,7 @@ const nextTurn = function() {
 };
 const drawBtnClick = function() {
     nextTurn();
+    _viewJs.stopCursor();
     setTimeout(()=>{
         draw();
     // setTimer();
@@ -664,19 +665,22 @@ const gameInit = function() {
 hand.addEventListener("click", function(e) {
     const clicked = e.target.closest(".hand--card");
     if (!clicked) return;
-    console.log(clicked.id);
     const foundCard = _modelJs.state.hand.find((el)=>el.id === +clicked.id);
     if (foundCard.cost <= _modelJs.state.currentMana) {
+        if (foundCard.ability === "Rage" && _modelJs.state.board.length > 0) _modelJs.state.board.forEach((card)=>{
+            if (card.attack > 0) card.attack += 1;
+        });
+        if (foundCard.ability === "Blessing" && _modelJs.state.board.length > 0) _modelJs.state.board.forEach((card)=>{
+            if (card.healing > 0) card.healing += 1;
+        });
+        if (foundCard.ability === "Hourglass" && _modelJs.state.board.length > 0) _modelJs.state.board.forEach((card)=>{
+            card.turns += 1;
+        });
         const boardArr = _modelJs.state.hand.filter((el)=>el.id === foundCard.id);
         _modelJs.state.board.push(...boardArr);
-        console.log(_modelJs.state.board);
-        console.log(foundCard);
         const newArr = _modelJs.state.hand.filter((el)=>el.id !== foundCard.id);
-        console.log(newArr);
         _modelJs.state.hand = newArr;
-        console.log(_modelJs.state.hand);
         _modelJs.state.currentMana -= foundCard.cost;
-        if (foundCard.ability === "rage") _modelJs.board.forEach((card)=>card.attack += 1);
         renderUI();
     }
 });
@@ -1988,10 +1992,11 @@ parcelHelpers.export(exports, "card29", ()=>card29);
 parcelHelpers.export(exports, "card30", ()=>card30);
 parcelHelpers.export(exports, "defaultDeckArray", ()=>defaultDeckArray);
 class Card {
-    constructor(name, defaultAttack, attack, healing, cost, defaultTurns, turns, ability, img, id){
+    constructor(name, defaultAttack, attack, defaultHealing, healing, cost, defaultTurns, turns, ability, img, id){
         this.name = name;
         this.defaultAttack = defaultAttack;
         this.attack = attack;
+        this.defaultHealing = defaultHealing;
         this.healing = healing;
         this.cost = cost;
         this.defaultTurns = defaultTurns;
@@ -2001,36 +2006,36 @@ class Card {
         this.id = id;
     }
 }
-const card1 = new Card("Weak Farmer", 2, 2, 0, 1, 3, 3, "", "/weakFarmer2.d47a8e3b.jpeg", 1);
-const card2 = new Card("Weak Farmer", 2, 2, 0, 1, 3, 3, "", "/weakFarmer2.d47a8e3b.jpeg", 2);
-const card3 = new Card("Tree of Vitality", 0, 0, 5, 2, 4, 4, "", "/weakFarmer2.d47a8e3b.jpeg", 3);
-const card4 = new Card("Tree of Vitality", 0, 0, 5, 2, 4, 4, "", "/weakFarmer2.d47a8e3b.jpeg", 4);
-const card5 = new Card("Hound", 3, 3, 0, 1, 2, 2, "", "/weakFarmer2.d47a8e3b.jpeg", 5);
-const card6 = new Card("Hound", 3, 3, 0, 1, 2, 2, "", "/weakFarmer2.d47a8e3b.jpeg", 6);
-const card7 = new Card("Castle Guardian", 4, 4, 0, 2, 2, 2, "", "/weakFarmer2.d47a8e3b.jpeg", 7);
-const card8 = new Card("Castle Guardian", 4, 4, 0, 2, 2, 2, "", "/weakFarmer2.d47a8e3b.jpeg", 8);
-const card9 = new Card("Caplan of Miridith", 0, 0, 5, 3, 4, 4, "", "/weakFarmer2.d47a8e3b.jpeg", 9);
-const card10 = new Card("Caplan of Miridith", 0, 0, 5, 3, 4, 4, "", "/weakFarmer2.d47a8e3b.jpeg", 10);
-const card11 = new Card("Strong farmer", 4, 4, 0, 3, 2, 2, "", "/weakFarmer2.d47a8e3b.jpeg", 11);
-const card12 = new Card("Strong farmer", 4, 4, 0, 3, 2, 2, "", "/weakFarmer2.d47a8e3b.jpeg", 12);
-const card13 = new Card("Berserker", 6, 6, 0, 4, 1, 1, "", "/weakFarmer2.d47a8e3b.jpeg", 13);
-const card14 = new Card("Berserker", 6, 6, 0, 4, 1, 1, "", "/weakFarmer2.d47a8e3b.jpeg", 14);
-const card15 = new Card("King's Defender", 4, 4, 0, 4, 3, 3, "", "/weakFarmer2.d47a8e3b.jpeg", 15);
-const card16 = new Card("King's Defender", 4, 4, 0, 4, 3, 3, "", "/weakFarmer2.d47a8e3b.jpeg", 16);
-const card17 = new Card("Military Hornist", 2, 2, 0, 4, 3, 3, "rage", "/weakFarmer2.d47a8e3b.jpeg", 17);
-const card18 = new Card("Military Hornist", 2, 2, 0, 4, 3, 3, "rage", "/weakFarmer2.d47a8e3b.jpeg", 18);
-const card19 = new Card("Light of Azhura", 0, 0, 6, 5, 3, 3, "blessing", "/weakFarmer2.d47a8e3b.jpeg", 19);
-const card20 = new Card("Light of Azhura", 0, 0, 6, 5, 3, 3, "blessing", "/weakFarmer2.d47a8e3b.jpeg", 20);
-const card21 = new Card("Firandil the Bloody", 6, 6, 0, 5, 3, 3, "rage", "/weakFarmer2.d47a8e3b.jpeg", 21);
-const card22 = new Card("Burning Wagon", 7, 7, 0, 5, 1, 1, "", "/weakFarmer2.d47a8e3b.jpeg", 22);
-const card23 = new Card("Burning Wagon", 7, 7, 0, 5, 1, 1, "", "/weakFarmer2.d47a8e3b.jpeg", 23);
-const card24 = new Card("Time traveler", 5, 5, 0, 6, 2, 2, "Hourglass", "/weakFarmer2.d47a8e3b.jpeg", 24);
-const card25 = new Card("Time traveler", 2, 2, 0, 6, 2, 2, "Hourglass", "/weakFarmer2.d47a8e3b.jpeg", 25);
-const card26 = new Card("Ciril the Mighty", 7, 7, 0, 7, 4, 4, "", "/weakFarmer2.d47a8e3b.jpeg", 26);
-const card27 = new Card("Archmage Valorian", 6, 6, 0, 7, 5, 5, "", "/weakFarmer2.d47a8e3b.jpeg", 27);
-const card28 = new Card("Princess Laurith", 0, 0, 9, 7, 3, 3, "blessing", "/weakFarmer2.d47a8e3b.jpeg", 28);
-const card29 = new Card("Karcoth The King", 9, 9, 0, 8, 3, 3, "", "/weakFarmer2.d47a8e3b.jpeg", 29);
-const card30 = new Card("Azhura", 8, 8, 0, 9, 3, 3, "hourglass", "/weakFarmer2.d47a8e3b.jpeg", 30);
+const card1 = new Card("Weak Farmer", 2, 2, 0, 0, 1, 3, 3, "", "/weakFarmer2.d47a8e3b.jpeg", 1);
+const card2 = new Card("Weak Farmer", 2, 2, 0, 0, 1, 3, 3, "", "/weakFarmer2.d47a8e3b.jpeg", 2);
+const card3 = new Card("Tree of Vitality", 0, 0, 5, 5, 2, 4, 4, "", "/weakFarmer2.d47a8e3b.jpeg", 3);
+const card4 = new Card("Tree of Vitality", 0, 0, 5, 5, 2, 4, 4, "", "/weakFarmer2.d47a8e3b.jpeg", 4);
+const card5 = new Card("Hound", 3, 3, 0, 0, 1, 2, 2, "", "/weakFarmer2.d47a8e3b.jpeg", 5);
+const card6 = new Card("Hound", 3, 3, 0, 0, 1, 2, 2, "", "/weakFarmer2.d47a8e3b.jpeg", 6);
+const card7 = new Card("Castle Guardian", 4, 4, 0, 0, 2, 2, 2, "", "/weakFarmer2.d47a8e3b.jpeg", 7);
+const card8 = new Card("Castle Guardian", 4, 4, 0, 0, 2, 2, 2, "", "/weakFarmer2.d47a8e3b.jpeg", 8);
+const card9 = new Card("Caplan of Miridith", 0, 0, 5, 5, 3, 4, 4, "", "/weakFarmer2.d47a8e3b.jpeg", 9);
+const card10 = new Card("Caplan of Miridith", 0, 0, 5, 5, 3, 4, 4, "", "/weakFarmer2.d47a8e3b.jpeg", 10);
+const card11 = new Card("Strong farmer", 4, 4, 0, 0, 3, 2, 2, "", "/weakFarmer2.d47a8e3b.jpeg", 11);
+const card12 = new Card("Strong farmer", 4, 4, 0, 0, 3, 2, 2, "", "/weakFarmer2.d47a8e3b.jpeg", 12);
+const card13 = new Card("Berserker", 6, 6, 0, 0, 4, 1, 1, "", "/weakFarmer2.d47a8e3b.jpeg", 13);
+const card14 = new Card("Berserker", 6, 6, 0, 0, 4, 1, 1, "", "/weakFarmer2.d47a8e3b.jpeg", 14);
+const card15 = new Card("King's Defender", 4, 4, 0, 0, 4, 3, 3, "", "/weakFarmer2.d47a8e3b.jpeg", 15);
+const card16 = new Card("King's Defender", 4, 4, 0, 0, 4, 3, 3, "", "/weakFarmer2.d47a8e3b.jpeg", 16);
+const card17 = new Card("Military Hornist", 2, 2, 0, 0, 4, 3, 3, "Rage", "/weakFarmer2.d47a8e3b.jpeg", 17);
+const card18 = new Card("Military Hornist", 2, 2, 0, 0, 4, 3, 3, "Rage", "/weakFarmer2.d47a8e3b.jpeg", 18);
+const card19 = new Card("Light of Azhura", 0, 0, 6, 6, 5, 3, 3, "Blessing", "/weakFarmer2.d47a8e3b.jpeg", 19);
+const card20 = new Card("Light of Azhura", 0, 0, 6, 6, 5, 3, 3, "Blessing", "/weakFarmer2.d47a8e3b.jpeg", 20);
+const card21 = new Card("Firandil the Bloody", 6, 6, 0, 0, 5, 3, 3, "Rage", "/weakFarmer2.d47a8e3b.jpeg", 21);
+const card22 = new Card("Burning Wagon", 7, 7, 0, 0, 5, 1, 1, "", "/weakFarmer2.d47a8e3b.jpeg", 22);
+const card23 = new Card("Burning Wagon", 7, 7, 0, 0, 5, 1, 1, "", "/weakFarmer2.d47a8e3b.jpeg", 23);
+const card24 = new Card("Time traveler", 5, 5, 0, 0, 6, 2, 2, "Hourglass", "/weakFarmer2.d47a8e3b.jpeg", 24);
+const card25 = new Card("Time traveler", 2, 2, 0, 0, 6, 2, 2, "Hourglass", "/weakFarmer2.d47a8e3b.jpeg", 25);
+const card26 = new Card("Ciril the Mighty", 7, 7, 0, 0, 7, 4, 4, "", "/weakFarmer2.d47a8e3b.jpeg", 26);
+const card27 = new Card("Archmage Valorian", 6, 6, 0, 0, 7, 5, 5, "", "/weakFarmer2.d47a8e3b.jpeg", 27);
+const card28 = new Card("Princess Laurith", 0, 0, 9, 9, 7, 3, 3, "Blessing", "/weakFarmer2.d47a8e3b.jpeg", 28);
+const card29 = new Card("Karcoth The King", 9, 9, 0, 0, 8, 3, 3, "", "/weakFarmer2.d47a8e3b.jpeg", 29);
+const card30 = new Card("Azhura", 8, 8, 0, 0, 9, 3, 3, "Hourglass", "/weakFarmer2.d47a8e3b.jpeg", 30);
 const defaultDeckArray = [
     card1,
     card2,
@@ -2103,6 +2108,7 @@ parcelHelpers.export(exports, "nextTurnAnimation", ()=>nextTurnAnimation);
 parcelHelpers.export(exports, "renderCementaryNum", ()=>renderCementaryNum);
 parcelHelpers.export(exports, "renderDeckNum", ()=>renderDeckNum);
 parcelHelpers.export(exports, "renderTimer", ()=>renderTimer);
+parcelHelpers.export(exports, "stopCursor", ()=>stopCursor);
 parcelHelpers.export(exports, "renderHand", ()=>renderHand);
 parcelHelpers.export(exports, "renderBoard", ()=>renderBoard);
 parcelHelpers.export(exports, "renderMana", ()=>renderMana);
@@ -2126,6 +2132,7 @@ const hand = document.querySelector(".hand");
 const turnCounter = document.querySelector(".turn-counter");
 const playerHp = document.querySelector(".hero--health");
 const nextTurnText = document.querySelector(".next-turn--container");
+const btns = document.querySelector("#btn");
 const giveShakeAnimation = function(parentEl) {
     parentEl.classList.add("shake-animation");
     setTimeout(function() {
@@ -2155,6 +2162,11 @@ const renderDeckNum = (data)=>deckNum.textContent = data.length;
 const renderTimer = function(data) {
     const timer = document.querySelector(".timer");
     timer.textContent = `${data}s`;
+};
+const stopCursor = ()=>{
+    btns.style.cursor = "not-allowed";
+    console.log(btns);
+    setTimeout(()=>btns.style.cursor = "pointer", 2500);
 };
 const renderHand = async function(data) {
     const parentElement = document.querySelector(".hand");
@@ -2187,8 +2199,8 @@ const renderBoard = function(data) {
         <img src="${card.img}" class="hover-view--img" />
         <p class="hover-view--name">${card.name}</p>
         <p class="hover-view--ability"><br />${card.ability}</p>
-        <div class="hover-view--left-stat ${card.healing > 0 ? "healer" : ""}">${card.attack === 0 ? card.healing : card.attack}</div>
-        <div class="hover-view--turn-stat">${card.turns}</div>
+        <div class="hover-view--left-stat ${card.healing > 0 ? "healer" : ""}">${card.attack === 0 ? card.healing : card.defaultAttack}</div>
+        <div class="hover-view--turn-stat">${card.defaultTurns}</div>
       </div>
     </div>
     `;
