@@ -161,9 +161,9 @@ export const renderEnd = function (data) {
     "Congratulations!<br/>Dark force has been destroyed.. but is It really over?";
   const enemyWins = "Oh no!<br/>Reign of dark forces will last forever..";
   const markup = `
-    <div class = "end-game--message">${(data = "enemy"
-      ? enemyWins
-      : playerWins)}</div>
+    <div class = "end-game--message">${
+      data === "enemy" ? enemyWins : playerWins
+    }</div>
     <div class="end-game--refresh">Press f5 to play again</div>
     `;
   setTimeout(() => {

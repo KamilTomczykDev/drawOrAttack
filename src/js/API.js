@@ -62,7 +62,7 @@ export const card3 = new Card( //
   4,
   4,
   "",
-  "/weakFarmer2.d47a8e3b.jpeg",
+  "/treeOfVitality.ec17f177.png",
   3
 );
 export const card4 = new Card( //
@@ -75,7 +75,7 @@ export const card4 = new Card( //
   4,
   4,
   "",
-  "/weakFarmer2.d47a8e3b.jpeg",
+  "/treeOfVitality.ec17f177.png",
   4
 );
 export const card5 = new Card( //
@@ -88,7 +88,7 @@ export const card5 = new Card( //
   2,
   2,
   "",
-  "/weakFarmer2.d47a8e3b.jpeg",
+  "/hound.86b428e4.png",
   5
 );
 export const card6 = new Card( //
@@ -101,7 +101,7 @@ export const card6 = new Card( //
   2,
   2,
   "",
-  "/weakFarmer2.d47a8e3b.jpeg",
+  "/hound.86b428e4.png",
   6
 );
 export const card7 = new Card(
@@ -335,7 +335,7 @@ export const card24 = new Card( //
   2,
   2,
   "Hourglass",
-  "/weakFarmer2.d47a8e3b.jpeg",
+  "/timeTraveler.18a70ca4.png",
   24
 );
 export const card25 = new Card( //
@@ -348,7 +348,7 @@ export const card25 = new Card( //
   2,
   2,
   "Hourglass",
-  "/weakFarmer2.d47a8e3b.jpeg",
+  "/timeTraveler.18a70ca4.png",
   25
 );
 export const card26 = new Card(
@@ -374,7 +374,7 @@ export const card27 = new Card(
   5,
   5,
   "",
-  "/weakFarmer2.d47a8e3b.jpeg",
+  "archmageValorian.c2378cbf.png",
   27
 );
 export const card28 = new Card(

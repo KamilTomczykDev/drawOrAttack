@@ -620,21 +620,24 @@ const draw = function() {
 };
 const turnNumberUp = ()=>{
     _modelJs.state.turn += 1;
-    if (_modelJs.state.turn === 9) {
+    if (_modelJs.state.turn === 7 && _modelJs.state.enemy.hp > 0) {
+        _modelJs.state.enemy.hp = 35;
         _modelJs.state.enemy.attack = 8;
         _modelJs.state.enemy.name = "Nazgramm the Bloodlord";
-        _modelJs.state.enemy.discription = "Deal 8 dmg each round";
-    // model.state.enemy.img = blablabla;
+        _modelJs.state.enemy.discription = "Deal 8 dmg and heal 2 hp each round";
+        _modelJs.state.enemy.img = "/nazgrammSecond.0f43c395.png";
     }
-    if (_modelJs.state.turn === 18) {
+    if (_modelJs.state.turn === 12 && _modelJs.state.enemy.hp > 0) {
+        _modelJs.state.enemy.hp = 40;
         _modelJs.state.enemy.attack = 10;
         _modelJs.state.enemy.name = "Nazgramm (Demon form)";
-        _modelJs.state.enemy.discription = "Deal 10 dmg and kill random unit each round";
-    // model.state.enemy.img = blablabla;
+        _modelJs.state.enemy.discription = "Deal 10 dmg, heal 2 hp and kill random unit each round";
+        _modelJs.state.enemy.img = "/nazgrammThird.f4d17714.png";
     }
 };
 const nazgrammUltimate = ()=>{
-    if (_modelJs.state.turn >= 18 && _modelJs.state.board.length > 0) {
+    if (_modelJs.state.turn >= 7 && _modelJs.state.enemy.hp < 40) _modelJs.state.enemy.hp += 2;
+    if (_modelJs.state.turn >= 12 && _modelJs.state.board.length > 0) {
         const number = Math.trunc(Math.random() * _modelJs.state.board.length);
         _modelJs.state.cementary.push(_modelJs.state.board[number]);
         const x = _modelJs.state.board.splice(number, 1);
@@ -646,24 +649,25 @@ const lookForWinner = function() {
         _modelJs.state.winner = "enemy";
         _viewJs.renderEnd(_modelJs.state.winner);
     }
-    if (_modelJs.state.enemy.hp <= 0) _modelJs.state.winner = "player";
+    if (_modelJs.state.enemy.hp <= 0) {
+        _modelJs.state.winner = "player";
+        _viewJs.renderEnd(_modelJs.state.winner);
+    }
 };
 const manaNumberUp = ()=>{
-    if (_modelJs.state.maxMana !== 9) _modelJs.state.maxMana += 1;
+    if (_modelJs.state.maxMana !== 10) _modelJs.state.maxMana += 1;
     _modelJs.state.currentMana = _modelJs.state.maxMana;
 };
 const nextTurn = function() {
-    const player = document.querySelector(".hero");
-    const playerImg = document.querySelector(".hero--img");
     const playerHpElement = document.querySelector(".hero--health");
     _viewJs.changeCursorAttack();
     _viewJs.changeCursorDraw();
     setTimer();
     applyHealing();
-    turnNumberUp();
     manaNumberUp();
     _viewJs.removeHandlerDraw(drawBtnClick);
     _viewJs.removeHandlerAttack(attackBtnClick);
+    console.log(_modelJs.state.board);
     setTimeout(function() {
         _modelJs.state.playerHp -= _modelJs.state.enemy.attack;
         lookForWinner();
@@ -672,17 +676,20 @@ const nextTurn = function() {
         _viewJs.nextTurnAnimation();
         subtractTurn(_modelJs.state.board);
         killUnits();
-        renderUI();
         setTimer();
         giveHandlersBack();
         nazgrammUltimate();
+        turnNumberUp();
+        renderUI();
     }, 2000);
 };
 const drawBtnClick = function() {
     nextTurn();
     setTimeout(()=>{
-        draw();
-    // setTimer();
+        if (_modelJs.state.turn >= 12) {
+            draw();
+            draw();
+        } else draw();
     }, 2500);
 };
 const applyHealing = ()=>{
@@ -699,6 +706,7 @@ const attackBtnClick = function() {
     setTimeout(function() {
         _viewJs.giveShakeAnimation(enemyHpElement);
         _viewJs.giveDamageAnimation(enemyHpElement);
+        if (_modelJs.state.turn >= 12) draw();
     }, 2000);
 };
 const renderUI = function() {
@@ -2014,9 +2022,9 @@ const state = {
     timer: 25,
     enemy: {
         name: "Mysterious Creature",
-        attack: 30,
-        hp: 30,
-        img: "/firstEnemy.91fbd31f.jpeg",
+        attack: 5,
+        hp: 35,
+        img: "/nazgrammFirst.c1deeb17.png",
         discription: "Deal 5 dmg each round."
     },
     playerHp: 30,
@@ -2080,10 +2088,10 @@ class Card {
 }
 const card1 = new Card("Weak Farmer", 2, 2, 0, 0, 1, 3, 3, "", "/weakFarmer2.d47a8e3b.jpeg", 1);
 const card2 = new Card("Weak Farmer", 2, 2, 0, 0, 1, 3, 3, "", "/weakFarmer2.d47a8e3b.jpeg", 2);
-const card3 = new Card("Tree of Vitality", 0, 0, 5, 5, 2, 4, 4, "", "/weakFarmer2.d47a8e3b.jpeg", 3);
-const card4 = new Card("Tree of Vitality", 0, 0, 5, 5, 2, 4, 4, "", "/weakFarmer2.d47a8e3b.jpeg", 4);
-const card5 = new Card("Hound", 3, 3, 0, 0, 1, 2, 2, "", "/weakFarmer2.d47a8e3b.jpeg", 5);
-const card6 = new Card("Hound", 3, 3, 0, 0, 1, 2, 2, "", "/weakFarmer2.d47a8e3b.jpeg", 6);
+const card3 = new Card("Tree of Vitality", 0, 0, 5, 5, 2, 4, 4, "", "/treeOfVitality.ec17f177.png", 3);
+const card4 = new Card("Tree of Vitality", 0, 0, 5, 5, 2, 4, 4, "", "/treeOfVitality.ec17f177.png", 4);
+const card5 = new Card("Hound", 3, 3, 0, 0, 1, 2, 2, "", "/hound.86b428e4.png", 5);
+const card6 = new Card("Hound", 3, 3, 0, 0, 1, 2, 2, "", "/hound.86b428e4.png", 6);
 const card7 = new Card("Castle Guardian", 4, 4, 0, 0, 2, 2, 2, "", "/weakFarmer2.d47a8e3b.jpeg", 7);
 const card8 = new Card("Castle Guardian", 4, 4, 0, 0, 2, 2, 2, "", "/weakFarmer2.d47a8e3b.jpeg", 8);
 const card9 = new Card("Caplan of Miridith", 0, 0, 5, 5, 3, 4, 4, "", "/weakFarmer2.d47a8e3b.jpeg", 9);
@@ -2101,10 +2109,10 @@ const card20 = new Card("Light of Azhura", 0, 0, 6, 6, 5, 3, 3, "Blessing", "/we
 const card21 = new Card("Firandil the Bloody", 6, 6, 0, 0, 5, 3, 3, "Rage", "/weakFarmer2.d47a8e3b.jpeg", 21);
 const card22 = new Card("Burning Wagon", 7, 7, 0, 0, 5, 1, 1, "", "/weakFarmer2.d47a8e3b.jpeg", 22);
 const card23 = new Card("Burning Wagon", 7, 7, 0, 0, 5, 1, 1, "", "/weakFarmer2.d47a8e3b.jpeg", 23);
-const card24 = new Card("Time traveler", 5, 5, 0, 0, 6, 2, 2, "Hourglass", "/weakFarmer2.d47a8e3b.jpeg", 24);
-const card25 = new Card("Time traveler", 5, 5, 0, 0, 6, 2, 2, "Hourglass", "/weakFarmer2.d47a8e3b.jpeg", 25);
+const card24 = new Card("Time traveler", 5, 5, 0, 0, 6, 2, 2, "Hourglass", "/timeTraveler.18a70ca4.png", 24);
+const card25 = new Card("Time traveler", 5, 5, 0, 0, 6, 2, 2, "Hourglass", "/timeTraveler.18a70ca4.png", 25);
 const card26 = new Card("Ciril the Mighty", 7, 7, 0, 0, 7, 4, 4, "", "/weakFarmer2.d47a8e3b.jpeg", 26);
-const card27 = new Card("Archmage Valorian", 6, 6, 0, 0, 7, 5, 5, "", "/weakFarmer2.d47a8e3b.jpeg", 27);
+const card27 = new Card("Archmage Valorian", 6, 6, 0, 0, 7, 5, 5, "", "archmageValorian.c2378cbf.png", 27);
 const card28 = new Card("Princess Laurith", 0, 0, 9, 9, 7, 3, 3, "Blessing", "/weakFarmer2.d47a8e3b.jpeg", 28);
 const card29 = new Card("Karcoth The King", 9, 9, 0, 0, 8, 3, 3, "", "/weakFarmer2.d47a8e3b.jpeg", 29);
 const card30 = new Card("Azhura", 8, 8, 0, 0, 9, 3, 3, "Hourglass", "/weakFarmer2.d47a8e3b.jpeg", 30);
@@ -2331,7 +2339,7 @@ const renderEnd = function(data) {
     const playerWins = "Congratulations!<br/>Dark force has been destroyed.. but is It really over?";
     const enemyWins = "Oh no!<br/>Reign of dark forces will last forever..";
     const markup = `
-    <div class = "end-game--message">${data = enemyWins}</div>
+    <div class = "end-game--message">${data === "enemy" ? enemyWins : playerWins}</div>
     <div class="end-game--refresh">Press f5 to play again</div>
     `;
     setTimeout(()=>{

@@ -57,23 +57,28 @@ const draw = function () {
 };
 const turnNumberUp = () => {
   model.state.turn += 1;
-  if (model.state.turn === 9) {
+  if (model.state.turn === 7 && model.state.enemy.hp > 0) {
+    model.state.enemy.hp = 35;
     model.state.enemy.attack = 8;
     model.state.enemy.name = "Nazgramm the Bloodlord";
-    model.state.enemy.discription = "Deal 8 dmg each round";
-    // model.state.enemy.img = blablabla;
+    model.state.enemy.discription = "Deal 8 dmg and heal 2 hp each round";
+    model.state.enemy.img = "/nazgrammSecond.0f43c395.png";
   }
-  if (model.state.turn === 18) {
+  if (model.state.turn === 12 && model.state.enemy.hp > 0) {
+    model.state.enemy.hp = 40;
     model.state.enemy.attack = 10;
     model.state.enemy.name = "Nazgramm (Demon form)";
     model.state.enemy.discription =
-      "Deal 10 dmg and kill random unit each round";
-    // model.state.enemy.img = blablabla;
+      "Deal 10 dmg, heal 2 hp and kill random unit each round";
+    model.state.enemy.img = "/nazgrammThird.f4d17714.png";
   }
 };
 
 const nazgrammUltimate = () => {
-  if (model.state.turn >= 18 && model.state.board.length > 0) {
+  if (model.state.turn >= 7 && model.state.enemy.hp < 40) {
+    model.state.enemy.hp += 2;
+  }
+  if (model.state.turn >= 12 && model.state.board.length > 0) {
     const number = Math.trunc(Math.random() * model.state.board.length);
     model.state.cementary.push(model.state.board[number]);
     const x = model.state.board.splice(number, 1);
@@ -86,25 +91,26 @@ const lookForWinner = function () {
     model.state.winner = "enemy";
     view.renderEnd(model.state.winner);
   }
-  if (model.state.enemy.hp <= 0) model.state.winner = "player";
+  if (model.state.enemy.hp <= 0) {
+    model.state.winner = "player";
+    view.renderEnd(model.state.winner);
+  }
 };
 const manaNumberUp = () => {
-  if (model.state.maxMana !== 9) model.state.maxMana += 1;
+  if (model.state.maxMana !== 10) model.state.maxMana += 1;
   model.state.currentMana = model.state.maxMana;
 };
 const nextTurn = function () {
-  const player = document.querySelector(".hero");
-  const playerImg = document.querySelector(".hero--img");
   const playerHpElement = document.querySelector(".hero--health");
   view.changeCursorAttack();
   view.changeCursorDraw();
   setTimer();
   applyHealing();
-  turnNumberUp();
+
   manaNumberUp();
   view.removeHandlerDraw(drawBtnClick);
   view.removeHandlerAttack(attackBtnClick);
-
+  console.log(model.state.board);
   setTimeout(function () {
     model.state.playerHp -= model.state.enemy.attack;
     lookForWinner();
@@ -113,18 +119,23 @@ const nextTurn = function () {
     view.nextTurnAnimation();
     subtractTurn(model.state.board);
     killUnits();
-    renderUI();
     setTimer();
     giveHandlersBack();
     nazgrammUltimate();
+    turnNumberUp();
+    renderUI();
   }, 2000);
 };
 
 const drawBtnClick = function () {
   nextTurn();
   setTimeout(() => {
-    draw();
-    // setTimer();
+    if (model.state.turn >= 12) {
+      draw();
+      draw();
+    } else {
+      draw();
+    }
   }, 2500);
 };
 const applyHealing = () => {
@@ -141,6 +152,9 @@ const attackBtnClick = function () {
   setTimeout(function () {
     view.giveShakeAnimation(enemyHpElement);
     view.giveDamageAnimation(enemyHpElement);
+    if (model.state.turn >= 12) {
+      draw();
+    }
   }, 2000);
 };
 
