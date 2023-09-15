@@ -14,7 +14,6 @@
       href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
       rel="stylesheet"
     />
-
     <script type="module" defer src="src/js/controller.js"></script>
     <script
       src="https://kit.fontawesome.com/3b897103a1.js"
@@ -28,18 +27,21 @@
     </div>
     <div class="game-menu">
       <div class="game-menu--container">
-        <img src="src/img/logo.png" alt="logo" class="game-menu--container--logo">
-        <p class="game-menu--container--text">Press to start</p>
+        <img
+          src="src/img/logo.png"
+          alt="logo"
+          class="game-menu--container--logo"
+        />
+        <p class="game-menu--container--text">Press here to start</p>
       </div>
       <div class="game-menu--background"></div>
     </div>
     <section class="footer">
       <div class="footer--icons">
         <a href="https://github.com/KamilTomczykDev/drawOrAttack" class="link">
-          <i class="fa-brands fa-github" style="color: #9b8028;"></i>
+          <i class="fa-brands fa-github" style="color: #9b8028"></i>
         </a>
-        
-        <i class="fa-brands fa-linkedin" style="color: #9b8028;"></i>
+        <i class="fa-brands fa-linkedin" style="color: #9b8028"></i>
       </div>
       <p class="footer--author">Made by © Kamil Tomczyk</p>
     </section>
@@ -48,119 +50,46 @@
         <p class="next-turn--text">Next Turn</p>
       </div>
       <section class="enemy-side">
-        <div class="timer">25s</div>
+        <div class="timer"></div>
         <div class="enemy-section">
           <div class="enemy-section--hero">
             <img
               class="enemy-section--hero--img"
               src="src/img/firstEnemy.jpeg"
             />
-            <span class="enemy-section--hero--health">30</span>
-            <div class="enemy-section--discription">
-              The Goblin<br />Deal 5 dmg each round<br/>Round 5: Deal 10 dmg each round<br/>Round 10: Kill random unit each round.
-            </div>
+            <span class="enemy-section--hero--health"></span>
+            <div class="enemy-section--discription"></div>
           </div>
         </div>
-        <div class="turn-counter">2dn turn</div>
+        <div class="turn-counter"></div>
       </section>
       <section class="player-side">
         <div class="player--left-section">
           <div class="skull-container">
-            <p class="skull-number">10</p>
-          <img src="src/img/skull.png" alt="skull" class="skull" />
+            <p class="skull-number"></p>
+            <img src="src/img/skull.png" alt="skull" class="skull" />
           </div>
           <div class="deck-container">
-            <p class="deck-number">20</p>
-          <img src="src/img/cardBack.jpeg" alt="deck back" class="deck" />
+            <p class="deck-number"></p>
+            <img src="src/img/cardBack.jpeg" alt="deck back" class="deck" />
           </div>
         </div>
         <div class="player--mid-section">
-          <div class="board">
-            <div class="board--card" data-id="1">
-              <img class="board--card--img" src="src/img/weakFarmer2.jpeg" />
-              <div class="board--card--left-stat">4</div>
-              <div class="board--card--turn-stat">2</div>
-              <div class="hover-view" id="1">
-                <div class="hover-view--cost">2</div>
-                <img src="src/img/weakFarmer2.jpeg" class="hover-view--img" />
-                <p class="hover-view--name">Weak Farmer</p>
-                <p class="hover-view--ability"><br />Mana overflow</p>
-                <div class="hover-view--left-stat">2</div>
-                <div class="hover-view--turn-stat">8</div>
-              </div>
-            </div>
-            <div class="board--card" data-id="2">
-              <img class="board--card--img" src="src/img/weakFarmer2.jpeg" />
-              <div class="board--card--left-stat">4</div>
-              <div class="board--card--turn-stat">2</div>
-              <div class="hover-view" id="2">
-                <div class="hover-view--cost">2</div>
-                <img src="src/img/weakFarmer2.jpeg" class="hover-view--img" />
-                <p class="hover-view--name">Weak Farmer</p>
-                <p class="hover-view--ability"><br />Mana overflow</p>
-                <div class="hover-view--left-stat">2</div>
-                <div class="hover-view--turn-stat">8</div>
-              </div>
-            </div>
-          </div>
+          <div class="board"></div>
           <div class="hero">
-            <img class="hero--img" src="src/img/mainHero.jpeg" />
-            <p class="hero--health">30</p>
+            <img class="hero--img" src="src/img/mainHero.png" />
+            <p class="hero--health"></p>
           </div>
-          <div class="hand">
-            <div class="hand--card">
-              <div class="hand--card--cost">2</div>
-              <img src="src/img/weakFarmer2.jpeg" class="hand--card--img" />
-              <p class="hand--card--name">Weak Farmer</p>
-              <p class="hand--card--ability"><br />Mana overflow</p>
-              <div class="hand--card--left-stat">2</div>
-              <div class="hand--card--turn-stat">1</div>
-            </div>
-            <div class="hand--card">
-              <div class="hand--card--cost">2</div>
-              <img src="src/img/weakFarmer2.jpeg" class="hand--card--img" />
-              <p class="hand--card--name">Weak Farmer</p>
-              <p class="hand--card--ability"><br />Mana overflow</p>
-              <div class="hand--card--left-stat">2</div>
-              <div class="hand--card--turn-stat">1</div>
-            </div>
-            <div class="hand--card">
-              <div class="hand--card--cost">2</div>
-              <img src="src/img/weakFarmer2.jpeg" class="hand--card--img" />
-              <p class="hand--card--name">Weak Farmer</p>
-              <p class="hand--card--ability"><br />Mana overflow</p>
-              <div class="hand--card--left-stat">2</div>
-              <div class="hand--card--turn-stat">1</div>
-            </div>
-            <div class="hand--card">
-              <div class="hand--card--cost">2</div>
-              <img src="src/img/weakFarmer2.jpeg" class="hand--card--img" />
-              <p class="hand--card--name">Weak Farmer</p>
-              <p class="hand--card--ability"><br />Mana overflow</p>
-              <div class="hand--card--left-stat">2</div>
-              <div class="hand--card--turn-stat">1</div>
-            </div>
-          </div>
+          <div class="hand"></div>
         </div>
         <nav class="player--right-section">
           <div class="buttons">
             <button class="button--attack" id="btn">ATTACK</button>
             <button class="button--draw" id="btn">DRAW</button>
           </div>
-          <div class="mana--counter">10/10</div>
-          <div class="mana--container">
-            <p class="mana"></p>
-            <p class="mana"></p>
-            <p class="mana"></p>
-            <p class="mana"></p>
-            <p class="mana"></p>
-            <p class="mana"></p>
-            <p class="mana"></p>
-            <p class="mana"></p>
-            <p class="mana"></p>
-            <p class="mana"></p>
-          </div>
-        </div>
+          <div class="mana--counter"></div>
+          <div class="mana--container"></div>
+        </nav>
       </section>
     </div>
   </body>

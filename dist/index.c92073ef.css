@@ -96,7 +96,7 @@ a {
 
 .game-menu--background {
   z-index: 1001;
-  background-image: url("background-dark.c4469fe3.png");
+  background-image: url("sYq8HG");
   background-size: cover;
   width: 100vw;
   height: 100vh;
@@ -109,6 +109,7 @@ a {
   justify-content: center;
   align-items: center;
   font-size: 30px;
+  transition: all 3s;
   display: flex;
   position: absolute;
   bottom: 0;
@@ -554,6 +555,16 @@ a {
   background-color: #fff;
 }
 
+.end-game--message, .end-game--refresh {
+  color: #9b842d;
+  text-align: center;
+}
+
+.end-game--message {
+  padding: 50px;
+  font-size: 150%;
+}
+
 .healer {
   color: #fff;
   background-color: var(--heal-color);
@@ -586,6 +597,14 @@ a {
 }
 
 @media (width >= 1920px) {
+  .end-game--message {
+    font-size: 200%;
+  }
+
+  .end-game--refresh {
+    font-size: 150%;
+  }
+
   .hand--card:hover {
     top: 0;
   }

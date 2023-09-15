@@ -111,6 +111,7 @@ a {
   z-index: 1003;
   bottom: 0px;
   font-size: 30px;
+  transition: all 3s;
 }
 .fa-brands {
   font-size: 40px;
@@ -538,6 +539,15 @@ a {
   color: black;
 }
 
+.end-game--message,
+.end-game--refresh {
+  color: #9b842d;
+  text-align: center;
+}
+.end-game--message {
+  font-size: 150%;
+  padding: 50px;
+}
 .healer {
   color: white;
   background-color: var(--heal-color);
@@ -567,6 +577,12 @@ a {
 
 /* LARGE SCREENS */
 @media (1920px <= width) {
+  .end-game--message {
+    font-size: 200%;
+  }
+  .end-game--refresh {
+    font-size: 150%;
+  }
   .hand--card:hover {
     top: 0px;
   }

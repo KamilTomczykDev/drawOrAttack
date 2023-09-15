@@ -9,15 +9,16 @@ export const state = {
   timer: 25,
   enemy: {
     name: "Mysterious Creature",
-    attack: 5,
+    attack: 30,
     hp: 30,
-    img: "firstEnemy.91fbd31f.jpeg",
+    img: "/firstEnemy.91fbd31f.jpeg",
     discription: "Deal 5 dmg each round.",
   },
   playerHp: 30,
   currentMana: 1,
   maxMana: 1,
   turn: 1,
+  winner: null,
 };
 
 state.deck = [...data.defaultDeckArray];

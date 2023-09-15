@@ -153,6 +153,27 @@ export const renderEnemy = (data) => {
   parentElement.insertAdjacentHTML("beforeend", markup);
 };
 
+export const renderEnd = function (data) {
+  game.style.opacity = "0";
+  footer.style.opacity = "0";
+  footer.style.display = "flex";
+  const playerWins =
+    "Congratulations!<br/>Dark force has been destroyed.. but is It really over?";
+  const enemyWins = "Oh no!<br/>Reign of dark forces will last forever..";
+  const markup = `
+    <div class = "end-game--message">${(data = "enemy"
+      ? enemyWins
+      : playerWins)}</div>
+    <div class="end-game--refresh">Press f5 to play again</div>
+    `;
+  setTimeout(() => {
+    game.innerHTML = "";
+    game.insertAdjacentHTML("beforeend", markup);
+    game.style.opacity = "1";
+    footer.style.opacity = "1";
+  }, 4000);
+};
+
 //add event handlers //
 
 export const addHandlerGameInit = function (handler) {

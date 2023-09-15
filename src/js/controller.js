@@ -34,6 +34,7 @@ const startTimer = function () {
       nextTurn();
       setTimeout(() => draw(), 2000);
     }
+    if (model.state.winner !== null) clearInterval(countdown);
   }, 1000);
 };
 const giveHandlersBack = () => {
@@ -80,6 +81,13 @@ const nazgrammUltimate = () => {
     renderUI();
   }
 };
+const lookForWinner = function () {
+  if (model.state.playerHp <= 0) {
+    model.state.winner = "enemy";
+    view.renderEnd(model.state.winner);
+  }
+  if (model.state.enemy.hp <= 0) model.state.winner = "player";
+};
 const manaNumberUp = () => {
   if (model.state.maxMana !== 9) model.state.maxMana += 1;
   model.state.currentMana = model.state.maxMana;
@@ -99,6 +107,7 @@ const nextTurn = function () {
 
   setTimeout(function () {
     model.state.playerHp -= model.state.enemy.attack;
+    lookForWinner();
     view.giveShakeAnimation(playerHpElement);
     view.giveDamageAnimation(playerHpElement);
     view.nextTurnAnimation();
