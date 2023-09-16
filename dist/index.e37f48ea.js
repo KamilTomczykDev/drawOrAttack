@@ -2371,7 +2371,6 @@ const addHandlerAttack = function(handler) {
 const removeHandlerAttack = function(handler) {
     attackBtn.removeEventListener("click", handler);
 };
-//remove event handlers//
 // game animation events //
 board.addEventListener("mouseover", function(e) {
     const clicked = e.target.closest(".board--card");

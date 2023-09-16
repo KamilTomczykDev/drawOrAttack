@@ -17,6 +17,7 @@ const nextTurnText = document.querySelector(".next-turn--container");
 const attackBtn = document.querySelector(".button--attack");
 
 /////////////////////////////////////////////////////
+
 export const giveShakeAnimation = function (parentEl) {
   parentEl.classList.add("shake-animation");
   setTimeout(function () {
@@ -175,7 +176,6 @@ export const renderEnd = function (data) {
 };
 
 //add event handlers //
-
 export const addHandlerGameInit = function (handler) {
   gameMenuCntnr.addEventListener("click", (e) => handler());
 };
@@ -196,10 +196,7 @@ export const removeHandlerAttack = function (handler) {
   attackBtn.removeEventListener("click", handler);
 };
 
-//remove event handlers//
-
 // game animation events //
-
 board.addEventListener("mouseover", function (e) {
   const clicked = e.target.closest(".board--card");
   if (!clicked) return;
