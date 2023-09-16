@@ -202,12 +202,10 @@ a {
   transition: all 0.3s;
   opacity: 0;
 }
-
 .turn-counter {
   font-size: 50px;
   text-align: center;
 }
-
 .player-side {
   height: 60vh;
   max-height: 648px;
@@ -244,9 +242,7 @@ a {
   border-radius: 0 0 50px 50px;
   background-size: cover;
 }
-
 /* player left side styling */
-
 .player--left-section {
   display: flex;
   align-items: center;
@@ -269,9 +265,7 @@ a {
   color: white;
   display: inline;
 }
-
 /* player board styling */
-
 .board {
   margin-top: 2%;
   height: 110px;
@@ -295,7 +289,6 @@ a {
   right: -18px;
   background-color: var(--turn-color);
 }
-
 .board--card--turn-stat,
 .board--card--left-stat {
   text-align: center;
@@ -305,9 +298,7 @@ a {
   border-radius: 50%;
   top: 60px;
 }
-
 /* player hero styling */
-
 .hero {
   height: 175px;
   margin: 30px 0 10px 0;
@@ -320,7 +311,6 @@ a {
   border: ridge 15px var(--player-color);
   height: 100%;
 }
-
 .hero--health {
   border: ridge 15px var(--player-color);
   color: rgb(171, 0, 0);
@@ -332,7 +322,6 @@ a {
   transition: background-color 1s;
 }
 /* hover-view styling */
-
 .hover-view {
   border: ridge 15px var(--player-color);
   border-radius: 25px;
@@ -342,7 +331,6 @@ a {
   top: -300px;
   right: -50px;
   padding: 8px;
-
   background-color: rgb(255, 230, 165);
   transition: all 0.5s;
   opacity: 0;
@@ -401,9 +389,7 @@ a {
   right: -30px;
   text-align: center;
 }
-
 /* player hand styling*/
-
 .hand {
   height: 275px;
   width: 100%;
@@ -436,7 +422,6 @@ a {
   font-size: 40px;
   left: -30px;
 }
-
 .hand--card--img {
   border: ridge 8px var(--player-color);
   border-radius: 10px;
@@ -473,7 +458,6 @@ a {
   bottom: -20px;
   font-size: 40px;
 }
-
 /* player right side*/
 .player--right-section {
   flex-direction: column;
@@ -497,7 +481,6 @@ a {
   row-gap: 10px;
   padding: 15px 0;
 }
-
 .mana {
   border-radius: 50%;
   border: solid 3px var(--player-color);
@@ -510,7 +493,6 @@ a {
     rgba(0, 232, 255, 0) 100%
   );
 }
-
 .buttons button {
   font-size: 20px;
   padding: 15px 50px;
@@ -523,12 +505,10 @@ a {
   cursor: pointer;
   transition: all 0.2s;
 }
-
 .buttons button:hover {
   background-color: #ffffff;
   color: black;
 }
-
 .end-game--message,
 .end-game--refresh {
   color: #9b842d;
@@ -562,7 +542,6 @@ a {
     transform: translate(0, 0) rotate(0deg);
   }
 }
-
 /* MEDIA QUERIES */
 
 /* LARGE SCREENS */
@@ -580,13 +559,11 @@ a {
     bottom: -30px;
   }
 }
-
 /* MEDIUM SCREENS */
 @media (1280px <= width <= 1550px) {
   .game-menu--container--logo {
     width: 600px;
   }
-
   .game-menu--container--text {
     font-size: 15px;
     bottom: -70px;
@@ -745,7 +722,6 @@ a {
     font-size: 10px;
   }
 }
-
 /* SMALL SCREENS */
 @media (1024px <= width <= 1279px) {
   .game-menu--container--logo {
@@ -810,8 +786,6 @@ a {
   .mana {
     padding: 10px;
   }
-
-  /*//////*/
   .enemy-section--hero {
     height: 150px;
   }
@@ -926,7 +900,6 @@ a {
     font-size: 6px;
   }
 }
-
 /* TABLETS */
 @media (768px <= width <= 1023px) {
   .game-menu--container--logo {
@@ -1115,7 +1088,6 @@ a {
     font-size: 6px;
   }
 }
-
 /* DEVICES NOT SUPPPORTED */
 @media (min-width: 0px) and (max-width: 767px) {
   .modal-viewport-error {
@@ -1123,9 +1095,7 @@ a {
     justify-content: center;
     align-items: center;
   }
-  .game {
-    display: none;
-  }
+  .game,
   .game-menu {
     display: none;
   }
@@ -1136,9 +1106,7 @@ a {
     justify-content: center;
     align-items: center;
   }
-  .game {
-    display: none;
-  }
+  .game,
   .game-menu {
     display: none;
   }
