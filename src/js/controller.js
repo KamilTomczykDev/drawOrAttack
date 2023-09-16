@@ -129,6 +129,10 @@ const nextTurn = function () {
 };
 
 const drawBtnClick = function () {
+  const clickAudio = new Audio("/btnClick.mp3");
+
+  clickAudio.play();
+
   nextTurn();
   setTimeout(() => {
     if (model.state.turn >= 12) {
@@ -146,6 +150,9 @@ const applyHealing = () => {
 };
 const attackBtnClick = function () {
   const enemyHpElement = document.querySelector(".enemy-section--hero--health");
+  const clickAudio = new Audio("/btnClick.mp3");
+
+  clickAudio.play();
   model.state.board.forEach((card) => {
     model.state.enemy.hp -= card.attack;
   });
@@ -180,12 +187,13 @@ const gameInit = function () {
 };
 
 const handHandler = function (e) {
-  const clickAudio = new Audio("../mp3/handClick.mp3");
-  clickAudio.play();
+  const clickAudio = new Audio("/handClick.mp3");
+
   const clicked = e.target.closest(".hand--card");
   if (!clicked) return;
   const foundCard = model.state.hand.find((el) => el.id === +clicked.id);
   if (foundCard.cost <= model.state.currentMana) {
+    clickAudio.play();
     checkForRage(foundCard);
     checkForBlessing(foundCard);
     checkForHourglass(foundCard);
