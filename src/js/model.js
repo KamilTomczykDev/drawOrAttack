@@ -10,7 +10,7 @@ export const state = {
   enemy: {
     name: "Mysterious Creature",
     attack: 5,
-    hp: 35,
+    hp: 30,
     img: "/nazgrammFirst.c1deeb17.png",
     discription: "Deal 5 dmg each round.",
   },
