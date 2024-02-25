@@ -76,10 +76,12 @@ export const renderHand = async function (data) {
         <img src="${card.img}" class="hand--card--img" />
         <p class="hand--card--name">${card.name}</p>
         <p class="hand--card--ability"><br />${card.ability}</p>
-        <div class="hand--card--left-stat ${
-          card.healing > 0 ? "healer" : ""
-        }">${card.attack === 0 ? card.healing : card.attack}</div>
-        <div class="hand--card--turn-stat">${card.turns}</div>
+        <div class="hand--card--stat-container">
+          <div class="hand--card--action-stat ${
+            card.healing > 0 ? "healer" : ""
+          }">${card.attack === 0 ? card.healing : card.attack}</div>
+          <div class="hand--card--turn-stat">${card.turns}</div>
+        </div>
     </div>
     `;
     parentElement.insertAdjacentHTML("beforeend", markup);
@@ -162,10 +164,13 @@ export const renderEnd = function (data) {
     "Congratulations!<br/>Dark force has been destroyed.. but is It really over?";
   const enemyWins = "Oh no!<br/>Reign of dark forces will last forever..";
   const markup = `
-    <div class = "end-game--message">${
-      data === "enemy" ? enemyWins : playerWins
-    }</div>
-    <div class="end-game--refresh">Press f5 to play again</div>
+    <div class="end-game">
+      <div class = "end-game--message">${
+        data === "enemy" ? enemyWins : playerWins
+      }</div>
+      <div class="end-game--refresh">Press F5 or other refresh button to play again</div>
+    </div>
+    
     `;
   setTimeout(() => {
     game.innerHTML = "";
