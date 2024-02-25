@@ -1,0 +1,342 @@
+body {
+  font-family: "Press Start 2P", cursive;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-image: url("/src/img/background-dark.png");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* game menu */
+.game-menu {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.game-menu--container {
+  z-index: 1002;
+  color: var(--menu-color);
+
+  display: grid;
+  grid-template-rows: 1fr 100px;
+  justify-content: space-around;
+  height: 100%;
+}
+.game-menu--start {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 2rem;
+  cursor: pointer;
+}
+.game-menu--start:hover .game-menu--start--text {
+  font-size: 1.2rem;
+}
+.game-menu--start--logo {
+  animation-name: floating;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  width: 275px;
+}
+.game-menu--start--text {
+  text-align: center;
+  padding: 1rem;
+  display: block;
+  transition: all 1s;
+  width: 100%;
+  font-size: 1rem;
+}
+/* logo animation */
+@keyframes floating {
+  0% {
+    transform: translate(0, -30px);
+  }
+  50% {
+    transform: translate(0, 30px);
+  }
+  100% {
+    transform: translate(0, -30px);
+  }
+}
+a {
+  text-decoration: none;
+}
+.footer {
+  display: flex;
+  flex-direction: column;
+  z-index: 1003;
+  font-size: 1rem;
+  transition: all 3s;
+}
+.fa-brands {
+  font-size: 2rem;
+  color: var(--menu-color);
+}
+.fa-brands:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+.fa-brands:active {
+  opacity: 0.5;
+}
+.footer--author {
+  font-size: 0.8rem;
+  padding: 0.5rem;
+  text-align: center;
+}
+.game-menu--background {
+  z-index: 1000;
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+}
+/* the actual game */
+.game {
+  opacity: 0;
+  height: 100vh;
+  max-height: 800px;
+  transition: all 5s;
+  width: 100vw;
+  max-width: 1000px;
+  position: relative;
+  display: grid;
+  grid-template-rows: 0.3fr 1fr 100px;
+}
+.next-turn--container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  z-index: 1;
+  display: none;
+  opacity: 0;
+  transition: all 1s;
+}
+.next-turn--text {
+  color: white;
+  text-shadow: var(--player-color) 0.2rem 0.2rem 0;
+  font-size: 3rem;
+}
+.enemy-side {
+  width: 100%;
+  position: relative;
+}
+.enemy-side:hover .enemy-section--discription {
+  opacity: 1;
+}
+.timer {
+  font-size: 1rem;
+  position: absolute;
+  left: 20;
+  z-index: 2;
+}
+
+.enemy-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-image: url("../img/enemy-background.png");
+  border-radius: 50px 50px 0px 0;
+  background-size: cover;
+  border-top: ridge rgb(171, 0, 0);
+  border-right: ridge rgb(171, 0, 0);
+  border-left: ridge rgb(171, 0, 0);
+  border-bottom: solid rgb(48, 24, 0);
+  border-width: 10px 10px 2px 5px;
+  position: relative;
+}
+.enemy-section--hero {
+  height: 5rem;
+  margin: 1rem;
+  flex-direction: column;
+}
+.enemy-section--hero--img {
+  height: inherit;
+  border: ridge 2px rgb(171, 0, 0);
+}
+.enemy-section--hero--health {
+  border: ridge 5px rgb(171, 0, 0);
+  color: rgb(171, 0, 0);
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 0.3rem 0.3rem 0.3rem 0.3rem;
+  background-color: white;
+}
+.enemy-section--discription {
+  line-height: 120%;
+  padding: 1rem;
+  position: absolute;
+  font-size: 0.5rem;
+  background-color: brown;
+  border: ridge 10px rgb(171, 0, 0);
+  transition: all 0.3s;
+  opacity: 0;
+  top: 50%;
+  z-index: 10;
+  transform: translateY(-50%);
+}
+.turn-counter {
+  font-size: 1rem;
+  text-align: center;
+  position: absolute;
+  right: 20;
+  z-index: 2;
+  max-width: 4rem;
+}
+.turn-counter,
+.timer {
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.timer,
+.turn-counter,
+.player--left-section,
+.player--right-section {
+  text-shadow: 2px 2px var(--player-color);
+  color: white;
+}
+
+.player-side {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+.player--left-section,
+.player--right-section {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.player--left-section {
+  display: flex;
+  align-items: center;
+  row-gap: 1rem;
+  flex-direction: column;
+  justify-content: center;
+  left: 30;
+  z-index: 10;
+}
+.skull-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+}
+.skull {
+  width: 100%;
+}
+.deck-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 30px;
+}
+.deck {
+  width: 100%;
+  border: ridge 3px var(--player-color);
+  border-radius: 10px;
+}
+.skull-number,
+.deck-number {
+  font-size: 10px;
+  color: white;
+  display: inline;
+}
+.player--mid-section {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-between;
+  background-image: url("../img/player-background.png");
+  border-top: solid rgb(48, 24, 0);
+  border-right: ridge var(--player-color);
+  border-left: ridge var(--player-color);
+  border-bottom: ridge var(--player-color);
+  border-width: 10px 10px 10px 10px;
+  border-radius: 0 0 50px 50px;
+  background-size: cover;
+}
+.hero {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.hero--img {
+  border: ridge 5px var(--player-color);
+  width: 100%;
+}
+.hero--health {
+  border: ridge 5px var(--player-color);
+  color: rgb(171, 0, 0);
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 0.3rem 0.3rem 0.3rem 0.3rem;
+  background-color: white;
+  transition: background-color 1s;
+}
+
+/* player right side*/
+.player--right-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  right: 30;
+}
+.buttons {
+  flex-direction: column;
+}
+.mana--counter {
+  border: ridge 3px var(--player-color);
+  border-radius: 25px;
+  background-color: var(--cost-color);
+  color: white;
+  font-size: 10px;
+  text-shadow: none;
+}
+.mana--container {
+  gap: 2px;
+  flex-wrap: wrap;
+  row-gap: 2px;
+  padding: 2px 0;
+}
+.mana {
+  border-radius: 50%;
+  border: solid 3px var(--player-color);
+  padding: 2px;
+  background: rgb(0, 167, 255);
+  background: radial-gradient(
+    circle,
+    rgba(0, 167, 255, 1) 0%,
+    rgba(86, 9, 121, 0.6727065826330532) 50%,
+    rgba(0, 232, 255, 0) 100%
+  );
+}
+.buttons button {
+  font-size: 3px;
+  font-family: "Press Start 2P", cursive;
+  color: white;
+  background-color: var(--cost-color);
+  border: ridge 2px var(--player-color);
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.buttons button:hover {
+  background-color: #ffffff;
+  color: black;
+}

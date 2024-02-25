@@ -26,7 +26,7 @@ class Card {
   }
 }
 
-export const card1 = new Card( //
+export const card1 = new Card(
   "Weak Farmer",
   2,
   2,
@@ -39,7 +39,7 @@ export const card1 = new Card( //
   "/weakFarmer2.d47a8e3b.jpeg",
   1
 );
-export const card2 = new Card( //
+export const card2 = new Card(
   "Weak Farmer",
   2,
   2,
@@ -52,7 +52,7 @@ export const card2 = new Card( //
   "/weakFarmer2.d47a8e3b.jpeg",
   2
 );
-export const card3 = new Card( //
+export const card3 = new Card(
   "Tree of Vitality",
   0,
   0,
@@ -65,7 +65,7 @@ export const card3 = new Card( //
   "/treeOfVitality.ec17f177.png",
   3
 );
-export const card4 = new Card( //
+export const card4 = new Card(
   "Tree of Vitality",
   0,
   0,
@@ -78,7 +78,7 @@ export const card4 = new Card( //
   "/treeOfVitality.ec17f177.png",
   4
 );
-export const card5 = new Card( //
+export const card5 = new Card(
   "Hound",
   3,
   3,
@@ -91,7 +91,7 @@ export const card5 = new Card( //
   "/hound.86b428e4.png",
   5
 );
-export const card6 = new Card( //
+export const card6 = new Card(
   "Hound",
   3,
   3,
@@ -325,7 +325,7 @@ export const card23 = new Card(
   "/BurningHorse.f5c219b8.png",
   23
 );
-export const card24 = new Card( //
+export const card24 = new Card(
   "Time traveler",
   3,
   3,
@@ -338,7 +338,7 @@ export const card24 = new Card( //
   "/timeTraveler.18a70ca4.png",
   24
 );
-export const card25 = new Card( //
+export const card25 = new Card(
   "Time traveler",
   3,
   3,

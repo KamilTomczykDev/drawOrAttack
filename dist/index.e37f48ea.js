@@ -2215,7 +2215,7 @@ const enemySide = document.querySelector(".enemy-section");
 const enemyDiscription = document.querySelector(".enemy-section--discription");
 const enemyHealth = document.querySelector(".enemy-section--hero--health");
 const gameMenu = document.querySelector(".game-menu");
-const gameMenuCntnr = document.querySelector(".game-menu--container");
+const gameMenuStart = document.querySelector(".game-menu--start");
 const game = document.querySelector(".game");
 const footer = document.querySelector(".footer");
 const deckNum = document.querySelector(".deck-number");
@@ -2357,7 +2357,7 @@ const renderEnd = function(data) {
     }, 4000);
 };
 const addHandlerGameInit = function(handler) {
-    gameMenuCntnr.addEventListener("click", (e)=>handler());
+    gameMenuStart.addEventListener("click", (e)=>handler());
 };
 const addHandlerDraw = function(handler) {
     drawBtn.addEventListener("click", handler);
@@ -2384,7 +2384,7 @@ board.addEventListener("mouseout", function(e) {
     const elementFound = document.getElementById(`${clicked.dataset.id}`);
     elementFound.style.opacity = "0";
 });
-gameMenuCntnr.addEventListener("click", function(e) {
+gameMenuStart.addEventListener("click", function(e) {
     gameMenu.style.display = "none";
     footer.style.display = "none";
     game.style.opacity = "1";

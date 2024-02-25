@@ -1,0 +1,42 @@
+@media (min-width: 768px) {
+  .game-menu--start--logo {
+    width: 600px;
+  }
+  .game-menu--start--text {
+    font-size: 1.5rem;
+  }
+  .game-menu--start:hover .game-menu--start--text {
+    font-size: 1.8rem;
+  }
+  .fa-brands {
+    font-size: 3rem;
+  }
+  .game {
+    grid-template-rows: 0.5fr 1fr 200px;
+  }
+  .timer,
+  .turn-counter {
+    position: static;
+    height: 100%;
+    transform: none;
+    max-width: none;
+  }
+  .enemy-side {
+    display: grid;
+    grid-template-columns: 100px 1fr 100px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .player-side {
+    display: grid;
+    height: 100%;
+    grid-template-columns: 100px 1fr 100px;
+    justify-content: space-between;
+  }
+  .player--left-section,
+  .player--right-section {
+    position: static;
+    transform: none;
+    height: 100%;
+  }
+}

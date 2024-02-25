@@ -3,7 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="src/css/style.css" />
+    <style type="text/css">
+      @import url("src/css/style.css");
+      @import url("src/css/mobile.css");
+      @import url("src/css/medium.css");
+    </style>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -21,34 +25,44 @@
     ></script>
     <title>DrawOrAttack</title>
   </head>
+
   <body>
-    <div class="modal-viewport-error">
-      <p>Game avaiable only on desktops and tablets :(</p>
-    </div>
+    <!-- game menu -->
+
     <div class="game-menu">
       <div class="game-menu--container">
-        <img
-          src="src/img/logo.png"
-          alt="logo"
-          class="game-menu--container--logo"
-        />
-        <p class="game-menu--container--text">Press here to start</p>
+        <div class="game-menu--start">
+          <img
+            src="src/img/logo.png"
+            alt="logo"
+            class="game-menu--start--logo"
+          />
+          <p class="game-menu--start--text">Press here to start</p>
+        </div>
+
+        <footer class="footer">
+          <div class="footer--icons">
+            <a
+              href="https://github.com/KamilTomczykDev/drawOrAttack"
+              class="link"
+            >
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <i class="fa-brands fa-linkedin"></i>
+          </div>
+          <p class="footer--author">Made by © Kamil Tomczyk</p>
+        </footer>
       </div>
       <div class="game-menu--background"></div>
     </div>
-    <section class="footer">
-      <div class="footer--icons">
-        <a href="https://github.com/KamilTomczykDev/drawOrAttack" class="link">
-          <i class="fa-brands fa-github" style="color: #9b8028"></i>
-        </a>
-        <i class="fa-brands fa-linkedin" style="color: #9b8028"></i>
-      </div>
-      <p class="footer--author">Made by © Kamil Tomczyk</p>
-    </section>
+
+    <!-- next turn indicator -->
+    <div class="next-turn--container">
+      <p class="next-turn--text">Next Turn</p>
+    </div>
+
+    <!-- game -->
     <div class="game">
-      <div class="next-turn--container">
-        <p class="next-turn--text">Next Turn</p>
-      </div>
       <section class="enemy-side">
         <div class="timer"></div>
         <div class="enemy-section">
@@ -74,13 +88,13 @@
             <img src="src/img/cardBack.jpeg" alt="deck back" class="deck" />
           </div>
         </div>
+
         <div class="player--mid-section">
           <div class="board"></div>
           <div class="hero">
             <img class="hero--img" src="src/img/mainHero.png" />
             <p class="hero--health"></p>
           </div>
-          <div class="hand"></div>
         </div>
         <nav class="player--right-section">
           <div class="buttons">
@@ -91,6 +105,7 @@
           <div class="mana--container"></div>
         </nav>
       </section>
+      <div class="hand"></div>
     </div>
   </body>
 </html>
