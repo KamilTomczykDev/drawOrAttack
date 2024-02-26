@@ -20,51 +20,12 @@
 }
 
 /* player board styling */
-.board--card {
-  border: ridge 0.2rem var(--player-color);
-  height: 3rem;
-  position: relative;
-}
-.board--card--img {
-  height: 100%;
-}
-.board--card--left-stat {
-  color: white;
-  left: -18px;
-  background-color: var(--atk-color);
-}
-.board--card--turn-stat {
-  color: white;
-  right: -18px;
-  background-color: var(--turn-color);
-}
-.board--card--turn-stat,
-.board--card--left-stat {
-  text-align: center;
-  position: absolute;
-  font-size: 30px;
-  border: ridge 8px var(--player-color);
-  border-radius: 50%;
-  top: 60px;
-}
+
 /* hover-view styling */
-.hover-view {
-  border: ridge 15px var(--player-color);
-  border-radius: 25px;
-  position: absolute;
-  height: 275px;
-  width: 190px;
-  top: -300px;
-  right: -50px;
-  padding: 8px;
-  background-color: rgb(255, 230, 165);
-  transition: all 0.5s;
-  opacity: 0;
-}
-.hover-view:hover {
+/* .hover-view:hover {
   display: none;
-}
-.hover-view--cost {
+} */
+/* .hover-view--cost {
   position: absolute;
   color: rgb(255, 255, 255);
   border: ridge 10px var(--player-color);
@@ -114,4 +75,4 @@
   font-size: 40px;
   right: -30px;
   text-align: center;
-}
+} */

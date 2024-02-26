@@ -62,7 +62,7 @@ const turnNumberUp = () => {
     model.state.enemy.attack = 8;
     model.state.enemy.name = "Nazgramm the Bloodlord";
     model.state.enemy.discription = "Deal 8 dmg and heal 5 hp each round";
-    model.state.enemy.img = "/nazgrammSecond.0f43c395.png";
+    model.state.enemy.img = "/nazgrammSecond.png";
   }
   if (model.state.turn === 12 && model.state.enemy.hp > 0) {
     model.state.enemy.hp = 40;
@@ -70,7 +70,7 @@ const turnNumberUp = () => {
     model.state.enemy.name = "Nazgramm (Demon form)";
     model.state.enemy.discription =
       "Deal 10 dmg, heal 5 hp and kill random unit each round";
-    model.state.enemy.img = "/nazgrammThird.f4d17714.png";
+    model.state.enemy.img = "/nazgrammThird.png";
   }
 };
 
@@ -189,7 +189,7 @@ const gameInit = function () {
 const handHandler = function (e) {
   const clickAudio = new Audio("/handClick.mp3");
 
-  const clicked = e.target.closest(".hand--card");
+  const clicked = e.target.closest(".card");
   if (!clicked) return;
   const foundCard = model.state.hand.find((el) => el.id === +clicked.id);
   if (foundCard.cost <= model.state.currentMana) {

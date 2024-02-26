@@ -39,4 +39,10 @@
     transform: none;
     height: 100%;
   }
+  .buttons {
+    z-index: 1000;
+  }
+  .buttons button {
+    font-size: 0.6rem;
+  }
 }

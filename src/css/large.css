@@ -1,0 +1,43 @@
+@media (min-width: 1024px) {
+  .timer,
+  .turn-counter {
+    font-size: 1.6rem;
+  }
+  .skull-number,
+  .deck-number {
+    font-size: 1.2rem;
+  }
+  .enemy-section--hero {
+    height: 10rem;
+  }
+  .hero {
+    width: 10rem;
+  }
+  .enemy-section--hero--img,
+  .enemy-section--hero--health,
+  .enemy-section--discription,
+  .hero--img,
+  .hero--health {
+    border-width: 0.5rem;
+  }
+  .enemy-section--hero--health,
+  .hero--health {
+    font-size: 2rem;
+  }
+  .enemy-section--discription {
+    font-size: 1rem;
+  }
+  .card {
+    max-height: 200px;
+    width: 8rem;
+    border-width: 0.2rem;
+  }
+  .card--img {
+    height: 70px;
+  }
+  .card--turn-stat,
+  .card--action-stat,
+  .card--cost {
+    font-size: 1.5rem;
+  }
+}

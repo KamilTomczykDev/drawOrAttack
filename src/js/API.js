@@ -36,7 +36,7 @@ export const card1 = new Card(
   3,
   3,
   "",
-  "/weakFarmer2.d47a8e3b.jpeg",
+  "/weakFarmer2.jpeg",
   1
 );
 export const card2 = new Card(
@@ -49,7 +49,7 @@ export const card2 = new Card(
   3,
   3,
   "",
-  "/weakFarmer2.d47a8e3b.jpeg",
+  "/weakFarmer2.jpeg",
   2
 );
 export const card3 = new Card(
@@ -62,7 +62,7 @@ export const card3 = new Card(
   2,
   2,
   "",
-  "/treeOfVitality.ec17f177.png",
+  "/treeOfVitality.png",
   3
 );
 export const card4 = new Card(
@@ -75,7 +75,7 @@ export const card4 = new Card(
   2,
   2,
   "",
-  "/treeOfVitality.ec17f177.png",
+  "/treeOfVitality.png",
   4
 );
 export const card5 = new Card(
@@ -88,7 +88,7 @@ export const card5 = new Card(
   2,
   2,
   "",
-  "/hound.86b428e4.png",
+  "/hound.png",
   5
 );
 export const card6 = new Card(
@@ -101,7 +101,7 @@ export const card6 = new Card(
   2,
   2,
   "",
-  "/hound.86b428e4.png",
+  "/hound.png",
   6
 );
 export const card7 = new Card(
@@ -114,7 +114,7 @@ export const card7 = new Card(
   2,
   2,
   "",
-  "/castleDefender.c4b1d2bd.png",
+  "/castleDefender.png",
   7
 );
 export const card8 = new Card(
@@ -127,7 +127,7 @@ export const card8 = new Card(
   2,
   2,
   "",
-  "/castleDefender.c4b1d2bd.png",
+  "/castleDefender.png",
   8
 );
 export const card9 = new Card(
@@ -140,7 +140,7 @@ export const card9 = new Card(
   4,
   4,
   "",
-  "/caplanOfMiridith.a5242444.png",
+  "/caplanOfMiridith.png",
   9
 );
 export const card10 = new Card(
@@ -153,7 +153,7 @@ export const card10 = new Card(
   4,
   4,
   "",
-  "/caplanOfMiridith.a5242444.png",
+  "/caplanOfMiridith.png",
   10
 );
 export const card11 = new Card(
@@ -166,7 +166,7 @@ export const card11 = new Card(
   2,
   2,
   "",
-  "/strongFarmer.bf0a94e1.png",
+  "/strongFarmer.png",
   11
 );
 export const card12 = new Card(
@@ -179,7 +179,7 @@ export const card12 = new Card(
   2,
   2,
   "",
-  "/strongFarmer.bf0a94e1.png",
+  "/strongFarmer.png",
   12
 );
 export const card13 = new Card(
@@ -192,7 +192,7 @@ export const card13 = new Card(
   1,
   1,
   "",
-  "/berserker.094488ff.png",
+  "/berserker.png",
   13
 );
 export const card14 = new Card(
@@ -205,7 +205,7 @@ export const card14 = new Card(
   1,
   1,
   "",
-  "/berserker.094488ff.png",
+  "/berserker.png",
   14
 );
 export const card15 = new Card(
@@ -218,7 +218,7 @@ export const card15 = new Card(
   3,
   3,
   "",
-  "/kingsDefender.c2816f99.png",
+  "/kingsDefender.png",
   15
 );
 export const card16 = new Card(
@@ -231,7 +231,7 @@ export const card16 = new Card(
   3,
   3,
   "",
-  "/kingsDefender.c2816f99.png",
+  "/kingsDefender.png",
   16
 );
 export const card17 = new Card(
@@ -244,7 +244,7 @@ export const card17 = new Card(
   3,
   3,
   "Rage",
-  "/militaryHornist.a5f4123f.png",
+  "/militaryHornist.png",
   17
 );
 export const card18 = new Card(
@@ -257,7 +257,7 @@ export const card18 = new Card(
   3,
   3,
   "Rage",
-  "/militaryHornist.a5f4123f.png",
+  "/militaryHornist.png",
   18
 );
 export const card19 = new Card(
@@ -270,7 +270,7 @@ export const card19 = new Card(
   3,
   3,
   "Blessing",
-  "/lightOfAzhura.9aaa916b.png",
+  "/lightOfAzhura.png",
   19
 );
 export const card20 = new Card(
@@ -283,7 +283,7 @@ export const card20 = new Card(
   3,
   3,
   "Blessing",
-  "/lightOfAzhura.9aaa916b.png",
+  "/lightOfAzhura.png",
   20
 );
 export const card21 = new Card(
@@ -296,7 +296,7 @@ export const card21 = new Card(
   3,
   3,
   "Rage",
-  "/firandilTheBloody.d53448b5.png",
+  "/firandilTheBloody.png",
   21
 );
 export const card22 = new Card(
@@ -309,7 +309,7 @@ export const card22 = new Card(
   1,
   1,
   "",
-  "/BurningHorse.f5c219b8.png",
+  "/BurningHorse.png",
   22
 );
 export const card23 = new Card(
@@ -322,7 +322,7 @@ export const card23 = new Card(
   1,
   1,
   "",
-  "/BurningHorse.f5c219b8.png",
+  "/BurningHorse.png",
   23
 );
 export const card24 = new Card(
@@ -335,7 +335,7 @@ export const card24 = new Card(
   2,
   2,
   "Hourglass",
-  "/timeTraveler.18a70ca4.png",
+  "/timeTraveler.png",
   24
 );
 export const card25 = new Card(
@@ -348,7 +348,7 @@ export const card25 = new Card(
   2,
   2,
   "Hourglass",
-  "/timeTraveler.18a70ca4.png",
+  "/timeTraveler.png",
   25
 );
 export const card26 = new Card(
@@ -361,7 +361,7 @@ export const card26 = new Card(
   4,
   4,
   "",
-  "/cirilTheMighty.16b52611.png",
+  "/cirilTheMighty.png",
   26
 );
 export const card27 = new Card(
@@ -374,7 +374,7 @@ export const card27 = new Card(
   5,
   5,
   "",
-  "archmageValorian.c2378cbf.png",
+  "/archmageValorian.png",
   27
 );
 export const card28 = new Card(
@@ -387,7 +387,7 @@ export const card28 = new Card(
   3,
   3,
   "Blessing",
-  "/princessLaurith.33cb1833.png",
+  "/princessLaurith.png",
   28
 );
 export const card29 = new Card(
@@ -400,7 +400,7 @@ export const card29 = new Card(
   4,
   4,
   "",
-  "/karcothTheKing.a1830ad8.png",
+  "/karcothTheKing.png",
   29
 );
 export const card30 = new Card(
@@ -413,7 +413,7 @@ export const card30 = new Card(
   3,
   3,
   "Hourglass",
-  "/azhura.d8a28b0a.png",
+  "/azhura.png",
   30
 );
 

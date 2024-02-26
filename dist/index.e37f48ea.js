@@ -625,14 +625,14 @@ const turnNumberUp = ()=>{
         _modelJs.state.enemy.attack = 8;
         _modelJs.state.enemy.name = "Nazgramm the Bloodlord";
         _modelJs.state.enemy.discription = "Deal 8 dmg and heal 5 hp each round";
-        _modelJs.state.enemy.img = "/nazgrammSecond.0f43c395.png";
+        _modelJs.state.enemy.img = "/nazgrammSecond.png";
     }
     if (_modelJs.state.turn === 12 && _modelJs.state.enemy.hp > 0) {
         _modelJs.state.enemy.hp = 40;
         _modelJs.state.enemy.attack = 10;
         _modelJs.state.enemy.name = "Nazgramm (Demon form)";
         _modelJs.state.enemy.discription = "Deal 10 dmg, heal 5 hp and kill random unit each round";
-        _modelJs.state.enemy.img = "/nazgrammThird.f4d17714.png";
+        _modelJs.state.enemy.img = "/nazgrammThird.png";
     }
 };
 const nazgrammUltimate = ()=>{
@@ -734,7 +734,7 @@ const gameInit = function() {
 };
 const handHandler = function(e) {
     const clickAudio = new Audio("/handClick.mp3");
-    const clicked = e.target.closest(".hand--card");
+    const clicked = e.target.closest(".card");
     if (!clicked) return;
     const foundCard = _modelJs.state.hand.find((el)=>el.id === +clicked.id);
     if (foundCard.cost <= _modelJs.state.currentMana) {
@@ -2031,7 +2031,7 @@ const state = {
         name: "Mysterious Creature",
         attack: 5,
         hp: 30,
-        img: "/nazgrammFirst.c1deeb17.png",
+        img: "/nazgrammFirst.png",
         discription: "Deal 5 dmg each round."
     },
     playerHp: 30,
@@ -2093,36 +2093,36 @@ class Card {
         this.id = id;
     }
 }
-const card1 = new Card("Weak Farmer", 2, 2, 0, 0, 1, 3, 3, "", "/weakFarmer2.d47a8e3b.jpeg", 1);
-const card2 = new Card("Weak Farmer", 2, 2, 0, 0, 1, 3, 3, "", "/weakFarmer2.d47a8e3b.jpeg", 2);
-const card3 = new Card("Tree of Vitality", 0, 0, 4, 4, 2, 2, 2, "", "/treeOfVitality.ec17f177.png", 3);
-const card4 = new Card("Tree of Vitality", 0, 0, 4, 4, 2, 2, 2, "", "/treeOfVitality.ec17f177.png", 4);
-const card5 = new Card("Hound", 3, 3, 0, 0, 1, 2, 2, "", "/hound.86b428e4.png", 5);
-const card6 = new Card("Hound", 3, 3, 0, 0, 1, 2, 2, "", "/hound.86b428e4.png", 6);
-const card7 = new Card("Castle Guardian", 4, 4, 0, 0, 2, 2, 2, "", "/castleDefender.c4b1d2bd.png", 7);
-const card8 = new Card("Castle Guardian", 4, 4, 0, 0, 2, 2, 2, "", "/castleDefender.c4b1d2bd.png", 8);
-const card9 = new Card("Caplan of Miridith", 0, 0, 4, 4, 3, 4, 4, "", "/caplanOfMiridith.a5242444.png", 9);
-const card10 = new Card("Caplan of Miridith", 0, 0, 4, 4, 3, 4, 4, "", "/caplanOfMiridith.a5242444.png", 10);
-const card11 = new Card("Strong farmer", 4, 4, 0, 0, 3, 2, 2, "", "/strongFarmer.bf0a94e1.png", 11);
-const card12 = new Card("Strong farmer", 4, 4, 0, 0, 3, 2, 2, "", "/strongFarmer.bf0a94e1.png", 12);
-const card13 = new Card("Berserker", 6, 6, 0, 0, 4, 1, 1, "", "/berserker.094488ff.png", 13);
-const card14 = new Card("Berserker", 6, 6, 0, 0, 4, 1, 1, "", "/berserker.094488ff.png", 14);
-const card15 = new Card("King's Defender", 4, 4, 0, 0, 4, 3, 3, "", "/kingsDefender.c2816f99.png", 15);
-const card16 = new Card("King's Defender", 4, 4, 0, 0, 4, 3, 3, "", "/kingsDefender.c2816f99.png", 16);
-const card17 = new Card("Military Hornist", 2, 2, 0, 0, 4, 3, 3, "Rage", "/militaryHornist.a5f4123f.png", 17);
-const card18 = new Card("Military Hornist", 2, 2, 0, 0, 4, 3, 3, "Rage", "/militaryHornist.a5f4123f.png", 18);
-const card19 = new Card("Light of Azhura", 0, 0, 5, 5, 5, 3, 3, "Blessing", "/lightOfAzhura.9aaa916b.png", 19);
-const card20 = new Card("Light of Azhura", 0, 0, 5, 5, 5, 3, 3, "Blessing", "/lightOfAzhura.9aaa916b.png", 20);
-const card21 = new Card("Firandil the Bloody", 6, 6, 0, 0, 5, 3, 3, "Rage", "/firandilTheBloody.d53448b5.png", 21);
-const card22 = new Card("Burning Horse", 7, 7, 0, 0, 5, 1, 1, "", "/BurningHorse.f5c219b8.png", 22);
-const card23 = new Card("Burning Horse", 7, 7, 0, 0, 5, 1, 1, "", "/BurningHorse.f5c219b8.png", 23);
-const card24 = new Card("Time traveler", 3, 3, 0, 0, 5, 2, 2, "Hourglass", "/timeTraveler.18a70ca4.png", 24);
-const card25 = new Card("Time traveler", 3, 3, 0, 0, 5, 2, 2, "Hourglass", "/timeTraveler.18a70ca4.png", 25);
-const card26 = new Card("Ciril the Mighty", 7, 7, 0, 0, 7, 4, 4, "", "/cirilTheMighty.16b52611.png", 26);
-const card27 = new Card("Archmage Valorian", 6, 6, 0, 0, 7, 5, 5, "", "archmageValorian.c2378cbf.png", 27);
-const card28 = new Card("Princess Laurith", 0, 0, 7, 7, 7, 3, 3, "Blessing", "/princessLaurith.33cb1833.png", 28);
-const card29 = new Card("Karcoth The King", 8, 8, 0, 0, 8, 4, 4, "", "/karcothTheKing.a1830ad8.png", 29);
-const card30 = new Card("Azhura", 8, 8, 0, 0, 9, 3, 3, "Hourglass", "/azhura.d8a28b0a.png", 30);
+const card1 = new Card("Weak Farmer", 2, 2, 0, 0, 1, 3, 3, "", "/weakFarmer2.jpeg", 1);
+const card2 = new Card("Weak Farmer", 2, 2, 0, 0, 1, 3, 3, "", "/weakFarmer2.jpeg", 2);
+const card3 = new Card("Tree of Vitality", 0, 0, 4, 4, 2, 2, 2, "", "/treeOfVitality.png", 3);
+const card4 = new Card("Tree of Vitality", 0, 0, 4, 4, 2, 2, 2, "", "/treeOfVitality.png", 4);
+const card5 = new Card("Hound", 3, 3, 0, 0, 1, 2, 2, "", "/hound.png", 5);
+const card6 = new Card("Hound", 3, 3, 0, 0, 1, 2, 2, "", "/hound.png", 6);
+const card7 = new Card("Castle Guardian", 4, 4, 0, 0, 2, 2, 2, "", "/castleDefender.png", 7);
+const card8 = new Card("Castle Guardian", 4, 4, 0, 0, 2, 2, 2, "", "/castleDefender.png", 8);
+const card9 = new Card("Caplan of Miridith", 0, 0, 4, 4, 3, 4, 4, "", "/caplanOfMiridith.png", 9);
+const card10 = new Card("Caplan of Miridith", 0, 0, 4, 4, 3, 4, 4, "", "/caplanOfMiridith.png", 10);
+const card11 = new Card("Strong farmer", 4, 4, 0, 0, 3, 2, 2, "", "/strongFarmer.png", 11);
+const card12 = new Card("Strong farmer", 4, 4, 0, 0, 3, 2, 2, "", "/strongFarmer.png", 12);
+const card13 = new Card("Berserker", 6, 6, 0, 0, 4, 1, 1, "", "/berserker.png", 13);
+const card14 = new Card("Berserker", 6, 6, 0, 0, 4, 1, 1, "", "/berserker.png", 14);
+const card15 = new Card("King's Defender", 4, 4, 0, 0, 4, 3, 3, "", "/kingsDefender.png", 15);
+const card16 = new Card("King's Defender", 4, 4, 0, 0, 4, 3, 3, "", "/kingsDefender.png", 16);
+const card17 = new Card("Military Hornist", 2, 2, 0, 0, 4, 3, 3, "Rage", "/militaryHornist.png", 17);
+const card18 = new Card("Military Hornist", 2, 2, 0, 0, 4, 3, 3, "Rage", "/militaryHornist.png", 18);
+const card19 = new Card("Light of Azhura", 0, 0, 5, 5, 5, 3, 3, "Blessing", "/lightOfAzhura.png", 19);
+const card20 = new Card("Light of Azhura", 0, 0, 5, 5, 5, 3, 3, "Blessing", "/lightOfAzhura.png", 20);
+const card21 = new Card("Firandil the Bloody", 6, 6, 0, 0, 5, 3, 3, "Rage", "/firandilTheBloody.png", 21);
+const card22 = new Card("Burning Horse", 7, 7, 0, 0, 5, 1, 1, "", "/BurningHorse.png", 22);
+const card23 = new Card("Burning Horse", 7, 7, 0, 0, 5, 1, 1, "", "/BurningHorse.png", 23);
+const card24 = new Card("Time traveler", 3, 3, 0, 0, 5, 2, 2, "Hourglass", "/timeTraveler.png", 24);
+const card25 = new Card("Time traveler", 3, 3, 0, 0, 5, 2, 2, "Hourglass", "/timeTraveler.png", 25);
+const card26 = new Card("Ciril the Mighty", 7, 7, 0, 0, 7, 4, 4, "", "/cirilTheMighty.png", 26);
+const card27 = new Card("Archmage Valorian", 6, 6, 0, 0, 7, 5, 5, "", "/archmageValorian.png", 27);
+const card28 = new Card("Princess Laurith", 0, 0, 7, 7, 7, 3, 3, "Blessing", "/princessLaurith.png", 28);
+const card29 = new Card("Karcoth The King", 8, 8, 0, 0, 8, 4, 4, "", "/karcothTheKing.png", 29);
+const card30 = new Card("Azhura", 8, 8, 0, 0, 9, 3, 3, "Hourglass", "/azhura.png", 30);
 const defaultDeckArray = [
     card1,
     card2,
@@ -2269,14 +2269,14 @@ const renderHand = async function(data) {
     parentElement.innerHTML = "";
     data.forEach(function(card) {
         const markup = `
-    <div class="hand--card" id="${card.id}">
-        <div class="hand--card--cost">${card.cost}</div>
-        <img src="${card.img}" class="hand--card--img" />
-        <p class="hand--card--name">${card.name}</p>
-        <p class="hand--card--ability"><br />${card.ability}</p>
-        <div class="hand--card--stat-container">
-          <div class="hand--card--action-stat ${card.healing > 0 ? "healer" : ""}">${card.attack === 0 ? card.healing : card.attack}</div>
-          <div class="hand--card--turn-stat">${card.turns}</div>
+    <div class="card" id="${card.id}">
+        <div class="card--cost">${card.cost}</div>
+        <img src="${card.img}" class="card--img" />
+        <p class="card--name">${card.name}</p>
+        <p class="card--ability"><br />${card.ability}</p>
+        <div class="card--stat-container">
+          <div class="card--action-stat ${card.healing > 0 ? "healer" : ""}">${card.attack === 0 ? card.healing : card.attack}</div>
+          <div class="card--turn-stat">${card.turns}</div>
         </div>
     </div>
     `;
@@ -2290,15 +2290,20 @@ const renderBoard = function(data) {
         const markup = `
     <div class="board--card" data-id="${card.id}00">
       <img class="board--card--img" src="${card.img}" />
-      <div class="board--card--left-stat  ${card.healing > 0 ? "healer" : ""}">${card.attack === 0 ? card.healing : card.attack}</div>
-      <div class="board--card--turn-stat">${card.turns}</div>
-      <div class="hover-view" id="${card.id}00">
-        <div class="hover-view--cost">${card.cost}</div>
-        <img src="${card.img}" class="hover-view--img" />
-        <p class="hover-view--name">${card.name}</p>
-        <p class="hover-view--ability"><br />${card.ability}</p>
-        <div class="hover-view--left-stat ${card.healing > 0 ? "healer" : ""}">${card.attack === 0 ? card.healing : card.defaultAttack}</div>
-        <div class="hover-view--turn-stat">${card.defaultTurns}</div>
+      <div class="board--card--stat-container">
+        <div class="board--card--action-stat  ${card.healing > 0 ? "healer" : ""}">${card.attack === 0 ? card.healing : card.attack}</div>
+        <div class="board--card--turn-stat">${card.turns}</div>
+      </div>
+      
+      <div class="card hover-view" id="${card.id}00">
+        <div class="card--cost">${card.cost}</div>
+        <img src="${card.img}" class="card--img" />
+        <p class="card--name">${card.name}</p>
+        <p class="card--ability"><br />${card.ability}</p>
+        <div class="card--stat-container">
+          <div class="card--action-stat ${card.healing > 0 ? "healer" : ""}">${card.attack === 0 ? card.healing : card.defaultAttack}</div>
+          <div class="card--turn-stat">${card.defaultTurns}</div>
+        </div>
       </div>
     </div>
     `;

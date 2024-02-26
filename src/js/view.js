@@ -71,16 +71,16 @@ export const renderHand = async function (data) {
   parentElement.innerHTML = "";
   data.forEach(function (card) {
     const markup = `
-    <div class="hand--card" id="${card.id}">
-        <div class="hand--card--cost">${card.cost}</div>
-        <img src="${card.img}" class="hand--card--img" />
-        <p class="hand--card--name">${card.name}</p>
-        <p class="hand--card--ability"><br />${card.ability}</p>
-        <div class="hand--card--stat-container">
-          <div class="hand--card--action-stat ${
-            card.healing > 0 ? "healer" : ""
-          }">${card.attack === 0 ? card.healing : card.attack}</div>
-          <div class="hand--card--turn-stat">${card.turns}</div>
+    <div class="card" id="${card.id}">
+        <div class="card--cost">${card.cost}</div>
+        <img src="${card.img}" class="card--img" />
+        <p class="card--name">${card.name}</p>
+        <p class="card--ability"><br />${card.ability}</p>
+        <div class="card--stat-container">
+          <div class="card--action-stat ${card.healing > 0 ? "healer" : ""}">${
+      card.attack === 0 ? card.healing : card.attack
+    }</div>
+          <div class="card--turn-stat">${card.turns}</div>
         </div>
     </div>
     `;
@@ -95,19 +95,24 @@ export const renderBoard = function (data) {
     const markup = `
     <div class="board--card" data-id="${card.id}00">
       <img class="board--card--img" src="${card.img}" />
-      <div class="board--card--left-stat  ${
-        card.healing > 0 ? "healer" : ""
-      }">${card.attack === 0 ? card.healing : card.attack}</div>
-      <div class="board--card--turn-stat">${card.turns}</div>
-      <div class="hover-view" id="${card.id}00">
-        <div class="hover-view--cost">${card.cost}</div>
-        <img src="${card.img}" class="hover-view--img" />
-        <p class="hover-view--name">${card.name}</p>
-        <p class="hover-view--ability"><br />${card.ability}</p>
-        <div class="hover-view--left-stat ${
+      <div class="board--card--stat-container">
+        <div class="board--card--action-stat  ${
           card.healing > 0 ? "healer" : ""
-        }">${card.attack === 0 ? card.healing : card.defaultAttack}</div>
-        <div class="hover-view--turn-stat">${card.defaultTurns}</div>
+        }">${card.attack === 0 ? card.healing : card.attack}</div>
+        <div class="board--card--turn-stat">${card.turns}</div>
+      </div>
+      
+      <div class="card hover-view" id="${card.id}00">
+        <div class="card--cost">${card.cost}</div>
+        <img src="${card.img}" class="card--img" />
+        <p class="card--name">${card.name}</p>
+        <p class="card--ability"><br />${card.ability}</p>
+        <div class="card--stat-container">
+          <div class="card--action-stat ${card.healing > 0 ? "healer" : ""}">${
+      card.attack === 0 ? card.healing : card.defaultAttack
+    }</div>
+          <div class="card--turn-stat">${card.defaultTurns}</div>
+        </div>
       </div>
     </div>
     `;
