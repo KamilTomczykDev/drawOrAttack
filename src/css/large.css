@@ -40,4 +40,14 @@
   .card--cost {
     font-size: 1.5rem;
   }
+  .card--name {
+    font-size: 0.7rem;
+  }
+  .card--ability {
+    font-size: 0.6rem;
+    bottom: 35;
+  }
+  .hover-view {
+    height: 200px;
+  }
 }

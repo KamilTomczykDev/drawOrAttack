@@ -416,7 +416,6 @@ a {
   gap: 0.1rem;
   justify-content: center;
   align-items: center;
-  overflow-x: scroll;
 }
 .card,
 .hover-view {
