@@ -582,25 +582,24 @@ var _runtime = require("regenerator-runtime/runtime");
 if (module.hot) module.hot.accept();
 const hand = document.querySelector(".hand");
 ////////////////////////
-const { state } = _modelJs;
-const setTimer = ()=>state.timer = 25;
+const setTimer = ()=>(0, _modelJs.state).timer = 25;
 const subtractTurn = (data)=>data.forEach((card)=>card.turns -= 1);
 const killUnits = ()=>{
-    if (state.board.length > 0) state.cementary.push(...state.board.filter((card)=>+card.turns === 0));
-    state.board = state.board.filter((card)=>+card.turns !== 0);
+    if ((0, _modelJs.state).board.length > 0) (0, _modelJs.state).cementary.push(...(0, _modelJs.state).board.filter((card)=>+card.turns === 0));
+    (0, _modelJs.state).board = (0, _modelJs.state).board.filter((card)=>+card.turns !== 0);
 };
 const startTimer = function() {
     setTimer();
     const countdown = setInterval(function() {
-        --state.timer;
-        _viewJs.renderTimer(state.timer);
-        if (state.timer < 1) {
+        --(0, _modelJs.state).timer;
+        _viewJs.renderTimer((0, _modelJs.state).timer);
+        if ((0, _modelJs.state).timer < 1) {
             clearInterval(countdown);
             startTimer();
             nextTurn();
             setTimeout(()=>draw(), 2000);
         }
-        if (state.winner !== null) clearInterval(countdown);
+        if ((0, _modelJs.state).winner !== null) clearInterval(countdown);
     }, 1000);
 };
 const giveHandlersBack = ()=>{
@@ -608,55 +607,55 @@ const giveHandlersBack = ()=>{
     _viewJs.addHandlerDraw(drawBtnClick);
 };
 const draw = function() {
-    const number = Math.trunc(Math.random() * state.deck.length);
-    if (state.deck.length === 0) return;
-    if (state.hand.length === 5) {
-        state.cementary.push(state.deck[number]);
+    const number = Math.trunc(Math.random() * (0, _modelJs.state).deck.length);
+    if ((0, _modelJs.state).deck.length === 0) return;
+    if ((0, _modelJs.state).hand.length === 5) {
+        (0, _modelJs.state).cementary.push((0, _modelJs.state).deck[number]);
         const cementaryNum = document.querySelector(".skull-number");
         _viewJs.giveShakeAnimation(cementaryNum);
-    } else state.hand.push(state.deck[number]);
-    const x = state.deck.splice(number, 1);
+    } else (0, _modelJs.state).hand.push((0, _modelJs.state).deck[number]);
+    const x = (0, _modelJs.state).deck.splice(number, 1);
     renderUI();
 };
 const turnNumberUp = ()=>{
-    state.turn += 1;
-    if (state.turn === 7 && state.enemy.hp > 0) {
-        state.enemy.hp = 35;
-        state.enemy.attack = 8;
-        state.enemy.name = "Nazgramm the Bloodlord";
-        state.enemy.discription = "Deal 8 dmg and heal 5 hp each round";
-        state.enemy.img = "/nazgrammSecond.png";
+    (0, _modelJs.state).turn += 1;
+    if ((0, _modelJs.state).turn === 7 && (0, _modelJs.state).enemy.hp > 0) {
+        (0, _modelJs.state).enemy.hp = 35;
+        (0, _modelJs.state).enemy.attack = 8;
+        (0, _modelJs.state).enemy.name = "Nazgramm the Bloodlord";
+        (0, _modelJs.state).enemy.discription = "Deal 8 dmg and heal 5 hp each round";
+        (0, _modelJs.state).enemy.img = "/nazgrammSecond.png";
     }
-    if (state.turn === 12 && state.enemy.hp > 0) {
-        state.enemy.hp = 40;
-        state.enemy.attack = 10;
-        state.enemy.name = "Nazgramm (Demon form)";
-        state.enemy.discription = "Deal 10 dmg, heal 5 hp and kill random unit each round";
-        state.enemy.img = "/nazgrammThird.png";
+    if ((0, _modelJs.state).turn === 12 && (0, _modelJs.state).enemy.hp > 0) {
+        (0, _modelJs.state).enemy.hp = 40;
+        (0, _modelJs.state).enemy.attack = 10;
+        (0, _modelJs.state).enemy.name = "Nazgramm (Demon form)";
+        (0, _modelJs.state).enemy.discription = "Deal 10 dmg, heal 5 hp and kill random unit each round";
+        (0, _modelJs.state).enemy.img = "/nazgrammThird.png";
     }
 };
 const nazgrammUltimate = ()=>{
-    if (state.turn >= 7 && state.enemy.hp < 40) state.enemy.hp += 5;
-    if (state.turn >= 12 && state.board.length > 0) {
-        const number = Math.trunc(Math.random() * state.board.length);
-        state.cementary.push(state.board[number]);
-        const x = state.board.splice(number, 1);
+    if ((0, _modelJs.state).turn >= 7 && (0, _modelJs.state).enemy.hp < 40) (0, _modelJs.state).enemy.hp += 5;
+    if ((0, _modelJs.state).turn >= 12 && (0, _modelJs.state).board.length > 0) {
+        const number = Math.trunc(Math.random() * (0, _modelJs.state).board.length);
+        (0, _modelJs.state).cementary.push((0, _modelJs.state).board[number]);
+        const x = (0, _modelJs.state).board.splice(number, 1);
         renderUI();
     }
 };
 const lookForWinner = function() {
-    if (state.playerHp <= 0) {
-        state.winner = "enemy";
-        _viewJs.renderEndgame(state.winner);
+    if ((0, _modelJs.state).playerHp <= 0) {
+        (0, _modelJs.state).winner = "enemy";
+        _viewJs.renderEndgame((0, _modelJs.state).winner);
     }
-    if (state.enemy.hp <= 0) {
-        state.winner = "player";
-        _viewJs.renderEndgame(state.winner);
+    if ((0, _modelJs.state).enemy.hp <= 0) {
+        (0, _modelJs.state).winner = "player";
+        _viewJs.renderEndgame((0, _modelJs.state).winner);
     }
 };
 const manaNumberUp = ()=>{
-    if (state.maxMana !== 10) state.maxMana += 1;
-    state.currentMana = state.maxMana;
+    if ((0, _modelJs.state).maxMana !== 10) (0, _modelJs.state).maxMana += 1;
+    (0, _modelJs.state).currentMana = (0, _modelJs.state).maxMana;
 };
 const nextTurn = function() {
     const playerHpElement = document.querySelector(".hero--health");
@@ -667,15 +666,15 @@ const nextTurn = function() {
     manaNumberUp();
     _viewJs.removeHandlerDraw(drawBtnClick);
     _viewJs.removeHandlerAttack(attackBtnClick);
-    console.log(state.board);
+    console.log((0, _modelJs.state).board);
     setTimeout(function() {
-        state.playerHp -= state.enemy.attack;
+        (0, _modelJs.state).playerHp -= (0, _modelJs.state).enemy.attack;
         nazgrammUltimate();
         lookForWinner();
         _viewJs.giveShakeAnimation(playerHpElement);
         _viewJs.giveDamageAnimation(playerHpElement);
         _viewJs.nextTurnAnimation();
-        subtractTurn(state.board);
+        subtractTurn((0, _modelJs.state).board);
         killUnits();
         setTimer();
         giveHandlersBack();
@@ -688,46 +687,46 @@ const drawBtnClick = function() {
     clickAudio.play();
     nextTurn();
     setTimeout(()=>{
-        if (state.turn >= 12) {
+        if ((0, _modelJs.state).turn >= 12) {
             draw();
             draw();
         } else draw();
     }, 2500);
 };
 const applyHealing = ()=>{
-    state.board.forEach((card)=>{
-        if (card.healing) state.playerHp += card.healing;
+    (0, _modelJs.state).board.forEach((card)=>{
+        if (card.healing) (0, _modelJs.state).playerHp += card.healing;
     });
 };
 const attackBtnClick = function() {
     const enemyHpElement = document.querySelector(".enemy-section--hero--health");
     const clickAudio = new Audio("/btnClick.mp3");
     clickAudio.play();
-    state.board.forEach((card)=>{
-        if (card.attack) state.enemy.hp -= card.attack;
+    (0, _modelJs.state).board.forEach((card)=>{
+        if (card.attack) (0, _modelJs.state).enemy.hp -= card.attack;
     });
     nextTurn();
     setTimeout(function() {
         _viewJs.giveShakeAnimation(enemyHpElement);
         _viewJs.giveDamageAnimation(enemyHpElement);
-        if (state.turn >= 12) draw();
+        if ((0, _modelJs.state).turn >= 12) draw();
     }, 2000);
 };
 const renderUI = function() {
-    _viewJs.renderCementaryNum(state.cementary);
-    _viewJs.renderDeckNum(state.deck);
-    _viewJs.renderHand(state.hand);
-    _viewJs.renderBoard(state.board);
-    _viewJs.renderMana(state.currentMana, state.maxMana);
-    _viewJs.renderTurn(state.turn);
-    _viewJs.renderPlayer(state.playerHp);
-    _viewJs.renderEnemy(state.enemy);
+    _viewJs.renderCementaryNum((0, _modelJs.state).cementary);
+    _viewJs.renderDeckNum((0, _modelJs.state).deck);
+    _viewJs.renderHand((0, _modelJs.state).hand);
+    _viewJs.renderBoard((0, _modelJs.state).board);
+    _viewJs.renderMana((0, _modelJs.state).currentMana, (0, _modelJs.state).maxMana);
+    _viewJs.renderTurn((0, _modelJs.state).turn);
+    _viewJs.renderPlayer((0, _modelJs.state).playerHp);
+    _viewJs.renderEnemy((0, _modelJs.state).enemy);
 };
 const gameInit = function() {
     draw();
     draw();
     draw();
-    state.playerHp = 30;
+    (0, _modelJs.state).playerHp = 30;
     renderUI();
     startTimer();
 };
@@ -735,32 +734,32 @@ const handHandler = function(e) {
     const clickAudio = new Audio("/handClick.mp3");
     const clicked = e.target.closest(".card");
     if (!clicked) return;
-    const foundCard = state.hand.find((el)=>el.id === +clicked.id);
-    if (foundCard.cost <= state.currentMana) {
+    const foundCard = (0, _modelJs.state).hand.find((el)=>el.id === +clicked.id);
+    if (foundCard.cost <= (0, _modelJs.state).currentMana) {
         clickAudio.play();
         checkForRage(foundCard);
         checkForBlessing(foundCard);
         checkForHourglass(foundCard);
-        const boardArr = state.hand.filter((el)=>el.id === foundCard.id);
-        state.board.push(...boardArr);
-        const newArr = state.hand.filter((el)=>el.id !== foundCard.id);
-        state.hand = newArr;
-        state.currentMana -= foundCard.cost;
+        const boardArr = (0, _modelJs.state).hand.filter((el)=>el.id === foundCard.id);
+        (0, _modelJs.state).board.push(...boardArr);
+        const newArr = (0, _modelJs.state).hand.filter((el)=>el.id !== foundCard.id);
+        (0, _modelJs.state).hand = newArr;
+        (0, _modelJs.state).currentMana -= foundCard.cost;
         renderUI();
     }
 };
 const checkForRage = function(card) {
-    if (card.ability === "Rage" && state.board.length > 0) state.board.forEach((card)=>{
+    if (card.ability === "Rage" && (0, _modelJs.state).board.length > 0) (0, _modelJs.state).board.forEach((card)=>{
         if (card.attack > 0) card.attack += 1;
     });
 };
 const checkForBlessing = function(card) {
-    if (card.ability === "Blessing" && state.board.length > 0) state.board.forEach((card)=>{
+    if (card.ability === "Blessing" && (0, _modelJs.state).board.length > 0) (0, _modelJs.state).board.forEach((card)=>{
         if (card.healing > 0) card.healing += 1;
     });
 };
 const checkForHourglass = function(card) {
-    if (card.ability === "Hourglass" && state.board.length > 0) state.board.forEach((card)=>{
+    if (card.ability === "Hourglass" && (0, _modelJs.state).board.length > 0) (0, _modelJs.state).board.forEach((card)=>{
         card.turns += 1;
     });
 };

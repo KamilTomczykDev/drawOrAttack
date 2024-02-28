@@ -1,5 +1,5 @@
 "use strict";
-import * as model from "./model.js";
+import { state } from "./model.js";
 import * as view from "./view.js";
 
 import "core-js/stable";
@@ -11,8 +11,6 @@ if (module.hot) {
 const hand = document.querySelector(".hand");
 
 ////////////////////////
-
-const { state } = model;
 
 const setTimer = () => (state.timer = 25);
 const subtractTurn = (data) => data.forEach((card) => (card.turns -= 1));
