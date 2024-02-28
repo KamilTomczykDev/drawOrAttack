@@ -1,8 +1,4 @@
 const board = document.querySelector(".board");
-const hoverView = document.querySelector(".hover-view");
-const enemySide = document.querySelector(".enemy-section");
-const enemyDiscription = document.querySelector(".enemy-section--discription");
-const enemyHealth = document.querySelector(".enemy-section--hero--health");
 const gameMenu = document.querySelector(".game-menu");
 const gameMenuStart = document.querySelector(".game-menu--start");
 const game = document.querySelector(".game");
@@ -10,7 +6,6 @@ const footer = document.querySelector(".footer");
 const deckNum = document.querySelector(".deck-number");
 const cementaryNum = document.querySelector(".skull-number");
 const drawBtn = document.querySelector(".button--draw");
-const hand = document.querySelector(".hand");
 const turnCounter = document.querySelector(".turn-counter");
 const playerHp = document.querySelector(".hero--health");
 const nextTurnText = document.querySelector(".next-turn--container");
@@ -77,8 +72,8 @@ export const renderHand = async function (data) {
         <p class="card--name">${card.name}</p>
         <p class="card--ability"><br />${card.ability}</p>
         <div class="card--stat-container">
-          <div class="card--action-stat ${card.healing > 0 ? "healer" : ""}">${
-      card.attack === 0 ? card.healing : card.attack
+          <div class="card--action-stat ${card.healing ? "healer" : ""}">${
+      !card.attack ? card.healing : card.attack
     }</div>
           <div class="card--turn-stat">${card.turns}</div>
         </div>
@@ -97,8 +92,8 @@ export const renderBoard = function (data) {
       <img class="board--card--img" src="${card.img}" />
       <div class="board--card--stat-container">
         <div class="board--card--action-stat  ${
-          card.healing > 0 ? "healer" : ""
-        }">${card.attack === 0 ? card.healing : card.attack}</div>
+          card.healing ? "healer" : ""
+        }">${!card.attack ? card.healing : card.attack}</div>
         <div class="board--card--turn-stat">${card.turns}</div>
       </div>
       
@@ -108,8 +103,8 @@ export const renderBoard = function (data) {
         <p class="card--name">${card.name}</p>
         <p class="card--ability"><br />${card.ability}</p>
         <div class="card--stat-container">
-          <div class="card--action-stat ${card.healing > 0 ? "healer" : ""}">${
-      card.attack === 0 ? card.healing : card.defaultAttack
+          <div class="card--action-stat ${card.healing ? "healer" : ""}">${
+      !card.attack ? card.healing : card.defaultAttack
     }</div>
           <div class="card--turn-stat">${card.defaultTurns}</div>
         </div>
@@ -133,11 +128,10 @@ export const renderMana = function (currentData, maxData) {
   }
 };
 export const renderTurn = function (data) {
-  let rest;
+  let rest = "th";
   if (data === 1) rest = "st";
   if (data === 2) rest = "nd";
   if (data === 3) rest = "rd";
-  if (data > 3) rest = "th";
   turnCounter.textContent = `${data}${rest} turn`;
 };
 

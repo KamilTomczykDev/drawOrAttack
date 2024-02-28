@@ -576,31 +576,31 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 },{}],"aenu9":[function(require,module,exports) {
 var _webImmediateJs = require("core-js/modules/web.immediate.js");
 var _modelJs = require("./model.js");
-var _apiJs = require("./API.js");
 var _viewJs = require("./view.js");
 var _runtime = require("regenerator-runtime/runtime");
 "use strict";
 if (module.hot) module.hot.accept();
 const hand = document.querySelector(".hand");
 ////////////////////////
-const setTimer = ()=>_modelJs.state.timer = 25;
+const { state } = _modelJs;
+const setTimer = ()=>state.timer = 25;
 const subtractTurn = (data)=>data.forEach((card)=>card.turns -= 1);
 const killUnits = ()=>{
-    if (_modelJs.state.board.length > 0) _modelJs.state.cementary.push(..._modelJs.state.board.filter((card)=>+card.turns === 0));
-    _modelJs.state.board = _modelJs.state.board.filter((card)=>+card.turns !== 0);
+    if (state.board.length > 0) state.cementary.push(...state.board.filter((card)=>+card.turns === 0));
+    state.board = state.board.filter((card)=>+card.turns !== 0);
 };
 const startTimer = function() {
     setTimer();
     const countdown = setInterval(function() {
-        --_modelJs.state.timer;
-        _viewJs.renderTimer(_modelJs.state.timer);
-        if (_modelJs.state.timer < 1) {
+        --state.timer;
+        _viewJs.renderTimer(state.timer);
+        if (state.timer < 1) {
             clearInterval(countdown);
             startTimer();
             nextTurn();
             setTimeout(()=>draw(), 2000);
         }
-        if (_modelJs.state.winner !== null) clearInterval(countdown);
+        if (state.winner !== null) clearInterval(countdown);
     }, 1000);
 };
 const giveHandlersBack = ()=>{
@@ -608,56 +608,55 @@ const giveHandlersBack = ()=>{
     _viewJs.addHandlerDraw(drawBtnClick);
 };
 const draw = function() {
-    const number = Math.trunc(Math.random() * _modelJs.state.deck.length);
-    if (_modelJs.state.deck.length === 0) return;
-    if (_modelJs.state.hand.length === 5) {
-        _modelJs.state.cementary.push(_modelJs.state.deck[number]);
+    const number = Math.trunc(Math.random() * state.deck.length);
+    if (state.deck.length === 0) return;
+    if (state.hand.length === 5) {
+        state.cementary.push(state.deck[number]);
         const cementaryNum = document.querySelector(".skull-number");
         _viewJs.giveShakeAnimation(cementaryNum);
-    } else _modelJs.state.hand.push(_modelJs.state.deck[number]);
-    const x = _modelJs.state.deck.splice(number, 1);
+    } else state.hand.push(state.deck[number]);
+    const x = state.deck.splice(number, 1);
     renderUI();
 };
 const turnNumberUp = ()=>{
-    _modelJs.state.turn += 1;
-    if (_modelJs.state.turn === 7 && _modelJs.state.enemy.hp > 0) {
-        _modelJs.state.enemy.hp = 35;
-        _modelJs.state.enemy.attack = 8;
-        _modelJs.state.enemy.name = "Nazgramm the Bloodlord";
-        _modelJs.state.enemy.discription = "Deal 8 dmg and heal 5 hp each round";
-        _modelJs.state.enemy.img = "/nazgrammSecond.png";
+    state.turn += 1;
+    if (state.turn === 7 && state.enemy.hp > 0) {
+        state.enemy.hp = 35;
+        state.enemy.attack = 8;
+        state.enemy.name = "Nazgramm the Bloodlord";
+        state.enemy.discription = "Deal 8 dmg and heal 5 hp each round";
+        state.enemy.img = "/nazgrammSecond.png";
     }
-    if (_modelJs.state.turn === 12 && _modelJs.state.enemy.hp > 0) {
-        _modelJs.state.enemy.hp = 40;
-        _modelJs.state.enemy.attack = 10;
-        _modelJs.state.enemy.name = "Nazgramm (Demon form)";
-        _modelJs.state.enemy.discription = "Deal 10 dmg, heal 5 hp and kill random unit each round";
-        _modelJs.state.enemy.img = "/nazgrammThird.png";
+    if (state.turn === 12 && state.enemy.hp > 0) {
+        state.enemy.hp = 40;
+        state.enemy.attack = 10;
+        state.enemy.name = "Nazgramm (Demon form)";
+        state.enemy.discription = "Deal 10 dmg, heal 5 hp and kill random unit each round";
+        state.enemy.img = "/nazgrammThird.png";
     }
 };
 const nazgrammUltimate = ()=>{
-    if (_modelJs.state.turn >= 7 && _modelJs.state.enemy.hp < 40) // model.state.turn <= 11 {
-    _modelJs.state.enemy.hp += 5;
-    if (_modelJs.state.turn >= 12 && _modelJs.state.board.length > 0) {
-        const number = Math.trunc(Math.random() * _modelJs.state.board.length);
-        _modelJs.state.cementary.push(_modelJs.state.board[number]);
-        const x = _modelJs.state.board.splice(number, 1);
+    if (state.turn >= 7 && state.enemy.hp < 40) state.enemy.hp += 5;
+    if (state.turn >= 12 && state.board.length > 0) {
+        const number = Math.trunc(Math.random() * state.board.length);
+        state.cementary.push(state.board[number]);
+        const x = state.board.splice(number, 1);
         renderUI();
     }
 };
 const lookForWinner = function() {
-    if (_modelJs.state.playerHp <= 0) {
-        _modelJs.state.winner = "enemy";
-        _viewJs.renderEndgame(_modelJs.state.winner);
+    if (state.playerHp <= 0) {
+        state.winner = "enemy";
+        _viewJs.renderEndgame(state.winner);
     }
-    if (_modelJs.state.enemy.hp <= 0) {
-        _modelJs.state.winner = "player";
-        _viewJs.renderEndgame(_modelJs.state.winner);
+    if (state.enemy.hp <= 0) {
+        state.winner = "player";
+        _viewJs.renderEndgame(state.winner);
     }
 };
 const manaNumberUp = ()=>{
-    if (_modelJs.state.maxMana !== 10) _modelJs.state.maxMana += 1;
-    _modelJs.state.currentMana = _modelJs.state.maxMana;
+    if (state.maxMana !== 10) state.maxMana += 1;
+    state.currentMana = state.maxMana;
 };
 const nextTurn = function() {
     const playerHpElement = document.querySelector(".hero--health");
@@ -668,15 +667,15 @@ const nextTurn = function() {
     manaNumberUp();
     _viewJs.removeHandlerDraw(drawBtnClick);
     _viewJs.removeHandlerAttack(attackBtnClick);
-    console.log(_modelJs.state.board);
+    console.log(state.board);
     setTimeout(function() {
-        _modelJs.state.playerHp -= _modelJs.state.enemy.attack;
+        state.playerHp -= state.enemy.attack;
         nazgrammUltimate();
         lookForWinner();
         _viewJs.giveShakeAnimation(playerHpElement);
         _viewJs.giveDamageAnimation(playerHpElement);
         _viewJs.nextTurnAnimation();
-        subtractTurn(_modelJs.state.board);
+        subtractTurn(state.board);
         killUnits();
         setTimer();
         giveHandlersBack();
@@ -689,46 +688,46 @@ const drawBtnClick = function() {
     clickAudio.play();
     nextTurn();
     setTimeout(()=>{
-        if (_modelJs.state.turn >= 12) {
+        if (state.turn >= 12) {
             draw();
             draw();
         } else draw();
     }, 2500);
 };
 const applyHealing = ()=>{
-    _modelJs.state.board.forEach((card)=>{
-        if (card.healing > 0) _modelJs.state.playerHp += card.healing;
+    state.board.forEach((card)=>{
+        if (card.healing) state.playerHp += card.healing;
     });
 };
 const attackBtnClick = function() {
     const enemyHpElement = document.querySelector(".enemy-section--hero--health");
     const clickAudio = new Audio("/btnClick.mp3");
     clickAudio.play();
-    _modelJs.state.board.forEach((card)=>{
-        _modelJs.state.enemy.hp -= card.attack;
+    state.board.forEach((card)=>{
+        if (card.attack) state.enemy.hp -= card.attack;
     });
     nextTurn();
     setTimeout(function() {
         _viewJs.giveShakeAnimation(enemyHpElement);
         _viewJs.giveDamageAnimation(enemyHpElement);
-        if (_modelJs.state.turn >= 12) draw();
+        if (state.turn >= 12) draw();
     }, 2000);
 };
 const renderUI = function() {
-    _viewJs.renderCementaryNum(_modelJs.state.cementary);
-    _viewJs.renderDeckNum(_modelJs.state.deck);
-    _viewJs.renderHand(_modelJs.state.hand);
-    _viewJs.renderBoard(_modelJs.state.board);
-    _viewJs.renderMana(_modelJs.state.currentMana, _modelJs.state.maxMana);
-    _viewJs.renderTurn(_modelJs.state.turn);
-    _viewJs.renderPlayer(_modelJs.state.playerHp);
-    _viewJs.renderEnemy(_modelJs.state.enemy);
+    _viewJs.renderCementaryNum(state.cementary);
+    _viewJs.renderDeckNum(state.deck);
+    _viewJs.renderHand(state.hand);
+    _viewJs.renderBoard(state.board);
+    _viewJs.renderMana(state.currentMana, state.maxMana);
+    _viewJs.renderTurn(state.turn);
+    _viewJs.renderPlayer(state.playerHp);
+    _viewJs.renderEnemy(state.enemy);
 };
 const gameInit = function() {
     draw();
     draw();
     draw();
-    _modelJs.state.playerHp = 30;
+    state.playerHp = 30;
     renderUI();
     startTimer();
 };
@@ -736,32 +735,32 @@ const handHandler = function(e) {
     const clickAudio = new Audio("/handClick.mp3");
     const clicked = e.target.closest(".card");
     if (!clicked) return;
-    const foundCard = _modelJs.state.hand.find((el)=>el.id === +clicked.id);
-    if (foundCard.cost <= _modelJs.state.currentMana) {
+    const foundCard = state.hand.find((el)=>el.id === +clicked.id);
+    if (foundCard.cost <= state.currentMana) {
         clickAudio.play();
         checkForRage(foundCard);
         checkForBlessing(foundCard);
         checkForHourglass(foundCard);
-        const boardArr = _modelJs.state.hand.filter((el)=>el.id === foundCard.id);
-        _modelJs.state.board.push(...boardArr);
-        const newArr = _modelJs.state.hand.filter((el)=>el.id !== foundCard.id);
-        _modelJs.state.hand = newArr;
-        _modelJs.state.currentMana -= foundCard.cost;
+        const boardArr = state.hand.filter((el)=>el.id === foundCard.id);
+        state.board.push(...boardArr);
+        const newArr = state.hand.filter((el)=>el.id !== foundCard.id);
+        state.hand = newArr;
+        state.currentMana -= foundCard.cost;
         renderUI();
     }
 };
 const checkForRage = function(card) {
-    if (card.ability === "Rage" && _modelJs.state.board.length > 0) _modelJs.state.board.forEach((card)=>{
+    if (card.ability === "Rage" && state.board.length > 0) state.board.forEach((card)=>{
         if (card.attack > 0) card.attack += 1;
     });
 };
 const checkForBlessing = function(card) {
-    if (card.ability === "Blessing" && _modelJs.state.board.length > 0) _modelJs.state.board.forEach((card)=>{
+    if (card.ability === "Blessing" && state.board.length > 0) state.board.forEach((card)=>{
         if (card.healing > 0) card.healing += 1;
     });
 };
 const checkForHourglass = function(card) {
-    if (card.ability === "Hourglass" && _modelJs.state.board.length > 0) _modelJs.state.board.forEach((card)=>{
+    if (card.ability === "Hourglass" && state.board.length > 0) state.board.forEach((card)=>{
         card.turns += 1;
     });
 };
@@ -770,7 +769,7 @@ _viewJs.addHandlerAttack(attackBtnClick);
 _viewJs.addHandlerGameInit(gameInit);
 _viewJs.addHandlerDraw(drawBtnClick);
 
-},{"core-js/modules/web.immediate.js":"49tUX","./model.js":"Y4A21","./API.js":"iKbJC","./view.js":"ky8MP","regenerator-runtime/runtime":"dXNgZ"}],"49tUX":[function(require,module,exports) {
+},{"core-js/modules/web.immediate.js":"49tUX","./model.js":"Y4A21","./view.js":"ky8MP","regenerator-runtime/runtime":"dXNgZ"}],"49tUX":[function(require,module,exports) {
 "use strict";
 // TODO: Remove this module from `core-js@4` since it's split to modules listed below
 require("52e9b3eefbbce1ed");
@@ -2019,13 +2018,14 @@ module.exports = function(scheduler, hasTimeArg) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "state", ()=>state);
-var _apiJs = require("./API.js");
+var _cardsJs = require("./cards.js");
 const state = {
-    deck: [],
+    deck: [
+        ...(0, _cardsJs.cards)
+    ],
     board: [],
     hand: [],
     cementary: [],
-    currentTurn: 1,
     timer: 25,
     enemy: {
         name: "Mysterious Creature",
@@ -2040,123 +2040,8 @@ const state = {
     turn: 1,
     winner: null
 };
-state.deck = [
-    ..._apiJs.defaultDeckArray
-];
 
-},{"./API.js":"iKbJC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iKbJC":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "card1", ()=>card1);
-parcelHelpers.export(exports, "card2", ()=>card2);
-parcelHelpers.export(exports, "card3", ()=>card3);
-parcelHelpers.export(exports, "card4", ()=>card4);
-parcelHelpers.export(exports, "card5", ()=>card5);
-parcelHelpers.export(exports, "card6", ()=>card6);
-parcelHelpers.export(exports, "card7", ()=>card7);
-parcelHelpers.export(exports, "card8", ()=>card8);
-parcelHelpers.export(exports, "card9", ()=>card9);
-parcelHelpers.export(exports, "card10", ()=>card10);
-parcelHelpers.export(exports, "card11", ()=>card11);
-parcelHelpers.export(exports, "card12", ()=>card12);
-parcelHelpers.export(exports, "card13", ()=>card13);
-parcelHelpers.export(exports, "card14", ()=>card14);
-parcelHelpers.export(exports, "card15", ()=>card15);
-parcelHelpers.export(exports, "card16", ()=>card16);
-parcelHelpers.export(exports, "card17", ()=>card17);
-parcelHelpers.export(exports, "card18", ()=>card18);
-parcelHelpers.export(exports, "card19", ()=>card19);
-parcelHelpers.export(exports, "card20", ()=>card20);
-parcelHelpers.export(exports, "card21", ()=>card21);
-parcelHelpers.export(exports, "card22", ()=>card22);
-parcelHelpers.export(exports, "card23", ()=>card23);
-parcelHelpers.export(exports, "card24", ()=>card24);
-parcelHelpers.export(exports, "card25", ()=>card25);
-parcelHelpers.export(exports, "card26", ()=>card26);
-parcelHelpers.export(exports, "card27", ()=>card27);
-parcelHelpers.export(exports, "card28", ()=>card28);
-parcelHelpers.export(exports, "card29", ()=>card29);
-parcelHelpers.export(exports, "card30", ()=>card30);
-parcelHelpers.export(exports, "defaultDeckArray", ()=>defaultDeckArray);
-class Card {
-    constructor(name, defaultAttack, attack, defaultHealing, healing, cost, defaultTurns, turns, ability, img, id){
-        this.name = name;
-        this.defaultAttack = defaultAttack;
-        this.attack = attack;
-        this.defaultHealing = defaultHealing;
-        this.healing = healing;
-        this.cost = cost;
-        this.defaultTurns = defaultTurns;
-        this.turns = turns;
-        this.ability = ability;
-        this.img = img;
-        this.id = id;
-    }
-}
-const card1 = new Card("Weak Farmer", 2, 2, 0, 0, 1, 3, 3, "", "/weakFarmer2.jpeg", 1);
-const card2 = new Card("Weak Farmer", 2, 2, 0, 0, 1, 3, 3, "", "/weakFarmer2.jpeg", 2);
-const card3 = new Card("Tree of Vitality", 0, 0, 4, 4, 2, 2, 2, "", "/treeOfVitality.png", 3);
-const card4 = new Card("Tree of Vitality", 0, 0, 4, 4, 2, 2, 2, "", "/treeOfVitality.png", 4);
-const card5 = new Card("Hound", 3, 3, 0, 0, 1, 2, 2, "", "/hound.png", 5);
-const card6 = new Card("Hound", 3, 3, 0, 0, 1, 2, 2, "", "/hound.png", 6);
-const card7 = new Card("Castle Guardian", 4, 4, 0, 0, 2, 2, 2, "", "/castleDefender.png", 7);
-const card8 = new Card("Castle Guardian", 4, 4, 0, 0, 2, 2, 2, "", "/castleDefender.png", 8);
-const card9 = new Card("Caplan of Miridith", 0, 0, 4, 4, 3, 4, 4, "", "/caplanOfMiridith.png", 9);
-const card10 = new Card("Caplan of Miridith", 0, 0, 4, 4, 3, 4, 4, "", "/caplanOfMiridith.png", 10);
-const card11 = new Card("Strong farmer", 4, 4, 0, 0, 3, 2, 2, "", "/strongFarmer.png", 11);
-const card12 = new Card("Strong farmer", 4, 4, 0, 0, 3, 2, 2, "", "/strongFarmer.png", 12);
-const card13 = new Card("Berserker", 6, 6, 0, 0, 4, 1, 1, "", "/berserker.png", 13);
-const card14 = new Card("Berserker", 6, 6, 0, 0, 4, 1, 1, "", "/berserker.png", 14);
-const card15 = new Card("King's Defender", 4, 4, 0, 0, 4, 3, 3, "", "/kingsDefender.png", 15);
-const card16 = new Card("King's Defender", 4, 4, 0, 0, 4, 3, 3, "", "/kingsDefender.png", 16);
-const card17 = new Card("Military Hornist", 2, 2, 0, 0, 4, 3, 3, "Rage", "/militaryHornist.png", 17);
-const card18 = new Card("Military Hornist", 2, 2, 0, 0, 4, 3, 3, "Rage", "/militaryHornist.png", 18);
-const card19 = new Card("Light of Azhura", 0, 0, 5, 5, 5, 3, 3, "Blessing", "/lightOfAzhura.png", 19);
-const card20 = new Card("Light of Azhura", 0, 0, 5, 5, 5, 3, 3, "Blessing", "/lightOfAzhura.png", 20);
-const card21 = new Card("Firandil the Bloody", 6, 6, 0, 0, 5, 3, 3, "Rage", "/firandilTheBloody.png", 21);
-const card22 = new Card("Burning Horse", 7, 7, 0, 0, 5, 1, 1, "", "/BurningHorse.png", 22);
-const card23 = new Card("Burning Horse", 7, 7, 0, 0, 5, 1, 1, "", "/BurningHorse.png", 23);
-const card24 = new Card("Time traveler", 3, 3, 0, 0, 5, 2, 2, "Hourglass", "/timeTraveler.png", 24);
-const card25 = new Card("Time traveler", 3, 3, 0, 0, 5, 2, 2, "Hourglass", "/timeTraveler.png", 25);
-const card26 = new Card("Ciril the Mighty", 7, 7, 0, 0, 7, 4, 4, "", "/cirilTheMighty.png", 26);
-const card27 = new Card("Archmage Valorian", 6, 6, 0, 0, 7, 5, 5, "", "/archmageValorian.png", 27);
-const card28 = new Card("Princess Laurith", 0, 0, 7, 7, 7, 3, 3, "Blessing", "/princessLaurith.png", 28);
-const card29 = new Card("Karcoth The King", 8, 8, 0, 0, 8, 4, 4, "", "/karcothTheKing.png", 29);
-const card30 = new Card("Azhura", 8, 8, 0, 0, 9, 3, 3, "Hourglass", "/azhura.png", 30);
-const defaultDeckArray = [
-    card1,
-    card2,
-    card3,
-    card4,
-    card5,
-    card6,
-    card7,
-    card8,
-    card9,
-    card10,
-    card11,
-    card12,
-    card13,
-    card14,
-    card15,
-    card16,
-    card17,
-    card18,
-    card19,
-    card20,
-    card21,
-    card22,
-    card23,
-    card24,
-    card25,
-    card26,
-    card27,
-    card28,
-    card29,
-    card30
-];
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./cards.js":"8nBRx"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -2186,7 +2071,344 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"ky8MP":[function(require,module,exports) {
+},{}],"8nBRx":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "cards", ()=>cards);
+const cards = [
+    {
+        name: "Weak Farmer",
+        defaultAttack: 2,
+        attack: 2,
+        cost: 1,
+        defaultTurns: 3,
+        turns: 3,
+        ability: "",
+        img: "/weakFarmer2.jpeg",
+        id: 1
+    },
+    {
+        name: "Weak Farmer",
+        defaultAttack: 2,
+        attack: 2,
+        cost: 1,
+        defaultTurns: 3,
+        turns: 3,
+        ability: "",
+        img: "/weakFarmer2.jpeg",
+        id: 2
+    },
+    {
+        name: "Tree of Vitality",
+        defaultHealing: 4,
+        healing: 4,
+        cost: 2,
+        defaultTurns: 2,
+        turns: 2,
+        ability: "",
+        img: "/treeOfVitality.png",
+        id: 3
+    },
+    {
+        name: "Tree of Vitality",
+        defaultHealing: 4,
+        healing: 4,
+        cost: 2,
+        defaultTurns: 2,
+        turns: 2,
+        ability: "",
+        img: "/treeOfVitality.png",
+        id: 4
+    },
+    {
+        name: "Hound",
+        defaultAttack: 3,
+        attack: 3,
+        cost: 1,
+        defaultTurns: 2,
+        turns: 2,
+        ability: "",
+        img: "/hound.png",
+        id: 5
+    },
+    {
+        name: "Hound",
+        defaultAttack: 3,
+        attack: 3,
+        cost: 1,
+        defaultTurns: 2,
+        turns: 2,
+        ability: "",
+        img: "/hound.png",
+        id: 6
+    },
+    {
+        name: "Castle Guardian",
+        defaultAttack: 4,
+        attack: 4,
+        cost: 2,
+        defaultTurns: 2,
+        turns: 2,
+        ability: "",
+        img: "castleDefender.png",
+        id: 7
+    },
+    {
+        name: "Castle Guardian",
+        defaultAttack: 4,
+        attack: 4,
+        cost: 2,
+        defaultTurns: 2,
+        turns: 2,
+        ability: "",
+        img: "castleDefender.png",
+        id: 8
+    },
+    {
+        name: "Caplan of Miridith",
+        defaultHealing: 5,
+        healing: 5,
+        cost: 3,
+        defaultTurns: 2,
+        turns: 2,
+        ability: "",
+        img: "/caplanOfMiridith.png",
+        id: 9
+    },
+    {
+        name: "Caplan of Miridith",
+        defaultHealing: 5,
+        healing: 5,
+        cost: 3,
+        defaultTurns: 2,
+        turns: 2,
+        ability: "",
+        img: "/caplanOfMiridith.png",
+        id: 10
+    },
+    {
+        name: "Strong farmer",
+        defaultAttack: 4,
+        attack: 4,
+        cost: 3,
+        defaultTurns: 2,
+        turns: 2,
+        ability: "",
+        img: "/strongFarmer.png",
+        id: 11
+    },
+    {
+        name: "Strong farmer",
+        defaultAttack: 4,
+        attack: 4,
+        cost: 3,
+        defaultTurns: 2,
+        turns: 2,
+        ability: "",
+        img: "/strongFarmer.png",
+        id: 12
+    },
+    {
+        name: "Berserker",
+        defaultAttack: 7,
+        attack: 7,
+        cost: 4,
+        defaultTurns: 1,
+        turns: 1,
+        ability: "",
+        img: "/berserker.png",
+        id: 13
+    },
+    {
+        name: "Berserker",
+        defaultAttack: 7,
+        attack: 7,
+        cost: 4,
+        defaultTurns: 1,
+        turns: 1,
+        ability: "Rage",
+        img: "/berserker.png",
+        id: 14
+    },
+    {
+        name: "King's Defender",
+        defaultAttack: 4,
+        attack: 4,
+        cost: 4,
+        defaultTurns: 3,
+        turns: 3,
+        ability: "",
+        img: "/kingsDefender.png",
+        id: 15
+    },
+    {
+        name: "King's Defender",
+        defaultAttack: 4,
+        attack: 4,
+        cost: 4,
+        defaultTurns: 3,
+        turns: 3,
+        ability: "",
+        img: "/kingsDefender.png",
+        id: 16
+    },
+    {
+        name: "Military Hornist",
+        defaultAttack: 3,
+        attack: 3,
+        cost: 4,
+        defaultTurns: 3,
+        turns: 3,
+        ability: "Rage",
+        img: "/militaryHornist.png",
+        id: 17
+    },
+    {
+        name: "Military Hornist",
+        defaultAttack: 3,
+        attack: 3,
+        cost: 4,
+        defaultTurns: 3,
+        turns: 3,
+        ability: "Rage",
+        img: "/militaryHornist.png",
+        id: 18
+    },
+    {
+        name: "Light of Azhura",
+        defaultHealing: 5,
+        healing: 5,
+        cost: 5,
+        defaultTurns: 3,
+        turns: 3,
+        ability: "Blessing",
+        img: "/lightOfAzhura.png",
+        id: 19
+    },
+    {
+        name: "Light of Azhura",
+        defaultHealing: 5,
+        healing: 5,
+        cost: 5,
+        defaultTurns: 3,
+        turns: 3,
+        ability: "Blessing",
+        img: "/lightOfAzhura.png",
+        id: 20
+    },
+    {
+        name: "Firandil the Bloody",
+        defaultAttack: 6,
+        attack: 6,
+        cost: 5,
+        defaultTurns: 3,
+        turns: 3,
+        ability: "Rage",
+        img: "/firandilTheBloody.png",
+        id: 21
+    },
+    {
+        name: "Burning Horse",
+        defaultAttack: 7,
+        attack: 7,
+        cost: 5,
+        defaultTurns: 2,
+        turns: 2,
+        ability: "",
+        img: "/BurningHorse.png",
+        id: 22
+    },
+    {
+        name: "Burning Horse",
+        defaultAttack: 7,
+        attack: 7,
+        cost: 5,
+        defaultTurns: 2,
+        turns: 2,
+        ability: "",
+        img: "/BurningHorse.png",
+        id: 23
+    },
+    {
+        name: "Time traveler",
+        defaultAttack: 3,
+        attack: 3,
+        cost: 5,
+        defaultTurns: 2,
+        turns: 2,
+        ability: "Hourglass",
+        img: "/timeTraveler.png",
+        id: 24
+    },
+    {
+        name: "Time traveler",
+        defaultAttack: 3,
+        attack: 3,
+        cost: 5,
+        defaultTurns: 2,
+        turns: 2,
+        ability: "Hourglass",
+        img: "/timeTraveler.png",
+        id: 25
+    },
+    {
+        name: "Ciril the Mighty",
+        defaultAttack: 7,
+        attack: 7,
+        cost: 7,
+        defaultTurns: 4,
+        turns: 4,
+        ability: "",
+        img: "/cirilTheMighty.png",
+        id: 26
+    },
+    {
+        name: "Archmage Valorian",
+        defaultAttack: 6,
+        attack: 6,
+        cost: 7,
+        defaultTurns: 5,
+        turns: 5,
+        ability: "",
+        img: "/archmageValorian.png",
+        id: 27
+    },
+    {
+        name: "Princess Laurith",
+        defaultHealing: 7,
+        healing: 7,
+        cost: 7,
+        defaultTurns: 3,
+        turns: 3,
+        ability: "Blessing",
+        img: "princessLaurith.png",
+        id: 28
+    },
+    {
+        name: "Karcoth The King",
+        defaultAttack: 8,
+        attack: 8,
+        cost: 8,
+        defaultTurns: 4,
+        turns: 4,
+        ability: "",
+        img: "/karcothTheKing.png",
+        id: 29
+    },
+    {
+        name: "Azhura",
+        defaultAttack: 8,
+        attack: 8,
+        cost: 9,
+        defaultTurns: 3,
+        turns: 3,
+        ability: "Hourglass",
+        img: "/azhura.png",
+        id: 30
+    }
+];
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ky8MP":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "giveShakeAnimation", ()=>giveShakeAnimation);
@@ -2210,10 +2432,6 @@ parcelHelpers.export(exports, "removeHandlerDraw", ()=>removeHandlerDraw);
 parcelHelpers.export(exports, "addHandlerAttack", ()=>addHandlerAttack);
 parcelHelpers.export(exports, "removeHandlerAttack", ()=>removeHandlerAttack);
 const board = document.querySelector(".board");
-const hoverView = document.querySelector(".hover-view");
-const enemySide = document.querySelector(".enemy-section");
-const enemyDiscription = document.querySelector(".enemy-section--discription");
-const enemyHealth = document.querySelector(".enemy-section--hero--health");
 const gameMenu = document.querySelector(".game-menu");
 const gameMenuStart = document.querySelector(".game-menu--start");
 const game = document.querySelector(".game");
@@ -2221,7 +2439,6 @@ const footer = document.querySelector(".footer");
 const deckNum = document.querySelector(".deck-number");
 const cementaryNum = document.querySelector(".skull-number");
 const drawBtn = document.querySelector(".button--draw");
-const hand = document.querySelector(".hand");
 const turnCounter = document.querySelector(".turn-counter");
 const playerHp = document.querySelector(".hero--health");
 const nextTurnText = document.querySelector(".next-turn--container");
@@ -2275,7 +2492,7 @@ const renderHand = async function(data) {
         <p class="card--name">${card.name}</p>
         <p class="card--ability"><br />${card.ability}</p>
         <div class="card--stat-container">
-          <div class="card--action-stat ${card.healing > 0 ? "healer" : ""}">${card.attack === 0 ? card.healing : card.attack}</div>
+          <div class="card--action-stat ${card.healing ? "healer" : ""}">${!card.attack ? card.healing : card.attack}</div>
           <div class="card--turn-stat">${card.turns}</div>
         </div>
     </div>
@@ -2291,7 +2508,7 @@ const renderBoard = function(data) {
     <div class="board--card" data-id="${card.id}00">
       <img class="board--card--img" src="${card.img}" />
       <div class="board--card--stat-container">
-        <div class="board--card--action-stat  ${card.healing > 0 ? "healer" : ""}">${card.attack === 0 ? card.healing : card.attack}</div>
+        <div class="board--card--action-stat  ${card.healing ? "healer" : ""}">${!card.attack ? card.healing : card.attack}</div>
         <div class="board--card--turn-stat">${card.turns}</div>
       </div>
       
@@ -2301,7 +2518,7 @@ const renderBoard = function(data) {
         <p class="card--name">${card.name}</p>
         <p class="card--ability"><br />${card.ability}</p>
         <div class="card--stat-container">
-          <div class="card--action-stat ${card.healing > 0 ? "healer" : ""}">${card.attack === 0 ? card.healing : card.defaultAttack}</div>
+          <div class="card--action-stat ${card.healing ? "healer" : ""}">${!card.attack ? card.healing : card.defaultAttack}</div>
           <div class="card--turn-stat">${card.defaultTurns}</div>
         </div>
       </div>
@@ -2321,11 +2538,10 @@ const renderMana = function(currentData, maxData) {
     for(let i = 1; i <= currentData; i++)manaContainer.insertAdjacentHTML("beforeend", markup);
 };
 const renderTurn = function(data) {
-    let rest;
+    let rest = "th";
     if (data === 1) rest = "st";
     if (data === 2) rest = "nd";
     if (data === 3) rest = "rd";
-    if (data > 3) rest = "th";
     turnCounter.textContent = `${data}${rest} turn`;
 };
 const renderPlayer = (data)=>playerHp.textContent = data;

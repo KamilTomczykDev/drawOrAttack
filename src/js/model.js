@@ -1,11 +1,10 @@
-import * as data from "./API.js";
+import { cards } from "./cards.js";
 
 export const state = {
-  deck: [],
+  deck: [...cards],
   board: [],
   hand: [],
   cementary: [],
-  currentTurn: 1,
   timer: 25,
   enemy: {
     name: "Mysterious Creature",
@@ -20,5 +19,3 @@ export const state = {
   turn: 1,
   winner: null,
 };
-
-state.deck = [...data.defaultDeckArray];

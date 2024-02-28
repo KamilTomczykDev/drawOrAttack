@@ -340,7 +340,7 @@ a {
 }
 .hero--health {
   border: ridge 0.2rem var(--player-color);
-  color: rgb(171, 0, 0);
+  color: var(--atk-color);
   font-weight: bold;
   font-size: 1rem;
   padding: 0.3rem 0.3rem 0.3rem 0.3rem;
@@ -429,7 +429,7 @@ a {
   width: 4rem;
   padding: 0.2rem;
   max-height: 100px;
-  background-color: rgb(255, 230, 165);
+  background-color: rgb(255, 237, 190);
   transition: all 0.5s;
   cursor: pointer;
   text-align: center;

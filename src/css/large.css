@@ -30,10 +30,11 @@
   .card {
     max-height: 200px;
     width: 8rem;
-    border-width: 0.2rem;
+    border-width: 0.4rem;
   }
   .card--img {
     height: 70px;
+    border-width: 0.2rem;
   }
   .card--turn-stat,
   .card--action-stat,
