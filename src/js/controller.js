@@ -90,11 +90,11 @@ const nazgrammUltimate = () => {
 const lookForWinner = function () {
   if (model.state.playerHp <= 0) {
     model.state.winner = "enemy";
-    view.renderEnd(model.state.winner);
+    view.renderEndgame(model.state.winner);
   }
   if (model.state.enemy.hp <= 0) {
     model.state.winner = "player";
-    view.renderEnd(model.state.winner);
+    view.renderEndgame(model.state.winner);
   }
 };
 const manaNumberUp = () => {

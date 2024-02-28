@@ -1,7 +1,7 @@
 :root {
-  --turn-color: rgb(254, 127, 0);
+  --turn-color: rgb(155, 77, 0);
   --cost-color: rgb(0, 26, 255);
-  --atk-color: rgb(212, 60, 60);
+  --atk-color: rgb(176, 0, 0);
   --heal-color: rgb(0, 186, 0);
   --player-color: #388eff;
   --menu-color: #9b842d;
@@ -313,7 +313,8 @@ a {
 }
 .board--card--stat-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  width: 100%;
 }
 .board--card--action-stat {
   color: var(--atk-color);

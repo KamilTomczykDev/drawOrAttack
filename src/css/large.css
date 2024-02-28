@@ -8,10 +8,10 @@
     font-size: 1.2rem;
   }
   .enemy-section--hero {
-    height: 10rem;
+    height: 9rem;
   }
   .hero {
-    width: 10rem;
+    width: 9rem;
   }
   .enemy-section--hero--img,
   .enemy-section--hero--health,
@@ -49,5 +49,8 @@
   }
   .hover-view {
     height: 200px;
+  }
+  .end-game--message {
+    font-size: 1.5rem;
   }
 }

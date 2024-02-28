@@ -648,11 +648,11 @@ const nazgrammUltimate = ()=>{
 const lookForWinner = function() {
     if (_modelJs.state.playerHp <= 0) {
         _modelJs.state.winner = "enemy";
-        _viewJs.renderEnd(_modelJs.state.winner);
+        _viewJs.renderEndgame(_modelJs.state.winner);
     }
     if (_modelJs.state.enemy.hp <= 0) {
         _modelJs.state.winner = "player";
-        _viewJs.renderEnd(_modelJs.state.winner);
+        _viewJs.renderEndgame(_modelJs.state.winner);
     }
 };
 const manaNumberUp = ()=>{
@@ -2203,7 +2203,7 @@ parcelHelpers.export(exports, "renderMana", ()=>renderMana);
 parcelHelpers.export(exports, "renderTurn", ()=>renderTurn);
 parcelHelpers.export(exports, "renderPlayer", ()=>renderPlayer);
 parcelHelpers.export(exports, "renderEnemy", ()=>renderEnemy);
-parcelHelpers.export(exports, "renderEnd", ()=>renderEnd);
+parcelHelpers.export(exports, "renderEndgame", ()=>renderEndgame);
 parcelHelpers.export(exports, "addHandlerGameInit", ()=>addHandlerGameInit);
 parcelHelpers.export(exports, "addHandlerDraw", ()=>addHandlerDraw);
 parcelHelpers.export(exports, "removeHandlerDraw", ()=>removeHandlerDraw);
@@ -2346,7 +2346,7 @@ const renderEnemy = (data)=>{
   `;
     parentElement.insertAdjacentHTML("beforeend", markup);
 };
-const renderEnd = function(data) {
+const renderEndgame = function(data) {
     game.style.opacity = "0";
     footer.style.opacity = "0";
     footer.style.display = "flex";

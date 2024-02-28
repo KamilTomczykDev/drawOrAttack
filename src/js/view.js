@@ -161,7 +161,7 @@ export const renderEnemy = (data) => {
   parentElement.insertAdjacentHTML("beforeend", markup);
 };
 
-export const renderEnd = function (data) {
+export const renderEndgame = function (data) {
   game.style.opacity = "0";
   footer.style.opacity = "0";
   footer.style.display = "flex";
