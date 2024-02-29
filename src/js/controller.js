@@ -1,6 +1,11 @@
 "use strict";
 import { state } from "./model.js";
-import * as view from "./view.js";
+//prettier-ignore
+import {addHandlerAttack, addHandlerDraw,addHandlerGameInit} from "./view/events.js";
+//prettier-ignore
+import { renderBoard, renderCementaryNum,renderEndgame, renderEnemy, renderHand, renderPlayer, renderMana, renderTurn, renderDeckNum,renderTimer } from "./view/renders.js";
+//prettier-ignore
+import { giveShakeAnimation, giveDamageAnimation, nextTurnAnimation, disableButtons, } from "./view/animations.js";
 
 import "core-js/stable";
 import "regenerator-runtime/runtime";
@@ -24,7 +29,7 @@ const startTimer = function () {
   setTimer();
   const countdown = setInterval(function () {
     --state.timer;
-    view.renderTimer(state.timer);
+    renderTimer(state.timer);
     if (state.timer < 1) {
       clearInterval(countdown);
       startTimer();
@@ -34,10 +39,6 @@ const startTimer = function () {
     if (state.winner !== null) clearInterval(countdown);
   }, 1000);
 };
-const giveHandlersBack = () => {
-  view.addHandlerAttack(attackBtnClick);
-  view.addHandlerDraw(drawBtnClick);
-};
 
 const draw = function () {
   const number = Math.trunc(Math.random() * state.deck.length);
@@ -45,7 +46,7 @@ const draw = function () {
   if (state.hand.length === 5) {
     state.cementary.push(state.deck[number]);
     const cementaryNum = document.querySelector(".skull-number");
-    view.giveShakeAnimation(cementaryNum);
+    giveShakeAnimation(cementaryNum);
   } else {
     state.hand.push(state.deck[number]);
   }
@@ -86,11 +87,11 @@ const nazgrammUltimate = () => {
 const lookForWinner = function () {
   if (state.playerHp <= 0) {
     state.winner = "enemy";
-    view.renderEndgame(state.winner);
+    renderEndgame(state.winner);
   }
   if (state.enemy.hp <= 0) {
     state.winner = "player";
-    view.renderEndgame(state.winner);
+    renderEndgame(state.winner);
   }
 };
 const manaNumberUp = () => {
@@ -99,26 +100,22 @@ const manaNumberUp = () => {
 };
 const nextTurn = function () {
   const playerHpElement = document.querySelector(".hero--health");
-  view.changeCursorAttack();
-  view.changeCursorDraw();
+  disableButtons();
   setTimer();
   applyHealing();
 
   manaNumberUp();
-  view.removeHandlerDraw(drawBtnClick);
-  view.removeHandlerAttack(attackBtnClick);
   console.log(state.board);
   setTimeout(function () {
     state.playerHp -= state.enemy.attack;
     nazgrammUltimate();
     lookForWinner();
-    view.giveShakeAnimation(playerHpElement);
-    view.giveDamageAnimation(playerHpElement);
-    view.nextTurnAnimation();
+    giveShakeAnimation(playerHpElement);
+    giveDamageAnimation(playerHpElement);
+    nextTurnAnimation();
     subtractTurn(state.board);
     killUnits();
     setTimer();
-    giveHandlersBack();
     turnNumberUp();
     renderUI();
   }, 2000);
@@ -154,8 +151,8 @@ const attackBtnClick = function () {
   });
   nextTurn();
   setTimeout(function () {
-    view.giveShakeAnimation(enemyHpElement);
-    view.giveDamageAnimation(enemyHpElement);
+    giveShakeAnimation(enemyHpElement);
+    giveDamageAnimation(enemyHpElement);
     if (state.turn >= 12) {
       draw();
     }
@@ -163,21 +160,22 @@ const attackBtnClick = function () {
 };
 
 const renderUI = function () {
-  view.renderCementaryNum(state.cementary);
-  view.renderDeckNum(state.deck);
-  view.renderHand(state.hand);
-  view.renderBoard(state.board);
-  view.renderMana(state.currentMana, state.maxMana);
-  view.renderTurn(state.turn);
-  view.renderPlayer(state.playerHp);
-  view.renderEnemy(state.enemy);
+  renderCementaryNum(state.cementary);
+  renderDeckNum(state.deck);
+  renderHand(state.hand);
+  renderBoard(state.board);
+  renderMana(state.currentMana, state.maxMana);
+  renderTurn(state.turn);
+  renderPlayer(state.playerHp);
+  renderEnemy(state.enemy);
 };
 
 const gameInit = function () {
-  draw();
-  draw();
-  draw();
   state.playerHp = 30;
+
+  draw();
+  draw();
+  draw();
   renderUI();
   startTimer();
 };

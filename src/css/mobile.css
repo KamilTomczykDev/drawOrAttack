@@ -405,6 +405,10 @@ a {
   cursor: pointer;
   transition: all 0.2s;
 }
+.buttons button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 .buttons button:hover {
   background-color: #ffffff;
   color: black;

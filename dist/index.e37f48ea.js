@@ -576,7 +576,12 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 },{}],"aenu9":[function(require,module,exports) {
 var _webImmediateJs = require("core-js/modules/web.immediate.js");
 var _modelJs = require("./model.js");
-var _viewJs = require("./view.js");
+//prettier-ignore
+var _eventsJs = require("./view/events.js");
+//prettier-ignore
+var _rendersJs = require("./view/renders.js");
+//prettier-ignore
+var _animationsJs = require("./view/animations.js");
 var _runtime = require("regenerator-runtime/runtime");
 "use strict";
 if (module.hot) module.hot.accept();
@@ -592,7 +597,7 @@ const startTimer = function() {
     setTimer();
     const countdown = setInterval(function() {
         --(0, _modelJs.state).timer;
-        _viewJs.renderTimer((0, _modelJs.state).timer);
+        (0, _rendersJs.renderTimer)((0, _modelJs.state).timer);
         if ((0, _modelJs.state).timer < 1) {
             clearInterval(countdown);
             startTimer();
@@ -602,17 +607,13 @@ const startTimer = function() {
         if ((0, _modelJs.state).winner !== null) clearInterval(countdown);
     }, 1000);
 };
-const giveHandlersBack = ()=>{
-    _viewJs.addHandlerAttack(attackBtnClick);
-    _viewJs.addHandlerDraw(drawBtnClick);
-};
 const draw = function() {
     const number = Math.trunc(Math.random() * (0, _modelJs.state).deck.length);
     if ((0, _modelJs.state).deck.length === 0) return;
     if ((0, _modelJs.state).hand.length === 5) {
         (0, _modelJs.state).cementary.push((0, _modelJs.state).deck[number]);
         const cementaryNum = document.querySelector(".skull-number");
-        _viewJs.giveShakeAnimation(cementaryNum);
+        (0, _animationsJs.giveShakeAnimation)(cementaryNum);
     } else (0, _modelJs.state).hand.push((0, _modelJs.state).deck[number]);
     const x = (0, _modelJs.state).deck.splice(number, 1);
     renderUI();
@@ -646,11 +647,11 @@ const nazgrammUltimate = ()=>{
 const lookForWinner = function() {
     if ((0, _modelJs.state).playerHp <= 0) {
         (0, _modelJs.state).winner = "enemy";
-        _viewJs.renderEndgame((0, _modelJs.state).winner);
+        (0, _rendersJs.renderEndgame)((0, _modelJs.state).winner);
     }
     if ((0, _modelJs.state).enemy.hp <= 0) {
         (0, _modelJs.state).winner = "player";
-        _viewJs.renderEndgame((0, _modelJs.state).winner);
+        (0, _rendersJs.renderEndgame)((0, _modelJs.state).winner);
     }
 };
 const manaNumberUp = ()=>{
@@ -659,25 +660,21 @@ const manaNumberUp = ()=>{
 };
 const nextTurn = function() {
     const playerHpElement = document.querySelector(".hero--health");
-    _viewJs.changeCursorAttack();
-    _viewJs.changeCursorDraw();
+    (0, _animationsJs.disableButtons)();
     setTimer();
     applyHealing();
     manaNumberUp();
-    _viewJs.removeHandlerDraw(drawBtnClick);
-    _viewJs.removeHandlerAttack(attackBtnClick);
     console.log((0, _modelJs.state).board);
     setTimeout(function() {
         (0, _modelJs.state).playerHp -= (0, _modelJs.state).enemy.attack;
         nazgrammUltimate();
         lookForWinner();
-        _viewJs.giveShakeAnimation(playerHpElement);
-        _viewJs.giveDamageAnimation(playerHpElement);
-        _viewJs.nextTurnAnimation();
+        (0, _animationsJs.giveShakeAnimation)(playerHpElement);
+        (0, _animationsJs.giveDamageAnimation)(playerHpElement);
+        (0, _animationsJs.nextTurnAnimation)();
         subtractTurn((0, _modelJs.state).board);
         killUnits();
         setTimer();
-        giveHandlersBack();
         turnNumberUp();
         renderUI();
     }, 2000);
@@ -707,26 +704,26 @@ const attackBtnClick = function() {
     });
     nextTurn();
     setTimeout(function() {
-        _viewJs.giveShakeAnimation(enemyHpElement);
-        _viewJs.giveDamageAnimation(enemyHpElement);
+        (0, _animationsJs.giveShakeAnimation)(enemyHpElement);
+        (0, _animationsJs.giveDamageAnimation)(enemyHpElement);
         if ((0, _modelJs.state).turn >= 12) draw();
     }, 2000);
 };
 const renderUI = function() {
-    _viewJs.renderCementaryNum((0, _modelJs.state).cementary);
-    _viewJs.renderDeckNum((0, _modelJs.state).deck);
-    _viewJs.renderHand((0, _modelJs.state).hand);
-    _viewJs.renderBoard((0, _modelJs.state).board);
-    _viewJs.renderMana((0, _modelJs.state).currentMana, (0, _modelJs.state).maxMana);
-    _viewJs.renderTurn((0, _modelJs.state).turn);
-    _viewJs.renderPlayer((0, _modelJs.state).playerHp);
-    _viewJs.renderEnemy((0, _modelJs.state).enemy);
+    (0, _rendersJs.renderCementaryNum)((0, _modelJs.state).cementary);
+    (0, _rendersJs.renderDeckNum)((0, _modelJs.state).deck);
+    (0, _rendersJs.renderHand)((0, _modelJs.state).hand);
+    (0, _rendersJs.renderBoard)((0, _modelJs.state).board);
+    (0, _rendersJs.renderMana)((0, _modelJs.state).currentMana, (0, _modelJs.state).maxMana);
+    (0, _rendersJs.renderTurn)((0, _modelJs.state).turn);
+    (0, _rendersJs.renderPlayer)((0, _modelJs.state).playerHp);
+    (0, _rendersJs.renderEnemy)((0, _modelJs.state).enemy);
 };
 const gameInit = function() {
-    draw();
-    draw();
-    draw();
     (0, _modelJs.state).playerHp = 30;
+    draw();
+    draw();
+    draw();
     renderUI();
     startTimer();
 };
@@ -764,11 +761,11 @@ const checkForHourglass = function(card) {
     });
 };
 hand.addEventListener("click", handHandler);
-_viewJs.addHandlerAttack(attackBtnClick);
-_viewJs.addHandlerGameInit(gameInit);
-_viewJs.addHandlerDraw(drawBtnClick);
+view.addHandlerAttack(attackBtnClick);
+view.addHandlerGameInit(gameInit);
+view.addHandlerDraw(drawBtnClick);
 
-},{"core-js/modules/web.immediate.js":"49tUX","./model.js":"Y4A21","./view.js":"ky8MP","regenerator-runtime/runtime":"dXNgZ"}],"49tUX":[function(require,module,exports) {
+},{"core-js/modules/web.immediate.js":"49tUX","./model.js":"Y4A21","regenerator-runtime/runtime":"dXNgZ","./view/animations.js":"3cCEM","./view/renders.js":"b42el","./view/events.js":"hHLBO"}],"49tUX":[function(require,module,exports) {
 "use strict";
 // TODO: Remove this module from `core-js@4` since it's split to modules listed below
 require("52e9b3eefbbce1ed");
@@ -2407,214 +2404,6 @@ const cards = [
     }
 ];
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ky8MP":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "giveShakeAnimation", ()=>giveShakeAnimation);
-parcelHelpers.export(exports, "giveDamageAnimation", ()=>giveDamageAnimation);
-parcelHelpers.export(exports, "nextTurnAnimation", ()=>nextTurnAnimation);
-parcelHelpers.export(exports, "changeCursorAttack", ()=>changeCursorAttack);
-parcelHelpers.export(exports, "changeCursorDraw", ()=>changeCursorDraw);
-parcelHelpers.export(exports, "renderCementaryNum", ()=>renderCementaryNum);
-parcelHelpers.export(exports, "renderDeckNum", ()=>renderDeckNum);
-parcelHelpers.export(exports, "renderTimer", ()=>renderTimer);
-parcelHelpers.export(exports, "renderHand", ()=>renderHand);
-parcelHelpers.export(exports, "renderBoard", ()=>renderBoard);
-parcelHelpers.export(exports, "renderMana", ()=>renderMana);
-parcelHelpers.export(exports, "renderTurn", ()=>renderTurn);
-parcelHelpers.export(exports, "renderPlayer", ()=>renderPlayer);
-parcelHelpers.export(exports, "renderEnemy", ()=>renderEnemy);
-parcelHelpers.export(exports, "renderEndgame", ()=>renderEndgame);
-parcelHelpers.export(exports, "addHandlerGameInit", ()=>addHandlerGameInit);
-parcelHelpers.export(exports, "addHandlerDraw", ()=>addHandlerDraw);
-parcelHelpers.export(exports, "removeHandlerDraw", ()=>removeHandlerDraw);
-parcelHelpers.export(exports, "addHandlerAttack", ()=>addHandlerAttack);
-parcelHelpers.export(exports, "removeHandlerAttack", ()=>removeHandlerAttack);
-const board = document.querySelector(".board");
-const gameMenu = document.querySelector(".game-menu");
-const gameMenuStart = document.querySelector(".game-menu--start");
-const game = document.querySelector(".game");
-const footer = document.querySelector(".footer");
-const deckNum = document.querySelector(".deck-number");
-const cementaryNum = document.querySelector(".skull-number");
-const drawBtn = document.querySelector(".button--draw");
-const turnCounter = document.querySelector(".turn-counter");
-const playerHp = document.querySelector(".hero--health");
-const nextTurnText = document.querySelector(".next-turn--container");
-const attackBtn = document.querySelector(".button--attack");
-const giveShakeAnimation = function(parentEl) {
-    parentEl.classList.add("shake-animation");
-    setTimeout(function() {
-        parentEl.classList.remove("shake-animation");
-    }, 1000);
-};
-const giveDamageAnimation = function(parentEl) {
-    parentEl.style.backgroundColor = "red";
-    setTimeout(function() {
-        parentEl.style.backgroundColor = "white";
-    }, 1000);
-};
-const nextTurnAnimation = ()=>{
-    nextTurnText.style.display = "flex";
-    setTimeout(function() {
-        nextTurnText.style.opacity = 1;
-    }, 500);
-    setTimeout(function() {
-        nextTurnText.style.opacity = 0;
-    }, 1500);
-    setTimeout(function() {
-        nextTurnText.style.display = "none";
-    }, 2300);
-};
-const changeCursorAttack = ()=>{
-    attackBtn.style.cursor = "not-allowed";
-    setTimeout(()=>attackBtn.style.cursor = "pointer", 2500);
-};
-const changeCursorDraw = ()=>{
-    drawBtn.style.cursor = "not-allowed";
-    setTimeout(()=>drawBtn.style.cursor = "pointer", 2500);
-};
-const renderCementaryNum = (data)=>cementaryNum.textContent = data.length;
-const renderDeckNum = (data)=>deckNum.textContent = data.length;
-const renderTimer = function(data) {
-    const timer = document.querySelector(".timer");
-    timer.textContent = `${data}s`;
-};
-const renderHand = async function(data) {
-    const parentElement = document.querySelector(".hand");
-    parentElement.innerHTML = "";
-    data.forEach(function(card) {
-        const markup = `
-    <div class="card" id="${card.id}">
-        <div class="card--cost">${card.cost}</div>
-        <img src="${card.img}" class="card--img" />
-        <p class="card--name">${card.name}</p>
-        <p class="card--ability"><br />${card.ability}</p>
-        <div class="card--stat-container">
-          <div class="card--action-stat ${card.healing ? "healer" : ""}">${!card.attack ? card.healing : card.attack}</div>
-          <div class="card--turn-stat">${card.turns}</div>
-        </div>
-    </div>
-    `;
-        parentElement.insertAdjacentHTML("beforeend", markup);
-    });
-};
-const renderBoard = function(data) {
-    const parentElement = board;
-    parentElement.innerHTML = "";
-    data.forEach(function(card) {
-        const markup = `
-    <div class="board--card" data-id="${card.id}00">
-      <img class="board--card--img" src="${card.img}" />
-      <div class="board--card--stat-container">
-        <div class="board--card--action-stat  ${card.healing ? "healer" : ""}">${!card.attack ? card.healing : card.attack}</div>
-        <div class="board--card--turn-stat">${card.turns}</div>
-      </div>
-      
-      <div class="card hover-view" id="${card.id}00">
-        <div class="card--cost">${card.cost}</div>
-        <img src="${card.img}" class="card--img" />
-        <p class="card--name">${card.name}</p>
-        <p class="card--ability"><br />${card.ability}</p>
-        <div class="card--stat-container">
-          <div class="card--action-stat ${card.healing ? "healer" : ""}">${!card.attack ? card.healing : card.defaultAttack}</div>
-          <div class="card--turn-stat">${card.defaultTurns}</div>
-        </div>
-      </div>
-    </div>
-    `;
-        parentElement.insertAdjacentHTML("beforeend", markup);
-    });
-};
-const renderMana = function(currentData, maxData) {
-    const manaCounter = document.querySelector(".mana--counter");
-    const manaContainer = document.querySelector(".mana--container");
-    manaCounter.textContent = `${currentData}/${maxData}`;
-    const markup = `
-    <p class="mana"></p>
-  `;
-    manaContainer.innerHTML = "";
-    for(let i = 1; i <= currentData; i++)manaContainer.insertAdjacentHTML("beforeend", markup);
-};
-const renderTurn = function(data) {
-    let rest = "th";
-    if (data === 1) rest = "st";
-    if (data === 2) rest = "nd";
-    if (data === 3) rest = "rd";
-    turnCounter.textContent = `${data}${rest} turn`;
-};
-const renderPlayer = (data)=>playerHp.textContent = data;
-const renderEnemy = (data)=>{
-    const parentElement = document.querySelector(".enemy-section");
-    parentElement.innerHTML = "";
-    const markup = `
-  <div class="enemy-section--hero">
-  <img
-    class="enemy-section--hero--img"
-    src="${data.img}"
-  />
-  <span class="enemy-section--hero--health">${data.hp}</span>
-  <div class="enemy-section--discription">
-    ${data.name}<br/><br/>${data.discription}
-  </div>
-</div>
-  `;
-    parentElement.insertAdjacentHTML("beforeend", markup);
-};
-const renderEndgame = function(data) {
-    game.style.opacity = "0";
-    footer.style.opacity = "0";
-    footer.style.display = "flex";
-    const playerWins = "Congratulations!<br/>Dark force has been destroyed.. but is It really over?";
-    const enemyWins = "Oh no!<br/>Reign of dark forces will last forever..";
-    const markup = `
-    <div class="end-game">
-      <div class = "end-game--message">${data === "enemy" ? enemyWins : playerWins}</div>
-      <div class="end-game--refresh">Press F5 or other refresh button to play again</div>
-    </div>
-    
-    `;
-    setTimeout(()=>{
-        game.innerHTML = "";
-        game.insertAdjacentHTML("beforeend", markup);
-        game.style.opacity = "1";
-        footer.style.opacity = "1";
-    }, 4000);
-};
-const addHandlerGameInit = function(handler) {
-    gameMenuStart.addEventListener("click", (e)=>handler());
-};
-const addHandlerDraw = function(handler) {
-    drawBtn.addEventListener("click", handler);
-};
-const removeHandlerDraw = function(handler) {
-    drawBtn.removeEventListener("click", handler);
-};
-const addHandlerAttack = function(handler) {
-    attackBtn.addEventListener("click", handler);
-};
-const removeHandlerAttack = function(handler) {
-    attackBtn.removeEventListener("click", handler);
-};
-// game animation events //
-board.addEventListener("mouseover", function(e) {
-    const clicked = e.target.closest(".board--card");
-    if (!clicked) return;
-    const elementFound = document.getElementById(`${clicked.dataset.id}`);
-    elementFound.style.opacity = "1";
-});
-board.addEventListener("mouseout", function(e) {
-    const clicked = e.target.closest(".board--card");
-    if (!clicked) return;
-    const elementFound = document.getElementById(`${clicked.dataset.id}`);
-    elementFound.style.opacity = "0";
-});
-gameMenuStart.addEventListener("click", function(e) {
-    gameMenu.style.display = "none";
-    footer.style.display = "none";
-    game.style.opacity = "1";
-});
-
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dXNgZ":[function(require,module,exports) {
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
@@ -3199,6 +2988,219 @@ try {
     else Function("r", "regeneratorRuntime = r")(runtime);
 }
 
-},{}]},["aD7Zm","aenu9"], "aenu9", "parcelRequire27eb")
+},{}],"3cCEM":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "giveShakeAnimation", ()=>giveShakeAnimation);
+parcelHelpers.export(exports, "giveDamageAnimation", ()=>giveDamageAnimation);
+parcelHelpers.export(exports, "nextTurnAnimation", ()=>nextTurnAnimation);
+parcelHelpers.export(exports, "disableButtons", ()=>disableButtons);
+const board = document.querySelector(".board");
+const gameMenuStart = document.querySelector(".game-menu--start");
+const giveShakeAnimation = function(parentEl) {
+    parentEl.classList.add("shake-animation");
+    setTimeout(function() {
+        parentEl.classList.remove("shake-animation");
+    }, 1000);
+};
+const giveDamageAnimation = function(parentEl) {
+    parentEl.style.backgroundColor = "red";
+    setTimeout(function() {
+        parentEl.style.backgroundColor = "white";
+    }, 1000);
+};
+const nextTurnAnimation = ()=>{
+    const nextTurnText = document.querySelector(".next-turn--container");
+    nextTurnText.style.display = "flex";
+    setTimeout(function() {
+        nextTurnText.style.opacity = 1;
+    }, 500);
+    setTimeout(function() {
+        nextTurnText.style.opacity = 0;
+    }, 1500);
+    setTimeout(function() {
+        nextTurnText.style.display = "none";
+    }, 2300);
+};
+const disableButtons = ()=>{
+    const attackBtn = document.querySelector(".button--attack");
+    const drawBtn = document.querySelector(".button--draw");
+    attackBtn.disabled = true;
+    drawBtn.disabled = true;
+    setTimeout(()=>{
+        attackBtn.disabled = false;
+        drawBtn.disabled = false;
+    }, 2500);
+};
+board.addEventListener("mouseover", function(e) {
+    const clicked = e.target.closest(".board--card");
+    if (!clicked) return;
+    const elementFound = document.getElementById(`${clicked.dataset.id}`);
+    elementFound.style.opacity = "1";
+});
+board.addEventListener("mouseout", function(e) {
+    const clicked = e.target.closest(".board--card");
+    if (!clicked) return;
+    const elementFound = document.getElementById(`${clicked.dataset.id}`);
+    elementFound.style.opacity = "0";
+});
+gameMenuStart.addEventListener("click", function(e) {
+    const gameMenu = document.querySelector(".game-menu");
+    const footer = document.querySelector(".footer");
+    const game = document.querySelector(".game");
+    gameMenu.style.display = "none";
+    footer.style.display = "none";
+    game.style.opacity = "1";
+});
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"b42el":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "renderCementaryNum", ()=>renderCementaryNum);
+parcelHelpers.export(exports, "renderDeckNum", ()=>renderDeckNum);
+parcelHelpers.export(exports, "renderTimer", ()=>renderTimer);
+parcelHelpers.export(exports, "renderHand", ()=>renderHand);
+parcelHelpers.export(exports, "renderBoard", ()=>renderBoard);
+parcelHelpers.export(exports, "renderMana", ()=>renderMana);
+parcelHelpers.export(exports, "renderTurn", ()=>renderTurn);
+parcelHelpers.export(exports, "renderPlayer", ()=>renderPlayer);
+parcelHelpers.export(exports, "renderEnemy", ()=>renderEnemy);
+parcelHelpers.export(exports, "renderEndgame", ()=>renderEndgame);
+const renderCementaryNum = (data)=>{
+    const cementaryNum = document.querySelector(".skull-number");
+    cementaryNum.textContent = data.length;
+};
+const renderDeckNum = (data)=>{
+    const deckNum = document.querySelector(".deck-number");
+    deckNum.textContent = data.length;
+};
+const renderTimer = function(data) {
+    const timer = document.querySelector(".timer");
+    timer.textContent = `${data}s`;
+};
+const renderHand = async function(data) {
+    const parentElement = document.querySelector(".hand");
+    parentElement.innerHTML = "";
+    data.forEach(function(card) {
+        const markup = `
+    <div class="card" id="${card.id}">
+        <div class="card--cost">${card.cost}</div>
+        <img src="${card.img}" class="card--img" />
+        <p class="card--name">${card.name}</p>
+        <p class="card--ability"><br />${card.ability}</p>
+        <div class="card--stat-container">
+          <div class="card--action-stat ${card.healing ? "healer" : ""}">${!card.attack ? card.healing : card.attack}</div>
+          <div class="card--turn-stat">${card.turns}</div>
+        </div>
+    </div>
+    `;
+        parentElement.insertAdjacentHTML("beforeend", markup);
+    });
+};
+const renderBoard = function(data) {
+    const board = document.querySelector(".board");
+    const parentElement = board;
+    parentElement.innerHTML = "";
+    data.forEach(function(card) {
+        const markup = `
+    <div class="board--card" data-id="${card.id}00">
+      <img class="board--card--img" src="${card.img}" />
+      <div class="board--card--stat-container">
+        <div class="board--card--action-stat  ${card.healing ? "healer" : ""}">${!card.attack ? card.healing : card.attack}</div>
+        <div class="board--card--turn-stat">${card.turns}</div>
+      </div>
+      
+      <div class="card hover-view" id="${card.id}00">
+        <div class="card--cost">${card.cost}</div>
+        <img src="${card.img}" class="card--img" />
+        <p class="card--name">${card.name}</p>
+        <p class="card--ability"><br />${card.ability}</p>
+        <div class="card--stat-container">
+          <div class="card--action-stat ${card.healing ? "healer" : ""}">${!card.attack ? card.healing : card.defaultAttack}</div>
+          <div class="card--turn-stat">${card.defaultTurns}</div>
+        </div>
+      </div>
+    </div>
+    `;
+        parentElement.insertAdjacentHTML("beforeend", markup);
+    });
+};
+const renderMana = function(currentData, maxData) {
+    const manaCounter = document.querySelector(".mana--counter");
+    const manaContainer = document.querySelector(".mana--container");
+    manaCounter.textContent = `${currentData}/${maxData}`;
+    const markup = `
+    <p class="mana"></p>
+  `;
+    manaContainer.innerHTML = "";
+    for(let i = 1; i <= currentData; i++)manaContainer.insertAdjacentHTML("beforeend", markup);
+};
+const renderTurn = function(data) {
+    const turnCounter = document.querySelector(".turn-counter");
+    let rest = "th";
+    if (data === 1) rest = "st";
+    if (data === 2) rest = "nd";
+    if (data === 3) rest = "rd";
+    turnCounter.textContent = `${data}${rest} turn`;
+};
+const renderPlayer = (data)=>{
+    const playerHp = document.querySelector(".hero--health");
+    playerHp.textContent = data;
+};
+const renderEnemy = (data)=>{
+    const parentElement = document.querySelector(".enemy-section");
+    parentElement.innerHTML = "";
+    const markup = `
+  <div class="enemy-section--hero">
+  <img
+    class="enemy-section--hero--img"
+    src="${data.img}"
+  />
+  <span class="enemy-section--hero--health">${data.hp}</span>
+  <div class="enemy-section--discription">
+    ${data.name}<br/><br/>${data.discription}
+  </div>
+</div>
+  `;
+    parentElement.insertAdjacentHTML("beforeend", markup);
+};
+const renderEndgame = function(data) {
+    game.style.opacity = "0";
+    const playerWins = "Congratulations! \uD83C\uDFC6<br/>Dark force has been destroyed.. but is It really over?";
+    const enemyWins = "Oh no!<br/>Reign of dark forces will last forever..";
+    const markup = `
+    <div class="end-game">
+      <div class = "end-game--message">${data === "enemy" ? enemyWins : playerWins}</div>
+      <div class="end-game--refresh">Press F5 or other refresh button to play again</div>
+    </div>
+    
+    `;
+    setTimeout(()=>{
+        game.innerHTML = "";
+        game.insertAdjacentHTML("beforeend", markup);
+        game.style.opacity = "1";
+    }, 4000);
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hHLBO":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "addHandlerGameInit", ()=>addHandlerGameInit);
+parcelHelpers.export(exports, "addHandlerDraw", ()=>addHandlerDraw);
+parcelHelpers.export(exports, "addHandlerAttack", ()=>addHandlerAttack);
+const addHandlerGameInit = function(handler) {
+    const gameMenuStart = document.querySelector(".game-menu--start");
+    gameMenuStart.addEventListener("click", (e)=>handler());
+};
+const addHandlerDraw = function(handler) {
+    const drawBtn = document.querySelector(".button--draw");
+    drawBtn.addEventListener("click", handler);
+};
+const addHandlerAttack = function(handler) {
+    const attackBtn = document.querySelector(".button--attack");
+    attackBtn.addEventListener("click", handler);
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["aD7Zm","aenu9"], "aenu9", "parcelRequire27eb")
 
 //# sourceMappingURL=index.e37f48ea.js.map
