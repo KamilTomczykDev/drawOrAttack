@@ -737,9 +737,7 @@ const handHandler = function(e) {
     const foundCard = (0, _modelJs.state).hand.find((el)=>el.id === +clicked.id);
     if (foundCard.cost <= (0, _modelJs.state).currentMana) {
         clickAudio.play();
-        checkForRage(foundCard);
-        checkForBlessing(foundCard);
-        checkForHourglass(foundCard);
+        checkForAbility(foundCard);
         const boardArr = (0, _modelJs.state).hand.filter((el)=>el.id === foundCard.id);
         (0, _modelJs.state).board.push(...boardArr);
         const newArr = (0, _modelJs.state).hand.filter((el)=>el.id !== foundCard.id);
@@ -748,18 +746,15 @@ const handHandler = function(e) {
         renderUI();
     }
 };
-const checkForRage = function(card) {
-    if (card.ability === "Rage" && (0, _modelJs.state).board.length > 0) (0, _modelJs.state).board.forEach((card)=>{
+const checkForAbility = function(card) {
+    if (!(0, _modelJs.state).board.length) return;
+    if (card.ability === "Rage") (0, _modelJs.state).board.forEach((card)=>{
         if (card.attack > 0) card.attack += 1;
     });
-};
-const checkForBlessing = function(card) {
-    if (card.ability === "Blessing" && (0, _modelJs.state).board.length > 0) (0, _modelJs.state).board.forEach((card)=>{
+    if (card.ability === "Blessing") (0, _modelJs.state).board.forEach((card)=>{
         if (card.healing > 0) card.healing += 1;
     });
-};
-const checkForHourglass = function(card) {
-    if (card.ability === "Hourglass" && (0, _modelJs.state).board.length > 0) (0, _modelJs.state).board.forEach((card)=>{
+    if (card.ability === "Hourglass") (0, _modelJs.state).board.forEach((card)=>{
         card.turns += 1;
     });
 };
