@@ -604,7 +604,10 @@ const startTimer = function() {
             nextTurn();
             setTimeout(()=>draw(), 2000);
         }
-        if ((0, _modelJs.state).winner !== null) clearInterval(countdown);
+        if ((0, _modelJs.state).winner) {
+            clearInterval(countdown);
+            console.log((0, _modelJs.state).winner);
+        }
     }, 1000);
 };
 const draw = function() {
@@ -697,7 +700,7 @@ const applyHealing = ()=>{
 };
 const attackBtnClick = function() {
     const enemyHpElement = document.querySelector(".enemy-section--hero--health");
-    const clickAudio = new Audio("/btnClick.mp3");
+    const clickAudio = new Audio("../mp3/btnClick.mp3");
     clickAudio.play();
     (0, _modelJs.state).board.forEach((card)=>{
         if (card.attack) (0, _modelJs.state).enemy.hp -= card.attack;
@@ -761,11 +764,11 @@ const checkForHourglass = function(card) {
     });
 };
 hand.addEventListener("click", handHandler);
-view.addHandlerAttack(attackBtnClick);
-view.addHandlerGameInit(gameInit);
-view.addHandlerDraw(drawBtnClick);
+(0, _eventsJs.addHandlerAttack)(attackBtnClick);
+(0, _eventsJs.addHandlerGameInit)(gameInit);
+(0, _eventsJs.addHandlerDraw)(drawBtnClick);
 
-},{"core-js/modules/web.immediate.js":"49tUX","./model.js":"Y4A21","regenerator-runtime/runtime":"dXNgZ","./view/animations.js":"3cCEM","./view/renders.js":"b42el","./view/events.js":"hHLBO"}],"49tUX":[function(require,module,exports) {
+},{"core-js/modules/web.immediate.js":"49tUX","./model.js":"Y4A21","regenerator-runtime/runtime":"dXNgZ","./view/events.js":"hHLBO","./view/renders.js":"b42el","./view/animations.js":"3cCEM"}],"49tUX":[function(require,module,exports) {
 "use strict";
 // TODO: Remove this module from `core-js@4` since it's split to modules listed below
 require("52e9b3eefbbce1ed");
@@ -2988,70 +2991,24 @@ try {
     else Function("r", "regeneratorRuntime = r")(runtime);
 }
 
-},{}],"3cCEM":[function(require,module,exports) {
+},{}],"hHLBO":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "giveShakeAnimation", ()=>giveShakeAnimation);
-parcelHelpers.export(exports, "giveDamageAnimation", ()=>giveDamageAnimation);
-parcelHelpers.export(exports, "nextTurnAnimation", ()=>nextTurnAnimation);
-parcelHelpers.export(exports, "disableButtons", ()=>disableButtons);
-const board = document.querySelector(".board");
-const gameMenuStart = document.querySelector(".game-menu--start");
-const giveShakeAnimation = function(parentEl) {
-    parentEl.classList.add("shake-animation");
-    setTimeout(function() {
-        parentEl.classList.remove("shake-animation");
-    }, 1000);
+parcelHelpers.export(exports, "addHandlerGameInit", ()=>addHandlerGameInit);
+parcelHelpers.export(exports, "addHandlerDraw", ()=>addHandlerDraw);
+parcelHelpers.export(exports, "addHandlerAttack", ()=>addHandlerAttack);
+const addHandlerGameInit = function(handler) {
+    const gameMenuStart = document.querySelector(".game-menu--start");
+    gameMenuStart.addEventListener("click", (e)=>handler());
 };
-const giveDamageAnimation = function(parentEl) {
-    parentEl.style.backgroundColor = "red";
-    setTimeout(function() {
-        parentEl.style.backgroundColor = "white";
-    }, 1000);
-};
-const nextTurnAnimation = ()=>{
-    const nextTurnText = document.querySelector(".next-turn--container");
-    nextTurnText.style.display = "flex";
-    setTimeout(function() {
-        nextTurnText.style.opacity = 1;
-    }, 500);
-    setTimeout(function() {
-        nextTurnText.style.opacity = 0;
-    }, 1500);
-    setTimeout(function() {
-        nextTurnText.style.display = "none";
-    }, 2300);
-};
-const disableButtons = ()=>{
-    const attackBtn = document.querySelector(".button--attack");
+const addHandlerDraw = function(handler) {
     const drawBtn = document.querySelector(".button--draw");
-    attackBtn.disabled = true;
-    drawBtn.disabled = true;
-    setTimeout(()=>{
-        attackBtn.disabled = false;
-        drawBtn.disabled = false;
-    }, 2500);
+    drawBtn.addEventListener("click", handler);
 };
-board.addEventListener("mouseover", function(e) {
-    const clicked = e.target.closest(".board--card");
-    if (!clicked) return;
-    const elementFound = document.getElementById(`${clicked.dataset.id}`);
-    elementFound.style.opacity = "1";
-});
-board.addEventListener("mouseout", function(e) {
-    const clicked = e.target.closest(".board--card");
-    if (!clicked) return;
-    const elementFound = document.getElementById(`${clicked.dataset.id}`);
-    elementFound.style.opacity = "0";
-});
-gameMenuStart.addEventListener("click", function(e) {
-    const gameMenu = document.querySelector(".game-menu");
-    const footer = document.querySelector(".footer");
-    const game = document.querySelector(".game");
-    gameMenu.style.display = "none";
-    footer.style.display = "none";
-    game.style.opacity = "1";
-});
+const addHandlerAttack = function(handler) {
+    const attackBtn = document.querySelector(".button--attack");
+    attackBtn.addEventListener("click", handler);
+};
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"b42el":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -3165,6 +3122,7 @@ const renderEnemy = (data)=>{
     parentElement.insertAdjacentHTML("beforeend", markup);
 };
 const renderEndgame = function(data) {
+    const game = document.querySelector(".game");
     game.style.opacity = "0";
     const playerWins = "Congratulations! \uD83C\uDFC6<br/>Dark force has been destroyed.. but is It really over?";
     const enemyWins = "Oh no!<br/>Reign of dark forces will last forever..";
@@ -3172,6 +3130,20 @@ const renderEndgame = function(data) {
     <div class="end-game">
       <div class = "end-game--message">${data === "enemy" ? enemyWins : playerWins}</div>
       <div class="end-game--refresh">Press F5 or other refresh button to play again</div>
+      <div class="footer--icons">
+            <a
+              href="https://github.com/KamilTomczykDev/drawOrAttack"
+              class="link"
+            >
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/kamil-tomczyk-a118952b3"
+              class="link"
+            >
+              <i class="fa-brands fa-linkedin"></i>
+            </a>
+      </div>
     </div>
     
     `;
@@ -3182,24 +3154,70 @@ const renderEndgame = function(data) {
     }, 4000);
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hHLBO":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3cCEM":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "addHandlerGameInit", ()=>addHandlerGameInit);
-parcelHelpers.export(exports, "addHandlerDraw", ()=>addHandlerDraw);
-parcelHelpers.export(exports, "addHandlerAttack", ()=>addHandlerAttack);
-const addHandlerGameInit = function(handler) {
-    const gameMenuStart = document.querySelector(".game-menu--start");
-    gameMenuStart.addEventListener("click", (e)=>handler());
+parcelHelpers.export(exports, "giveShakeAnimation", ()=>giveShakeAnimation);
+parcelHelpers.export(exports, "giveDamageAnimation", ()=>giveDamageAnimation);
+parcelHelpers.export(exports, "nextTurnAnimation", ()=>nextTurnAnimation);
+parcelHelpers.export(exports, "disableButtons", ()=>disableButtons);
+const board = document.querySelector(".board");
+const gameMenuStart = document.querySelector(".game-menu--start");
+const giveShakeAnimation = function(parentEl) {
+    parentEl.classList.add("shake-animation");
+    setTimeout(function() {
+        parentEl.classList.remove("shake-animation");
+    }, 1000);
 };
-const addHandlerDraw = function(handler) {
-    const drawBtn = document.querySelector(".button--draw");
-    drawBtn.addEventListener("click", handler);
+const giveDamageAnimation = function(parentEl) {
+    parentEl.style.backgroundColor = "red";
+    setTimeout(function() {
+        parentEl.style.backgroundColor = "white";
+    }, 1000);
 };
-const addHandlerAttack = function(handler) {
+const nextTurnAnimation = ()=>{
+    const nextTurnText = document.querySelector(".next-turn--container");
+    nextTurnText.style.display = "flex";
+    setTimeout(function() {
+        nextTurnText.style.opacity = 1;
+    }, 500);
+    setTimeout(function() {
+        nextTurnText.style.opacity = 0;
+    }, 1500);
+    setTimeout(function() {
+        nextTurnText.style.display = "none";
+    }, 2300);
+};
+const disableButtons = ()=>{
     const attackBtn = document.querySelector(".button--attack");
-    attackBtn.addEventListener("click", handler);
+    const drawBtn = document.querySelector(".button--draw");
+    attackBtn.disabled = true;
+    drawBtn.disabled = true;
+    setTimeout(()=>{
+        attackBtn.disabled = false;
+        drawBtn.disabled = false;
+    }, 2500);
 };
+board.addEventListener("mouseover", function(e) {
+    const clicked = e.target.closest(".board--card");
+    if (!clicked) return;
+    const elementFound = document.getElementById(`${clicked.dataset.id}`);
+    elementFound.style.opacity = "1";
+});
+board.addEventListener("mouseout", function(e) {
+    const clicked = e.target.closest(".board--card");
+    if (!clicked) return;
+    const elementFound = document.getElementById(`${clicked.dataset.id}`);
+    elementFound.style.opacity = "0";
+});
+gameMenuStart.addEventListener("click", function(e) {
+    const gameMenu = document.querySelector(".game-menu");
+    const footer = document.querySelector(".footer");
+    const game = document.querySelector(".game");
+    gameMenu.style.display = "none";
+    footer.style.display = "none";
+    game.style.opacity = "1";
+});
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["aD7Zm","aenu9"], "aenu9", "parcelRequire27eb")
 

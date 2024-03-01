@@ -117,6 +117,8 @@ export const renderEnemy = (data) => {
 };
 
 export const renderEndgame = function (data) {
+  const game = document.querySelector(".game");
+
   game.style.opacity = "0";
 
   const playerWins =
@@ -128,6 +130,20 @@ export const renderEndgame = function (data) {
         data === "enemy" ? enemyWins : playerWins
       }</div>
       <div class="end-game--refresh">Press F5 or other refresh button to play again</div>
+      <div class="footer--icons">
+            <a
+              href="https://github.com/KamilTomczykDev/drawOrAttack"
+              class="link"
+            >
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/kamil-tomczyk-a118952b3"
+              class="link"
+            >
+              <i class="fa-brands fa-linkedin"></i>
+            </a>
+      </div>
     </div>
     
     `;

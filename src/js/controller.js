@@ -36,7 +36,10 @@ const startTimer = function () {
       nextTurn();
       setTimeout(() => draw(), 2000);
     }
-    if (state.winner !== null) clearInterval(countdown);
+    if (state.winner) {
+      clearInterval(countdown);
+      console.log(state.winner);
+    }
   }, 1000);
 };
 
@@ -143,7 +146,7 @@ const applyHealing = () => {
 };
 const attackBtnClick = function () {
   const enemyHpElement = document.querySelector(".enemy-section--hero--health");
-  const clickAudio = new Audio("/btnClick.mp3");
+  const clickAudio = new Audio("../mp3/btnClick.mp3");
 
   clickAudio.play();
   state.board.forEach((card) => {
@@ -222,6 +225,6 @@ const checkForHourglass = function (card) {
 };
 
 hand.addEventListener("click", handHandler);
-view.addHandlerAttack(attackBtnClick);
-view.addHandlerGameInit(gameInit);
-view.addHandlerDraw(drawBtnClick);
+addHandlerAttack(attackBtnClick);
+addHandlerGameInit(gameInit);
+addHandlerDraw(drawBtnClick);
