@@ -7,7 +7,7 @@ export const cards = [
     defaultTurns: 3,
     turns: 3,
     ability: "",
-    img: "src/img/weakFarmer2.jpeg",
+    img: "./src/img/weakFarmer2.jpeg",
     id: 1,
   },
   {
@@ -18,7 +18,7 @@ export const cards = [
     defaultTurns: 3,
     turns: 3,
     ability: "",
-    img: "src/img/weakFarmer2.jpeg",
+    img: "./src/img/weakFarmer2.jpeg",
     id: 2,
   },
   {
@@ -29,7 +29,7 @@ export const cards = [
     defaultTurns: 2,
     turns: 2,
     ability: "",
-    img: "src/img/treeOfVitality.png",
+    img: "./src/img/treeOfVitality.png",
     id: 3,
   },
   {
@@ -40,7 +40,7 @@ export const cards = [
     defaultTurns: 2,
     turns: 2,
     ability: "",
-    img: "src/img/treeOfVitality.png",
+    img: "./src/img/treeOfVitality.png",
     id: 4,
   },
   {
@@ -51,7 +51,7 @@ export const cards = [
     defaultTurns: 2,
     turns: 2,
     ability: "",
-    img: "src/img/hound.png",
+    img: "./src/img/hound.png",
     id: 5,
   },
   {
@@ -62,7 +62,7 @@ export const cards = [
     defaultTurns: 2,
     turns: 2,
     ability: "",
-    img: "src/img/hound.png",
+    img: "./src/img/hound.png",
     id: 6,
   },
   {
@@ -95,7 +95,7 @@ export const cards = [
     defaultTurns: 2,
     turns: 2,
     ability: "",
-    img: "src/img/caplanOfMiridith.png",
+    img: "./src/img/caplanOfMiridith.png",
     id: 9,
   },
   {
@@ -106,7 +106,7 @@ export const cards = [
     defaultTurns: 2,
     turns: 2,
     ability: "",
-    img: "src/img/caplanOfMiridith.png",
+    img: "./src/img/caplanOfMiridith.png",
     id: 10,
   },
   {
@@ -117,7 +117,7 @@ export const cards = [
     defaultTurns: 2,
     turns: 2,
     ability: "",
-    img: "src/img/strongFarmer.png",
+    img: "./src/img/strongFarmer.png",
     id: 11,
   },
   {
@@ -128,7 +128,7 @@ export const cards = [
     defaultTurns: 2,
     turns: 2,
     ability: "",
-    img: "src/img/strongFarmer.png",
+    img: "./src/img/strongFarmer.png",
     id: 12,
   },
   {
@@ -139,7 +139,7 @@ export const cards = [
     defaultTurns: 1,
     turns: 1,
     ability: "",
-    img: "src/img/berserker.png",
+    img: "./src/img/berserker.png",
     id: 13,
   },
   {
@@ -150,7 +150,7 @@ export const cards = [
     defaultTurns: 1,
     turns: 1,
     ability: "Rage",
-    img: "src/img/berserker.png",
+    img: "./src/img/berserker.png",
     id: 14,
   },
   {
@@ -161,7 +161,7 @@ export const cards = [
     defaultTurns: 3,
     turns: 3,
     ability: "",
-    img: "src/img/kingsDefender.png",
+    img: "./src/img/kingsDefender.png",
     id: 15,
   },
   {
@@ -172,7 +172,7 @@ export const cards = [
     defaultTurns: 3,
     turns: 3,
     ability: "",
-    img: "src/img/kingsDefender.png",
+    img: "./src/img/kingsDefender.png",
     id: 16,
   },
   {
@@ -183,7 +183,7 @@ export const cards = [
     defaultTurns: 3,
     turns: 3,
     ability: "Rage",
-    img: "src/img/militaryHornist.png",
+    img: "./src/img/militaryHornist.png",
     id: 17,
   },
   {
@@ -194,7 +194,7 @@ export const cards = [
     defaultTurns: 3,
     turns: 3,
     ability: "Rage",
-    img: "src/img/militaryHornist.png",
+    img: "./src/img/militaryHornist.png",
     id: 18,
   },
   {
@@ -205,7 +205,7 @@ export const cards = [
     defaultTurns: 3,
     turns: 3,
     ability: "Blessing",
-    img: "src/img/lightOfAzhura.png",
+    img: "./src/img/lightOfAzhura.png",
     id: 19,
   },
   {
@@ -216,7 +216,7 @@ export const cards = [
     defaultTurns: 3,
     turns: 3,
     ability: "Blessing",
-    img: "src/img/lightOfAzhura.png",
+    img: "./src/img/lightOfAzhura.png",
     id: 20,
   },
   {
@@ -227,7 +227,7 @@ export const cards = [
     defaultTurns: 3,
     turns: 3,
     ability: "Rage",
-    img: "src/img/firandilTheBloody.png",
+    img: "./src/img/firandilTheBloody.png",
     id: 21,
   },
   {
@@ -238,7 +238,7 @@ export const cards = [
     defaultTurns: 2,
     turns: 2,
     ability: "",
-    img: "src/img/BurningHorse.png",
+    img: "./src/img/BurningHorse.png",
     id: 22,
   },
   {
@@ -249,7 +249,7 @@ export const cards = [
     defaultTurns: 2,
     turns: 2,
     ability: "",
-    img: "src/img/BurningHorse.png",
+    img: "./src/img/BurningHorse.png",
     id: 23,
   },
   {
@@ -260,7 +260,7 @@ export const cards = [
     defaultTurns: 2,
     turns: 2,
     ability: "Hourglass",
-    img: "src/img/timeTraveler.png",
+    img: "./src/img/timeTraveler.png",
     id: 24,
   },
   {
@@ -271,7 +271,7 @@ export const cards = [
     defaultTurns: 2,
     turns: 2,
     ability: "Hourglass",
-    img: "src/img/timeTraveler.png",
+    img: "./src/img/timeTraveler.png",
     id: 25,
   },
   {
@@ -282,7 +282,7 @@ export const cards = [
     defaultTurns: 4,
     turns: 4,
     ability: "",
-    img: "src/img/cirilTheMighty.png",
+    img: "./src/img/cirilTheMighty.png",
     id: 26,
   },
   {
@@ -293,7 +293,7 @@ export const cards = [
     defaultTurns: 5,
     turns: 5,
     ability: "",
-    img: "src/img/archmageValorian.png",
+    img: "./src/img/archmageValorian.png",
     id: 27,
   },
   {
@@ -304,7 +304,7 @@ export const cards = [
     defaultTurns: 3,
     turns: 3,
     ability: "Blessing",
-    img: "src/img/princessLaurith.png",
+    img: "./src/img/princessLaurith.png",
     id: 28,
   },
   {
@@ -315,7 +315,7 @@ export const cards = [
     defaultTurns: 4,
     turns: 4,
     ability: "",
-    img: "src/img/karcothTheKing.png",
+    img: "./src/img/karcothTheKing.png",
     id: 29,
   },
   {
@@ -326,7 +326,7 @@ export const cards = [
     defaultTurns: 3,
     turns: 3,
     ability: "Hourglass",
-    img: "src/img/azhura.png",
+    img: "./src/img/azhura.png",
     id: 30,
   },
 ];
