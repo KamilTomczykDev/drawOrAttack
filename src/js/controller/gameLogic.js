@@ -3,6 +3,8 @@ import { state } from "../model.js";
 import { renderBoard, renderCementaryNum,renderEndgame, renderEnemy, renderHand, renderPlayer, renderMana, renderTurn, renderDeckNum,renderTimer } from "../view/renders.js";
 //prettier-ignore
 import { disableButtons, giveDamageAnimation, giveShakeAnimation,nextTurnAnimation } from "../view/animations.js";
+import nazgrammSecondStage from "../../img/nazgrammSecond.png";
+import nazgrammThirdStage from "../../img/nazgrammThird.png";
 
 export const renderUI = () => {
   renderCementaryNum(state.cementary);
@@ -64,15 +66,15 @@ export const turnNumberUp = () => {
     state.enemy.attack = 8;
     state.enemy.name = "Nazgramm the Bloodlord";
     state.enemy.discription = "Deal 8 dmg and heal 5 hp each round";
-    state.enemy.img = "/nazgrammSecond.png";
+    state.enemy.img = nazgrammSecondStage;
   }
   if (state.turn === 12 && state.enemy.hp > 0) {
     state.enemy.hp = 40;
     state.enemy.attack = 10;
-    state.enemy.name = "Nazgramm (Demon form)";
+    state.enemy.name = "Nazgramm (Demon Form)";
     state.enemy.discription =
       "Deal 10 dmg, heal 5 hp and kill random unit each round";
-    state.enemy.img = "/nazgrammThird.png";
+    state.enemy.img = nazgrammThirdStage;
   }
 };
 

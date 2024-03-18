@@ -1,4 +1,5 @@
 import { cards } from "./cards.js";
+import nazgrammFirstStage from "../img/nazgrammFirst.png";
 
 export const state = {
   deck: [...cards],
@@ -10,7 +11,7 @@ export const state = {
     name: "Mysterious Creature",
     attack: 5,
     hp: 30,
-    img: "/nazgrammFirst.png",
+    img: nazgrammFirstStage,
     discription: "Deal 5 dmg each round.",
   },
   playerHp: 30,
