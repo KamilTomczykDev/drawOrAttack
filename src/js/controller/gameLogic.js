@@ -1,4 +1,4 @@
-import { state } from "../model.js";
+import { state, GameState } from "../model.js";
 //prettier-ignore
 import { renderBoard, renderCementaryNum,renderEndgame, renderEnemy, renderHand, renderPlayer, renderMana, renderTurn, renderDeckNum,renderTimer } from "../view/renders.js";
 //prettier-ignore
@@ -7,7 +7,7 @@ import nazgrammSecondStage from "../../img/nazgrammSecond.png";
 import nazgrammThirdStage from "../../img/nazgrammThird.png";
 
 export const renderUI = () => {
-  renderCementaryNum(state.cementary);
+  renderCementaryNum(GameState.cementary);
   renderDeckNum(state.deck);
   renderHand(state.hand);
   renderBoard(state.board);
@@ -55,7 +55,6 @@ export const draw = () => {
   } else {
     state.hand.push(state.deck[number]);
   }
-  const x = state.deck.splice(number, 1);
   renderUI();
 };
 
