@@ -1,6 +1,6 @@
 import karcothTheKing from "../img/karcothTheKing.png";
 import timeTraveler from "../img/timeTraveler.png";
-import BurningHorse from "../img/BurningHorse.png";
+import burningHorse from "../img/burningHorse.png";
 import firandilTheBloody from "../img/firandilTheBloody.png";
 import lightOfAzhura from "../img/lightOfAzhura.png";
 import militaryHornist from "../img/militaryHornist.png";
@@ -257,7 +257,7 @@ export const cards = [
     defaultTurns: 2,
     turns: 2,
     ability: "",
-    img: BurningHorse,
+    img: burningHorse,
     id: 22,
   },
   {
@@ -268,7 +268,7 @@ export const cards = [
     defaultTurns: 2,
     turns: 2,
     ability: "",
-    img: BurningHorse,
+    img: burningHorse,
     id: 23,
   },
   {
