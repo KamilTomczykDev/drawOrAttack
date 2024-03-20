@@ -1,5 +1,5 @@
-import secondStageImage from "../../img/nazgrammSecond.png";
-import thirdStageImage from "../../img/nazgrammThird.png";
+import secondStageImage from "../img/nazgrammSecond.png";
+import thirdStageImage from "../img/nazgrammThird.png";
 
 export const TURN_TIME_IN_SECONDS = 25;
 export const MAX_CARDS_IN_HAND = 5;
