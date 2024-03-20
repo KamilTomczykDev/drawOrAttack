@@ -1,6 +1,10 @@
 import { cards } from "./cards.js";
 import {
+  BLESSING_AMOUNT,
+  HOURGLASS_AMOUNT,
   MAX_CARDS_IN_HAND,
+  MAX_MANA,
+  RAGE_AMOUNT,
   SECOND_STAGE,
   SECOND_STAGE_START,
   THIRD_STAGE_START,
@@ -109,14 +113,15 @@ class State {
   }
 
   draw() {
-    const number = Math.trunc(Math.random() * this.#deck.length);
+    const randomCard = Math.trunc(Math.random() * this.#deck.length);
     if (!this.#deck.length) return;
 
     if (this.#hand.length === MAX_CARDS_IN_HAND) {
-      this.#cementary = [...this.#cementary, this.#deck[number]];
+      this.#cementary = [...this.#cementary, this.#deck[randomCard]];
       //giveshakeAnimation
     } else {
-      this.#hand = [...this.#hand, this.#deck[number]];
+      this.#hand = [...this.#hand, this.#deck[randomCard]];
+      this.#deck.splice(randomCard, 1);
     }
     //renderUI
   }
@@ -136,9 +141,52 @@ class State {
   }
 
   enemyAction() {
-    if (this.#turn >= SECOND_STAGE_START && this.#enemy.hp < 40) {
+    if (this.#turn >= SECOND_STAGE_START && this.#enemy.hp < 40)
       this.#enemy.hp += 5;
+    if (this.#turn >= THIRD_STAGE_START && this.#board.length > 0) {
+      const randomCard = Math.trunc(Math.random() * this.#board.length);
+      this.#cementary = [...this.#cementary, randomCard];
+      this.#board.splice(number, 1);
     }
+  }
+
+  increaseMana() {
+    if (this.#maxMana !== MAX_MANA) this.#maxMana += 1;
+    this.#currentMana = this.#maxMana;
+  }
+
+  healPlayer() {
+    this.#board.forEach((card) => {
+      card.healing && (this.#playerHp += card.healing);
+    });
+  }
+
+  #applyRage() {
+    this.#board.forEach((card) => {
+      card.attack && (card.attack += RAGE_AMOUNT);
+    });
+  }
+  #applyBlessing() {
+    this.#board.forEach((card) => {
+      card.healing && (card.healing += BLESSING_AMOUNT);
+    });
+  }
+  #applyHourglass() {
+    this.#board.forEach((card) => {
+      card.turns += HOURGLASS_AMOUNT;
+    });
+  }
+  lookForWinner() {
+    if (this.#playerHp > 0 && this.#enemy.hp > 0) return;
+    if (this.#playerHp <= 0) this.#winner = "enemy";
+    if (this.#enemy.hp <= 0) this.#winner = "player";
+  }
+  checkCardsAbility(card) {
+    if (!this.#board.length) return;
+
+    if (card.ability === "Rage") this.#applyRage();
+    if (card.ability === "Blessing") this.#applyBlessing();
+    if (card.ability === "Hourglass") this.#applyHourglass();
   }
 }
 
