@@ -55,14 +55,17 @@ npm start
 - Przycisk "Attack" ma zsumowany atak wszystkich kart odjąć od życia przeciwnika
 - Jeśli liczba kart w ręce przekroczy swój limit to nowo dobrana karta ląduje od razu na cmentarzu.
 - Na początku każdej tury karty, których liczba pozostałych tur wynosi 0 lądują na cmentarzu.
+- Na początku każdej tury gracz zyskuje 1 punkt many aż nie osiągnie ona maksymalnego poziomu.
 ### Enemy:
 - Create 3 stages of the enemy that have different healing and attacking attributes and change them throughout the game.
 - Allow user to see the enemy description.
 - On each turn deal damage to the player and heal enemy's character.
-
 ### Player:
-- Allow player to play the cards from the hand.
-- Allow player to make one of the moves per turn: Draw or Attack.
+- Allow player to play cards from the hand.
+- Allow player to draw a card from the deck or attacks the enemy.
 ### Cards:
 - Wyświetlanie statystyk kart na stole i w ręce.
+- Karta która posiada specjalną zdolność zależnie od typu dodaje pewne wartości do innych kart na stole.
+- Karta jest grywalna w danej turze jeśli jej koszt nie przekracza obecnie dostepnej many.
+- Karta co turę traci jednen punkt tury po straceniu wszystkich punktów tur karta ląduje na cmentarzu.
 
