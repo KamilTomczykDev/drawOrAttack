@@ -191,6 +191,7 @@ a {
   padding: 0.2rem 0.2rem 0.2rem 0.2rem;
   background-color: white;
   margin-top: -1rem;
+  transition: all 0.5s;
 }
 .enemy-section--discription {
   line-height: 120%;
@@ -514,7 +515,7 @@ a {
   color: var(--heal-color);
 }
 .shake-animation {
-  animation: tilt-n-move-shaking 0.25s 5 ease-in;
+  animation: tilt-n-move-shaking 0.15s 3 ease-in;
 }
 @keyframes tilt-n-move-shaking {
   0% {

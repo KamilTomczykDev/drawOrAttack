@@ -4,25 +4,19 @@ const board = document.querySelector(".board");
 const gameMenuStart = document.querySelector(".game-menu--start");
 
 export const giveShakeAnimation = function (parentEl) {
-  setTimeout(() => {
-    console.log(parentEl);
-    parentEl.classList.add("shake-animation");
-    setTimeout(() => parentEl.classList.remove("shake-animation"), 1000);
-  }, ENEMY_TURN_TIME);
+  parentEl.classList.add("shake-animation");
+  setTimeout(() => parentEl.classList.remove("shake-animation"), 1000);
 };
 
 export const giveDamageAnimation = function (parentEl) {
-  setTimeout(() => {
-    parentEl.style.backgroundColor = "red";
-    setTimeout(() => (parentEl.style.backgroundColor = "white"), 1000);
-  }, ENEMY_TURN_TIME);
+  parentEl.style.backgroundColor = "red";
+  setTimeout(() => (parentEl.style.backgroundColor = "white"), 1000);
 };
 
-export const nextTurnAnimation = () => {
+export const animateNextTurn = () => {
   const nextTurnText = document.querySelector(".next-turn--container");
   setTimeout(() => {
     nextTurnText.style.display = "flex";
-
     setTimeout(function () {
       nextTurnText.style.opacity = 1;
     }, 500);

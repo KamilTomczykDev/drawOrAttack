@@ -1,20 +1,14 @@
 "use strict";
-import { GameState } from "./model.js";
 //prettier-ignore
 import {addHandlerAttack, addHandlerDraw,addHandlerGameInit, addHandlerHand} from "./view/events.js";
 //prettier-ignore
-import { renderUI } from "./helpers.js"
-//prettier-ignore
-import {
-  giveShakeAnimation,
-  giveDamageAnimation,
-  disableButtons,
-  nextTurnAnimation,
-} from "./view/animations.js";
-
+import { giveShakeAnimation, giveDamageAnimation, disableButtons, animateNextTurn} from "./view/animations.js";
+import { renderUI } from "./helpers.js";
+import { GameState } from "./model.js";
+import { renderEndgame, renderEnemy, renderTimer } from "./view/renders.js";
+import { ENEMY_TURN_TIME } from "./config.js";
 import "core-js/stable";
 import "regenerator-runtime/runtime";
-import { renderEndgame, renderTimer } from "./view/renders.js";
 
 if (module.hot) {
   module.hot.accept();
@@ -22,11 +16,17 @@ if (module.hot) {
 const skipTurn = () => {
   GameState.nextTurn();
   disableButtons();
-  nextTurnAnimation();
+  animateNextTurn();
   setTimeout(() => {
+    if (GameState.winner) {
+      disableButtons();
+      renderEndgame(GameState.winner);
+    }
     renderUI();
-    if (GameState.winner) renderEndgame(GameState.winner);
-  }, 2500);
+    const playerHealthElement = document.querySelector(".hero--health");
+    giveDamageAnimation(playerHealthElement);
+    giveShakeAnimation(playerHealthElement);
+  }, ENEMY_TURN_TIME);
 };
 export const startTimer = () => {
   GameState.resetTimer();
@@ -64,9 +64,10 @@ const controlDrawButton = function () {
 };
 
 const controlAttackButton = function () {
-  const enemyHpElement = document.querySelector(".enemy-section--hero--health");
-  skipTurn();
   GameState.attack();
+  skipTurn();
+  renderEnemy(GameState.enemy);
+  const enemyHpElement = document.querySelector(".enemy-section--hero--health");
   giveShakeAnimation(enemyHpElement);
   giveDamageAnimation(enemyHpElement);
 };

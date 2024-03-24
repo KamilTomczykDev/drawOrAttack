@@ -1,17 +1,6 @@
+//prettier-ignore
+import { BLESSING_AMOUNT, HOURGLASS_AMOUNT, MAX_CARDS_IN_HAND, MAX_MANA, RAGE_AMOUNT, SECOND_STAGE, SECOND_STAGE_START, THIRD_STAGE, THIRD_STAGE_START, TURN_TIME_IN_SECONDS } from "./config.js";
 import { cards } from "./cards.js";
-import {
-  BLESSING_AMOUNT,
-  HOURGLASS_AMOUNT,
-  MAX_CARDS_IN_HAND,
-  MAX_MANA,
-  RAGE_AMOUNT,
-  SECOND_STAGE,
-  SECOND_STAGE_START,
-  THIRD_STAGE,
-  THIRD_STAGE_START,
-  TURN_TIME_IN_SECONDS,
-} from "./config.js";
-
 import nazgrammFirstStage from "../img/nazgrammFirst.png";
 
 let instance;
@@ -40,7 +29,6 @@ class State {
     }
     instance = this;
   }
-
   get cementary() {
     return this.#cementary;
   }
@@ -68,67 +56,50 @@ class State {
   get enemy() {
     return this.#enemy;
   }
-
   get timer() {
     return this.#timer;
   }
-
   get winner() {
     return this.#winner;
   }
-
-  // set timer(seconds) {
-  //   this.#timer = seconds;
-  // }
-
   resetTimer() {
     return (this.#timer = TURN_TIME_IN_SECONDS);
   }
-
   decrementTimer() {
     this.#timer -= 1;
   }
-
-  decrementCardTurnNumber() {
+  #decrementCardTurnNumber() {
     return this.#board.forEach((card) => (card.turns -= 1));
   }
-
-  deleteCards() {
+  #deleteCards() {
     if (this.#board.length > 0) {
       const deletedCards = this.#board.filter((card) => card.turns === 0);
       this.#cementary = [...this.#cementary, ...deletedCards];
     }
     this.#board = this.#board.filter((card) => card.turns !== 0);
   }
-
   draw() {
     const randomCard = Math.trunc(Math.random() * this.#deck.length);
     if (!this.#deck.length) return;
-    console.log(this.#hand);
-    console.log(this.#cementary);
-    console.log(this.#turn);
     if (this.#hand.length === MAX_CARDS_IN_HAND) {
       this.#cementary = [...this.#cementary, this.#deck[randomCard]];
-      //giveshakeAnimation
     } else {
       this.#hand = [...this.#hand, this.#deck[randomCard]];
       this.#deck.splice(randomCard, 1);
     }
-    //renderUI
   }
   attack() {
     this.#board.forEach((card) => {
       if (card.attack) this.#enemy.hp -= card.attack;
     });
   }
-
   #createSecondStage() {
     this.#enemy = SECOND_STAGE;
   }
   #createThirdStage() {
     this.#enemy = THIRD_STAGE;
   }
-  incrementTurn() {
+  #incrementTurn() {
     this.#turn += 1;
     if (this.#turn === SECOND_STAGE_START && this.#enemy.hp > 0)
       this.#createSecondStage();
@@ -136,7 +107,7 @@ class State {
       this.#createThirdStage();
   }
 
-  enemyAction() {
+  #enemyAction() {
     this.#playerHp -= this.#enemy.attack;
 
     if (this.#turn >= SECOND_STAGE_START && this.#enemy.hp < 40)
@@ -149,12 +120,12 @@ class State {
     }
   }
 
-  increaseMana() {
+  #increaseMana() {
     if (this.#maxMana !== MAX_MANA) this.#maxMana += 1;
     this.#currentMana = this.#maxMana;
   }
 
-  healPlayer() {
+  #healPlayer() {
     this.#board.forEach((card) => {
       card.healing && (this.#playerHp += card.healing);
     });
@@ -180,7 +151,7 @@ class State {
     if (this.#playerHp <= 0) this.#winner = "enemy";
     if (this.#enemy.hp <= 0) this.#winner = "player";
   }
-  checkCardsAbility(card) {
+  #checkCardsAbility(card) {
     if (!this.#board.length) return;
 
     if (card.ability === "Rage") this.#applyRage();
@@ -194,9 +165,8 @@ class State {
     const clicked = e.target.closest(".card");
     if (!clicked) return;
     const cardToPlay = this.#hand.find((card) => card.id === +clicked.id);
-    console.log(cardToPlay);
     if (cardToPlay.cost <= this.#currentMana) {
-      this.checkCardsAbility(cardToPlay);
+      this.#checkCardsAbility(cardToPlay);
       this.#board = [...this.#board, cardToPlay];
       this.#hand = this.#hand.filter(
         (handCard) => handCard.id !== cardToPlay.id
@@ -206,13 +176,13 @@ class State {
   }
   nextTurn() {
     this.resetTimer();
-    this.healPlayer();
-    this.increaseMana();
-    this.incrementTurn();
-    this.enemyAction();
+    this.#healPlayer();
+    this.#increaseMana();
+    this.#incrementTurn();
+    this.#enemyAction();
     this.lookForWinner();
-    this.decrementCardTurnNumber();
-    this.deleteCards();
+    this.#decrementCardTurnNumber();
+    this.#deleteCards();
     setTimeout(() => {
       this.resetTimer();
     }, 2000);
