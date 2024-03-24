@@ -135,6 +135,7 @@ a {
   display: none;
   opacity: 0;
   transition: all 1s;
+  text-align: center;
 }
 .next-turn--text {
   color: white;
@@ -513,7 +514,7 @@ a {
   color: var(--heal-color);
 }
 .shake-animation {
-  animation: tilt-n-move-shaking 0.15s infinite;
+  animation: tilt-n-move-shaking 0.25s 5 ease-in;
 }
 @keyframes tilt-n-move-shaking {
   0% {
@@ -531,4 +532,11 @@ a {
   100% {
     transform: translate(0, 0) rotate(0deg);
   }
+}
+
+/* ultilities */
+
+.disabled {
+  opacity: 0.6;
+  pointer-events: none;
 }

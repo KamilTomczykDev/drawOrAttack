@@ -15,3 +15,14 @@ export const addHandlerAttack = function (handler) {
 
   attackBtn.addEventListener("click", handler);
 };
+
+export const addHandlerHand = function (handler) {
+  const hand = document.querySelector(".hand");
+  hand.classList.remove("disabled");
+
+  function clickHandler(e) {
+    handler(e);
+  }
+
+  hand.addEventListener("click", clickHandler);
+};

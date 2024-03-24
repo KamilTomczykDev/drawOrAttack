@@ -6,6 +6,7 @@ export const MAX_CARDS_IN_HAND = 5;
 export const MAX_MANA = 10;
 
 //enemy
+export const ENEMY_TURN_TIME = 2500;
 export const SECOND_STAGE_START = 7;
 export const THIRD_STAGE_START = 12;
 export const SECOND_STAGE = {

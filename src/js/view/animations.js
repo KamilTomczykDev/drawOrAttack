@@ -1,45 +1,53 @@
+import { ENEMY_TURN_TIME } from "../config";
+
 const board = document.querySelector(".board");
 const gameMenuStart = document.querySelector(".game-menu--start");
 
 export const giveShakeAnimation = function (parentEl) {
-  parentEl.classList.add("shake-animation");
-  setTimeout(function () {
-    parentEl.classList.remove("shake-animation");
-  }, 1000);
+  setTimeout(() => {
+    console.log(parentEl);
+    parentEl.classList.add("shake-animation");
+    setTimeout(() => parentEl.classList.remove("shake-animation"), 1000);
+  }, ENEMY_TURN_TIME);
 };
 
 export const giveDamageAnimation = function (parentEl) {
-  parentEl.style.backgroundColor = "red";
-  setTimeout(function () {
-    parentEl.style.backgroundColor = "white";
-  }, 1000);
+  setTimeout(() => {
+    parentEl.style.backgroundColor = "red";
+    setTimeout(() => (parentEl.style.backgroundColor = "white"), 1000);
+  }, ENEMY_TURN_TIME);
 };
 
 export const nextTurnAnimation = () => {
   const nextTurnText = document.querySelector(".next-turn--container");
-  nextTurnText.style.display = "flex";
+  setTimeout(() => {
+    nextTurnText.style.display = "flex";
 
-  setTimeout(function () {
-    nextTurnText.style.opacity = 1;
-  }, 500);
-  setTimeout(function () {
-    nextTurnText.style.opacity = 0;
-  }, 1500);
-  setTimeout(function () {
-    nextTurnText.style.display = "none";
-  }, 2300);
+    setTimeout(function () {
+      nextTurnText.style.opacity = 1;
+    }, 500);
+    setTimeout(function () {
+      nextTurnText.style.opacity = 0;
+    }, 1500);
+    setTimeout(function () {
+      nextTurnText.style.display = "none";
+    }, 2300);
+  }, ENEMY_TURN_TIME);
 };
 
 export const disableButtons = () => {
   const attackBtn = document.querySelector(".button--attack");
   const drawBtn = document.querySelector(".button--draw");
+  const hand = document.querySelector(".hand");
 
+  hand.classList.add("disabled");
   attackBtn.disabled = true;
   drawBtn.disabled = true;
   setTimeout(() => {
+    hand.classList.remove("disabled");
     attackBtn.disabled = false;
     drawBtn.disabled = false;
-  }, 2500);
+  }, ENEMY_TURN_TIME);
 };
 
 board.addEventListener("mouseover", function (e) {
