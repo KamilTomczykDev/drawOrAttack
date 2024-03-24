@@ -1,26 +1,20 @@
 "use strict";
-import { GameState } from "../model.js";
+import { GameState } from "./model.js";
 //prettier-ignore
-import {addHandlerAttack, addHandlerDraw,addHandlerGameInit, addHandlerHand} from "../view/events.js";
+import {addHandlerAttack, addHandlerDraw,addHandlerGameInit, addHandlerHand} from "./view/events.js";
 //prettier-ignore
-import { nextTurn, renderUI, setTimer } from "./gameLogic.js";
-
+import { renderUI } from "./helpers.js"
+//prettier-ignore
 import {
   giveShakeAnimation,
   giveDamageAnimation,
   disableButtons,
   nextTurnAnimation,
-} from "../view/animations.js";
+} from "./view/animations.js";
 
 import "core-js/stable";
 import "regenerator-runtime/runtime";
-import {
-  renderBoard,
-  renderEndgame,
-  renderHand,
-  renderMana,
-  renderTimer,
-} from "../view/renders.js";
+import { renderEndgame, renderTimer } from "./view/renders.js";
 
 if (module.hot) {
   module.hot.accept();

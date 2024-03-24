@@ -96,7 +96,7 @@ class State {
   deleteCards() {
     if (this.#board.length > 0) {
       const deletedCards = this.#board.filter((card) => card.turns === 0);
-      this.#cementary = [...this.#cementary, deletedCards];
+      this.#cementary = [...this.#cementary, ...deletedCards];
     }
     this.#board = this.#board.filter((card) => card.turns !== 0);
   }
@@ -104,7 +104,9 @@ class State {
   draw() {
     const randomCard = Math.trunc(Math.random() * this.#deck.length);
     if (!this.#deck.length) return;
-
+    console.log(this.#hand);
+    console.log(this.#cementary);
+    console.log(this.#turn);
     if (this.#hand.length === MAX_CARDS_IN_HAND) {
       this.#cementary = [...this.#cementary, this.#deck[randomCard]];
       //giveshakeAnimation

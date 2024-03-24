@@ -1,7 +1,7 @@
-import { GameState } from "../model.js";
+import { GameState } from "./model.js";
 //prettier-ignore
-import { renderBoard, renderCementaryNum, renderEnemy, renderHand, renderPlayer, renderMana, renderTurn, renderDeckNum,renderTimer } from "../view/renders.js";
-//prettier-ignore
+import { renderBoard, renderCementaryNum, renderEnemy, renderHand, renderPlayer, renderMana, renderTurn, renderDeckNum } from "./view/renders.js";
+
 export const renderUI = () => {
   renderCementaryNum(GameState.cementary);
   renderDeckNum(GameState.deck);
