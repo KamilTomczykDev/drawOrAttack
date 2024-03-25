@@ -37,6 +37,12 @@ npm start
 ```
 <br>
 
+# How to play
+## Simple explanation of graphical user interface.
+<br>
+ <img src="src/img/howtoplay-board.png" />
+<img src="src/img/howtoplay-cards.png"/>
+
 # Requirements
 
 ## General:
