@@ -22,7 +22,7 @@ export const renderHand = async function (data) {
     const markup = `
     <div class="card" id="${card.id}">
         <div class="card--cost">${card.cost}</div>
-        <img src="${card.img}" class="card--img" />
+        <img alt="Hand card image" src="${card.img}" class="card--img" />
         <p class="card--name">${card.name}</p>
         <p class="card--ability"><br />${card.ability}</p>
         <div class="card--stat-container">
@@ -45,7 +45,7 @@ export const renderBoard = function (data) {
   data.forEach(function (card) {
     const markup = `
     <div class="board--card" data-id="${card.id}00">
-      <img class="board--card--img" src="${card.img}" />
+      <img class="board--card--img" alt="Board card image" src="${card.img}" />
       <div class="board--card--stat-container">
         <div class="board--card--action-stat  ${
           card.healing ? "healer" : ""
@@ -55,7 +55,7 @@ export const renderBoard = function (data) {
       
       <div class="card hover-view" id="${card.id}00">
         <div class="card--cost">${card.cost}</div>
-        <img src="${card.img}" class="card--img" />
+        <img src="${card.img}" alt="Board card image" class="card--img" />
         <p class="card--name">${card.name}</p>
         <p class="card--ability"><br />${card.ability}</p>
         <div class="card--stat-container">
@@ -105,6 +105,7 @@ export const renderEnemy = (data) => {
   <div class="enemy-section--hero">
   <img
     class="enemy-section--hero--img"
+    alt="Enemy hero image"
     src="${data.img}"
   />
   <span class="enemy-section--hero--health">${data.hp}</span>

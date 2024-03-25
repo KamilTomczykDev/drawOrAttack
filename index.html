@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="desciption"
+      content='"DrawOrAttack" is a card game inspired by Hearthstone, created by Blizzard. At the start of the game, the user receives a set of 3 random cards, and the game begins. The first player to reach 0 health points loses the game. This project holds a special place as it marks a significant milestone in my web development journey. The main goal behind this project was to learn vanilla JavaScript, design patterns such as MVC and Singleton, as well as CSS and HTML.DrawOrAttack is a card-game inspired by"'
+    />
     <style type="text/css">
       @import url("src/css/mobile.css");
       @import url("src/css/medium.css");
@@ -28,8 +32,6 @@
   </head>
 
   <body>
-    <!-- game menu -->
-
     <div class="game-menu">
       <div class="game-menu--container">
         <div class="game-menu--start">
@@ -62,12 +64,10 @@
       <div class="game-menu--background"></div>
     </div>
 
-    <!-- next turn indicator -->
     <div class="next-turn--container">
       <p class="next-turn--text">Next Turn</p>
     </div>
 
-    <!-- game -->
     <div class="game">
       <section class="enemy-side">
         <div class="timer"></div>
@@ -76,6 +76,7 @@
             <img
               class="enemy-section--hero--img"
               src="src/img/firstEnemy.jpeg"
+              alt="Enemy hero image"
             />
             <span class="enemy-section--hero--health"></span>
             <div class="enemy-section--discription"></div>
@@ -87,18 +88,22 @@
         <div class="player--left-section">
           <div class="skull-container">
             <p class="skull-number"></p>
-            <img src="src/img/skull.png" alt="skull" class="skull" />
+            <img src="src/img/skull.png" alt="Cementary icon" class="skull" />
           </div>
           <div class="deck-container">
             <p class="deck-number"></p>
-            <img src="src/img/cardBack.jpeg" alt="deck back" class="deck" />
+            <img src="src/img/cardBack.jpeg" alt="deck reverse" class="deck" />
           </div>
         </div>
 
         <div class="player--mid-section">
           <div class="board"></div>
           <div class="hero">
-            <img class="hero--img" src="src/img/mainHero.png" />
+            <img
+              class="hero--img"
+              alt="Player hero image"
+              src="src/img/mainHero.png"
+            />
             <p class="hero--health"></p>
           </div>
         </div>
